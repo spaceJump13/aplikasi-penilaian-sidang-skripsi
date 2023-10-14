@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <title>Home First</title>
+    </head>
+    <body style="background-color:#4478FF">
+        <div class="content">
+            <h3>TEAM MANAGEMENT</h3>
+            <h6 style="padding: 5px;">NRP mahasiswa</h6>
+            <div class="team">
+                <p>Dosen pembimbing</p>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Nama dosen
+                    </button>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="team">
+                <p>Anggota pengjuji</p>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Nama dosen
+                    </button>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="team">
+                <p>Anggota pengjuji</p>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Nama dosen
+                    </button>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="team">
+                <p>Anggota pengjuji</p>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Nama dosen
+                    </button>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="button_login">
+                <button id="shuffleButton" class="btn btn-warning" onclick="show()">Shuffle</button>
+                <div id="choose">
+                    <button id="saveButton" class="btn btn-warning" onclick="saveData()">Save</button>
+                    <button id="cancelButton" class="btn btn-warning" onclick="cancelShuffle()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+    function show() {
+        document.getElementById("shuffleButton").style.display = "none";
+        document.getElementById("choose").style.display = "block";
+        // document.getElementById("choose").style.width = "200px";
+    }
+
+    function saveData() {
+        // Add your save logic here (e.g., save data to a server).
+        // You can replace this alert with your save implementation.
+        alert("Data saved!");
+    }
+
+    function cancelShuffle() {
+        document.getElementById("choose").style.display = "none";
+        document.getElementById("shuffleButton").style.display = "block";
+    }
+</script>
