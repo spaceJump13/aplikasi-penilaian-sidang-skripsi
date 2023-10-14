@@ -21,19 +21,24 @@ h3{
 }
 
 #InputEmail1{
-    background-color: #ddd;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px 0 0 8px;
+
 }
 
 #InputPassword1{
-    background-color: #ddd;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px 0 0 8px;
 }
 
 #Check1{
     background-color: #ddd;
 }
 
-#emailHelp{
-    color: black;
+#emailaddrss{
+    flex-wrap: wrap;
 }
 
 .button_login{
@@ -120,7 +125,7 @@ h3{
 h1{
     color: white;
     text-align: center;
-    padding: 60px 0 20px 0;
+    padding: 45px 0 20px 0;
 }
 
 #content{
@@ -228,4 +233,93 @@ h1{
     margin-left: 60px;
     margin-right: auto;
     padding: 20px;
+}
+
+
+
+/*TAMBAH BERITA ACARA*/
+
+#content_BA{
+    display : flex;
+    flex-direction : row;
+    max-height: 900px;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border-radius:50px;
+    position: relative;
+    padding: 20px 10px;
+}
+
+h5{
+    text-align: center;
+}
+
+.col-md-6{
+    padding: 10px 30px;
+    margin: 0 10px;
+}
+
+.col-md-6 input{
+    background-color: #ddd;
+}
+
+.col-sm-6{
+    padding: 5px;
+}
+
+.col-sm-2 input{
+    margin: 5px;
+}
+
+input[type="number"]{
+    -moz-appearance: textfield;
+    outline: none;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    
+}
+
+.col-sm-4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn.dropdown-toggle{
+    background-color: #ddd;
+}
+
+.col-sm-8{
+    padding: 5px;
+}
+
+#col-sm-1{
+    justify-content: right;
+    text-align: right;
+}
+
+#button_op{
+    display: flex;
+    justify-content: right;
+    margin:30px 0 0 0;
+}
+
+.table input{
+    background-color: white;
+    border-color: white;
+    width: 20px;
+}
+
+.table{
+    text-align: center ;
+}
+
+th{
+    padding: 0;
+}
+td{
+    padding: 0;
 }
