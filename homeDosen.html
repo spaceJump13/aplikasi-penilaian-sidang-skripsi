@@ -12,25 +12,61 @@
     </head>
     <body style="background-color:#4478FF">
         <div class="head">
-            <h1>WELCOME ADMIN!</h1>
+            <h1>WELCOME NAMA DOSEN!</h1>
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                  JUDUL SKRIPSI
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><button class="dropdown-item" type="button">Action</button></li>
+                  <li><button class="dropdown-item" type="button">Another action</button></li>
+                  <li><button class="dropdown-item" type="button">Something else here</button></li>
+                </ul>
+            </div>
         </div>
         
-        <div class="container"id="content">
-            <div class="row">
-                <div class="box">
-                    <p>LIHAT PRESENSI</p>
-                    
+        <div class="container" id="content">
+            <div class="row mb-1" style="justify-content: center;">
+                <div class="col-sm-8" style="border: 4px solid #FFD600;">
+                    <div class="row sm-1"><p id="judul_nilai">NILAI</p></div>
+                    <div class="row md-3">
+                        <div class="row sm-3" id="score"><img src="asset/image/score.png"></div>
+                        <div class="col-sm-5" id="cmpk">
+                            <p>CMPK 1</p>
+                            <p>CMPK 2</p>
+                            <p>CMPK 3</p>
+                            <p>CMPK 4</p>
+                            <p>CMPK 5</p>
+                            <p>CMPK 6</p>
+                            <p>CMPK 7</p>
+                            <p>CMPK 8</p>
+                            <p>CMPK 9</p>
+                            <p>CMPK 10</p>
+                        </div>
+                        <div class="col-sm-2" id="nilai_cmpk">
+                            <input type="number" class="form-control" name="nilai1" id="nilai1" style="border-radius: 8px; margin: 8px 0;">
+                            <input type="number" class="form-control" name="nilai2" id="nilai2" style="border-radius: 8px; margin: 8px 0;">
+                            <input type="number" class="form-control" name="nilai3" id="nilai3" style="border-radius: 8px; margin: 8px 0;">
+                            <input type="number" class="form-control" name="nilai4" id="nilai4" style="border-radius: 8px; margin: 8px 0;">
+                            <input type="number" class="form-control" name="nilai5" id="nilai5" style="border-radius: 8px; margin: 8px 0;">
+                            <input type="number" class="form-control" name="nilai6" id="nilai6" style="border-radius: 8px; margin: 8px 0;">
+                            <input type="number" class="form-control" name="nilai7" id="nilai7" style="border-radius: 8px; margin: 8px 0;">
+                            <input type="number" class="form-control" name="nilai8" id="nilai8" style="border-radius: 8px; margin: 8px 0;">
+                            <input type="number" class="form-control" name="nilai9" id="nilai9" style="border-radius: 8px; margin: 8px 0;">
+                            <input type="number" class="form-control" name="nilai10" id="nilai10" style="border-radius: 8px; margin: 8px 0;">
+                        </div>
+                    </div>
+                    <div class="col" id="submitButton">
+                        <button type="button" class="btn btn-warning" onclick="submit()">Submit</button>
+                    </div>
                 </div>
-                <div class="box">
-                    <p>TAMBAH BERITA ACARA</p>
-                    <img id="news" src="asset/image/news.png">
+                
+
+                <div class="col-md-3" style="margin-right: 0;">
+                    <div class="row sm-1"><p>RIWAYAT SIDANG</p> </div>
+                    <div class="row md-3" id="news"><img src="asset/image/file.png"></div>
                 </div>
-                <div class="box">
-                    <p>RIWAYAT SIDANG  </p> 
-                    <img id="file"src="asset/image/file.png">
-                </div>
-            </div>
-            
+            </div> 
         </div>
         
     </body>
