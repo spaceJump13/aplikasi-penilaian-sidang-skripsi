@@ -12,22 +12,22 @@
     <body style="background-color:#4478FF">
         <div class="head">
             <h1>ANDA ADALAH KETUA PENGUJI</h1>
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
+            <div class="dropdown" id="" style="text-align: center; position: relative; z-index: 1000;">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                   JUDUL SKRIPSI
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                  <li><button class="dropdown-item" type="button">Action</button></li>
-                  <li><button class="dropdown-item" type="button">Another action</button></li>
-                  <li><button class="dropdown-item" type="button">Something else here</button></li>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
-            </div>
+              </div>
         </div>
         
         <div class="container" id="content">
             <div class="row mb-1">
                 <div class="col-md-2">
-                    <div class="row sm-1"><p id="judul_absen">ABSENSI SIDANG</p></div>
+                    <div class="row sm-3"><p id="judul_absen">ABSENSI SIDANG</p></div>
                     <form>
                         <div class="row mb-1">
                             <label for="nrp" class="col-sm-12 col-form-label">Ketua Penguji</label>
@@ -85,10 +85,10 @@
                     </form>
                 </div>
 
-                <div class="col-md-1">
+                <div class="col-md-1" id="hadir_op">
                     <div class="row mb-1">
                         <div class="btn-group">
-                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" id="hadir1">
                                 Hadir
                             </button>
                             <ul class="dropdown-menu dropdown-menu-lg-end">
@@ -99,7 +99,7 @@
                     </div>
                     <div class="row mb-1">
                         <div class="btn-group">
-                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" id="hadir2">
                                 Hadir
                             </button>
                             <ul class="dropdown-menu dropdown-menu-lg-end">
@@ -110,7 +110,7 @@
                     </div>
                     <div class="row mb-1">
                         <div class="btn-group">
-                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" id="hadir3">
                                 Hadir
                             </button>
                             <ul class="dropdown-menu dropdown-menu-lg-end">
@@ -121,7 +121,7 @@
                     </div>
                     <div class="row mb-1">
                         <div class="btn-group">
-                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static"id="hadir4">
                                 Hadir
                             </button>
                             <ul class="dropdown-menu dropdown-menu-lg-end">
@@ -131,18 +131,18 @@
                         </div>
                     </div>
 
-                    <div class="col" id="submitButton">
-                        <button type="button" class="btn btn-warning" onclick="enter()">Enter</button>
+                    <div class="row mb-1" id="entertButton">
+                        <button type="button" class="btn btn-warning">Enter</button>
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3" id="tambah_berita">
                     <div class="row sm-1"><p>TAMBAH BERITA ACARA</p></div>
                     <div class="row md-3" id="news"><img src="asset/image/news.png"></div>
                    
                 </div>
-                <div class="col-md-3">
-                    <div class="row sm-1"><p>RIWAYAT SIDANG</p> </div>
+                <div class="col-md-3" id="riwayat_sidang">
+                    <div id="title_rsidang"><p>RIWAYAT SIDANG</p> </div>
                     <div class="row md-3" id="file"><img src="asset/image/file.png"></div>
                 </div>
             </div> 
