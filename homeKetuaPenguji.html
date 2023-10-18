@@ -26,122 +26,148 @@
         
         <div class="container" id="content">
             <div class="row mb-1">
-                <div class="col-md-2">
-                    <div class="row sm-3"><p id="judul_absen">ABSENSI SIDANG</p></div>
+                <table class="col-3 card" id="absen">
                     <form>
-                        <div class="row mb-1">
-                            <label for="nrp" class="col-sm-12 col-form-label">Ketua Penguji</label>
-                            <div class="btn-group">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                    nama dosen
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-lg-end">
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="row mb-1">
-                            <label for="nrp" class="col-sm-12 col-form-label">Dosen Penguji</label>
-                            <div class="btn-group">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                    nama dosen
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-lg-end">
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row mb-1">
-                            <label for="nrp" class="col-sm-12 col-form-label">Dosen Pembimbing 1</label>
-                            <div class="btn-group">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                    nama dosen
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-lg-end">
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row mb-1">
-                            <label for="nrp" class="col-sm-12 col-form-label">Dosen Pembimbing 2</label>
-                            <div class="btn-group">
-                                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                    nama dosen
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-lg-end">
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                  <li><a class="dropdown-item" href="#">Menu item</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        <tr>
+                            <td style="text-align: center;">
+                                <p id="judul_absen">ABSENSI SIDANG</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="ketua" class="col-sm-12 col-form-label">Ketua Penguji</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                                        nama dosen
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" id="hadir1">
+                                        Hadir
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                                      <li><a class="dropdown-item" href="#">Hadir</a></li>
+                                      <li><a class="dropdown-item" href="#">Tidak Hadir</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="ketua" class="col-sm-12 col-form-label">Ketua Penguji</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                                        nama dosen
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" id="hadir1">
+                                        Hadir
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                                      <li><a class="dropdown-item" href="#">Hadir</a></li>
+                                      <li><a class="dropdown-item" href="#">Tidak Hadir</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr><tr>
+                            <td>
+                                <label for="pembimbing1" class="col-sm-12 col-form-label">Dosen Pembimbing 1</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                                        nama dosen
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" id="hadir1">
+                                        Hadir
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                                      <li><a class="dropdown-item" href="#">Hadir</a></li>
+                                      <li><a class="dropdown-item" href="#">Tidak Hadir</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr><tr>
+                            <td>
+                                <label for="pembimbing2" class="col-sm-12 col-form-label">Dosen Pembimbing 2</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                                        nama dosen
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                      <li><a class="dropdown-item" href="#">Menu item</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" id="hadir1">
+                                        Hadir
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-lg-end">
+                                      <li><a class="dropdown-item" href="#">Hadir</a></li>
+                                      <li><a class="dropdown-item" href="#">Tidak Hadir</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="row mb-1" id="entertButton">
+                                    <button type="button" class="btn btn-warning">Enter</button>
+                                </div>
+                            </td>
+                        </tr>
                     </form>
-                </div>
+                </table>
 
-                <div class="col-md-1" id="hadir_op">
-                    <div class="row mb-1">
-                        <div class="btn-group">
-                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" id="hadir1">
-                                Hadir
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-lg-end">
-                              <li><a class="dropdown-item" href="#">Hadir</a></li>
-                              <li><a class="dropdown-item" href="#">Tidak Hadir</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row mb-1">
-                        <div class="btn-group">
-                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" id="hadir2">
-                                Hadir
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-lg-end">
-                              <li><a class="dropdown-item" href="#">Hadir</a></li>
-                              <li><a class="dropdown-item" href="#">Tidak Hadir</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row mb-1">
-                        <div class="btn-group">
-                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" id="hadir3">
-                                Hadir
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-lg-end">
-                              <li><a class="dropdown-item" href="#">Hadir</a></li>
-                              <li><a class="dropdown-item" href="#">Tidak Hadir</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row mb-1">
-                        <div class="btn-group">
-                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static"id="hadir4">
-                                Hadir
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-lg-end">
-                              <li><a class="dropdown-item" href="#">Hadir</a></li>
-                              <li><a class="dropdown-item" href="#">Tidak Hadir</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="row mb-1" id="entertButton">
-                        <button type="button" class="btn btn-warning">Enter</button>
-                    </div>
-                </div>
-
-                <div class="col-md-3" id="tambah_berita">
+                <div class="col-md-3" id="tambah_berita" onclick="location.href='addBeritaAcara.html'">
                     <div class="row sm-1"><p>TAMBAH BERITA ACARA</p></div>
                     <div class="row md-3" id="news"><img src="asset/image/news.png"></div>
                    
                 </div>
-                <div class="col-md-3" id="riwayat_sidang">
+                <div class="col-md-3" id="riwayat_sidang" onclick="location.href=''">
                     <div id="title_rsidang"><p>RIWAYAT SIDANG</p> </div>
                     <div class="row md-3" id="file"><img src="asset/image/file.png"></div>
                 </div>

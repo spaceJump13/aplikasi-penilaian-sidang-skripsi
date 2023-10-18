@@ -24,7 +24,6 @@ h3{
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px 0 0 8px;
-
 }
 
 #InputPassword1{
@@ -57,49 +56,25 @@ h3{
 }
 
 
-.content{
-    max-width: 400px;
-    max-height: 550px;
-    background-color:white;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    padding: 20px;
-}
-
+/*setting tombol drop down*/
 .dropdown{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -30%);
 }
 
-.team{
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.team:hover{
-    padding: 5px;
-    background-color: #FFD600;
-}
-
 .btn.dropdown-toggle{
     background-color:#ddd;
-    width: 330px;
+    color: black;
+    width: 100%;
+    max-width: 330px;
     text-align: left;
+    text-align: center;
 }
 .btn.dropdown-toggle:hover{
-    background-color:#ddd;
+    background-color:grey;
+    color: white;
 }
-
-.button_login{
-    margin-top: 10px;
-}
-
 
 
 
@@ -110,18 +85,20 @@ h1{
     padding: 45px 0 20px 0;
 }
 
+/*kotak putih unk ALL HOME*/
 #content{
     display: flex;
-    flex-direction: row;
+    flex-direction: col;
     height: 100%;
     width: 100%;
     background-color: white;
-    border-radius:50px 50px 0 0;
-    position: absolute;
+    border-radius: 50px;
     padding: 30px;
     justify-content: center;
+    padding: 30px;
 }
 
+/*kotak kuning besat ALL HOME --> tmbah berita acara riwayat sidang, atur bobot, berita acara*/
 .col-md-3{
     display: inline-block;
     width: 100%;
@@ -148,6 +125,7 @@ h1{
     border-width: 3px;
 }
 
+/*kotak kuning menu vakasi & data msh*/
 .row-sm-4{
     display: inline-block;
     width: 100%;
@@ -171,16 +149,9 @@ h1{
     border-width: 3px;
 }
 
-#vakasi{
+/* setting div vakasi & data mhs*/
+#vakasi, #datamhs{
     margin-bottom: 15px;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-}
-
-#datamhs{
-    margin-top: 15px;
-    padding: 10px;
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -190,6 +161,7 @@ h1{
     padding-top: 5px;
 }
 
+/* setting gambar percen*/
 #percent{
     max-width: 250px;
     display: block;
@@ -201,6 +173,7 @@ h1{
     align-items: center;
 }
 
+/* setting gambar berita acara*/
 #news{
     max-width: 300px;
     display: block;
@@ -218,15 +191,7 @@ h1{
 
 /*HOME DOSEN*/
 
-#content{
-    height: 100%;
-    width: 100%;
-    background-color: white;
-    border-radius:50px;
-    position: relative;
-    padding: 30px;
-}
-
+/*set grid unk menu*/
 .row{
     width: 100%;
     display: flex;
@@ -234,7 +199,7 @@ h1{
     flex-wrap: wrap;
 }
 
-
+/*setting div menu nilai*/
 .col-sm-8{
     display: inline-block;
     width: 100%;
@@ -258,17 +223,7 @@ h1{
     font-size: 20px;
 }
 
-#rsidang{
-    width: 100%;
-    height: 100%;
-    max-width: 400px;
-    max-height: 650px;
-    margin-right: 0;
-    padding-top: 5px;
-    position: relative;
-}
-
-
+/*div riwayat sidang*/
 #file{
     max-width: 300px;
     display: block;
@@ -281,6 +236,7 @@ h1{
     transform: translateX(-50%) translateY(-50%);
 }
 
+/*gambar riwayat sidang*/
 #score{
     max-width: 300px;
     display: block;
@@ -308,6 +264,15 @@ h1{
     text-align: center;
 }
 
+#absen{
+    border:3px solid #FFD600;
+    border-radius: 10px;
+}
+
+#absen td{
+    max-height: 10px;
+}
+
 #tambah_berita, #riwayat_sidang{
     padding-top: 5px;
 }
@@ -315,7 +280,7 @@ h1{
 #hadir_op{
     position: absolute;
     top: 70%;
-    left: 20%;
+    left: 25%;
     transform: translateX(-50%) translateY(-50%); 
 }
 
@@ -369,12 +334,19 @@ h5{
     background-color: #ddd;
 }
 
+/*div input*/
+.col-sm-8{
+    padding:10px;
+    width: 100%;
+}
+
 #cmpk_title , #hasil{
     padding: 5px;
 }
 
 .col-sm-2 input{
     margin: 5px;
+    max-width: 50px;
 }
 
 /*ilangin arrow atas bawah unk input number*/
@@ -388,26 +360,37 @@ input[type="number"]::-webkit-inner-spin-button{
     
 }
 
-.btn.dropdown-toggle{
-    background-color: #ddd;
+#keterangan{
+    width: 100%;
+    max-width: 580px;
+    text-align: center;
 }
 
-/*div input*/
-.col-sm-8{
-    padding:10px;
+#kiri label{
     width: 100%;
 }
 
-/*tabel nilai*/
-.table input{
-    background-color: white;
-    border-color: white;
+#nilaicpmk td{
     width: 20px;
 }
 
-.table{
+/* supaya dropdown width besar */
+.btn-group{ 
+    width: 100%;
+}
+
+/*setting tabel nilai*/
+#tabel_cpl input{
+    background-color: white;
+    border-color: white;
+    width: 35px;
     text-align: center ;
 }
+
+#tabel_cpl{
+    text-align: center ;
+}
+
 
 /*div button*/
 #button_op{
