@@ -87,13 +87,13 @@ h1{
 #content{
     display: flex;
     flex-direction: col;
-    height: 100%;
-    width: 100%;
     background-color: white;
     border-radius: 50px;
     padding: 30px;
     justify-content: center;
-    padding: 30px;
+    width: fit-content;
+    height: fit-content;
+    
 }
 
 /*kotak kuning besat ALL HOME --> tmbah berita acara riwayat sidang, atur bobot, berita acara*/
@@ -257,13 +257,17 @@ h1{
 
 #judul_absen{
     font-size: 25px;
-    font-weight: 600;
+    font-weight: 600px;
     color: black;
+    width: fit-content;
+    height: fit-content;
 }
 
 #absen{
     border:3px solid #FFD600;
     border-radius: 10px;
+    width: fit-content;
+    height: fit-content;
 }
 
 #absen td{
@@ -272,6 +276,7 @@ h1{
 
 #tambah_berita, #riwayat_sidang{
     padding-top: 5px;
+
 }
 
 #hadir_op{
@@ -288,6 +293,8 @@ h1{
 #enterButton{
     width: 80px;
 }
+
+
 
 
 
