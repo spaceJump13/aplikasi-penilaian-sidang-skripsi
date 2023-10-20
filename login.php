@@ -72,10 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="InputPassword1" class="form-label" style="padding-right: 15px;">Password</label>
                 <input type="password" class="form-control" id="InputPassword1" name="password" required>
             </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="Check1">
-                <label class="form-check-label" for="exampleCheck1">Remember me</label>
-            </div>
             <div class="button_login">
                 <button type="submit" class="btn btn-warning" id="login">Login</button>
             </div>
