@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>BERITA ACARA</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+</head>
+
+<style type="text/css">
+body {
+	background: #4478FF;
+	margin: 0;
+	padding: 0;
+	font-family: Inter;
+}
+#header {
+	height: 10vh;
+}
+#rectangle {
+	width: 100vw;
+	height: 90vh;
+	flex-shrink: 0;
+	border-radius: 6.25rem 6.25rem 0rem 0rem;
+	background: #FFF;
+	padding-left: 5rem;
+	padding-right: 5rem;
+	padding-top: 2rem;
+}
+h2 {
+	text-align: center;
+}
+.table-header {
+	background: #B4B4B4;
+	color: #000;
+	text-align: center;
+	font-family: Inter;
+	font-size: 1.2rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	position: sticky;
+}
+.odd-row {
+	opacity: 0.7;
+	background: #D9D9D9;
+}
+.even-row {
+	opacity: 0.7;
+	background: #C1C1C1;
+}
+.table-container {
+	border-radius: 1.25rem 1.25rem 0rem 0rem;
+	height: 55vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+#filter {
+height:
+}
+table {
+	width: 100%;
+	border: none;
+	border-radius: 1.25rem 1.25rem 0rem 0rem;
+}
+table, th {
+	border: 1px solid black;
+	border: none;
+}
+th {
+	padding: 4px;
+}
+td {
+	border-right: 1px solid white;
+	text-align: center;
+}
+tr.selected {
+    background-color: #ffd600;
+}
+.row {
+	margin-bottom: 10px;
+}
+.custom-button {
+	background-color: #FFD600;
+	color: black;
+	border: none;
+	padding: 7px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 15px;
+}
+.custom-button:hover {
+	background-color: white;
+	box-shadow: inset 0 0 0 .3rem #FFD600;
+}
+.button-container {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: none;
+}
+.right-buttons {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: none;
+}
+.left-button {
+	margin-right: 10px;
+}
+</style>
+<body>
+<div id="header"></div>
+<div id="rectangle">
+  <h2><strong>BERITA ACARA</strong></h2>
+  <div class="row justify-content-between">
+    <div class="col-md-5">
+      <div class="row g-3 align-items-center">
+        <div class="col-1"> <img src="Asset/search.png" width="23" height="29" alt=""/> </div>
+        <div class="col-7">
+          <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="Find student name">
+        </div>
+        <div class="col-4">
+          <button class="custom-button" type="button">Search</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <form>
+        <div class="form-group row">
+          <div class="col-md-3"></div>
+          <label for="dropdown" class="col-form-label col-md-3">Periode:</label>
+          <div class="col-md-6">
+            <select class="form-control" id="dropdown">
+              <option value="option1">2023/Gasal</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div id="filter"></div>
+  <div class="table-container">
+    <table id="myTable">
+      <thead>
+        <tr class="table-header">
+          <th>NRP</th>
+          <th>Nama</th>
+          <th>Judul Skripsi</th>
+          <th>Konsentrasi</th>
+          <th>Nilai Akhir</th>
+          <th>Hasil</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <!-- Add more rows as needed to exceed the container's height -->
+        <tr class="odd-row">
+          <td>a</td>
+          <td>a</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="even-row">
+          <td>1</td>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+	  
+  </div>
+	<nav aria-label="...">
+                <ul class="pagination pagination-sm" style="justify-content: flex-end;">
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link">1</span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                </ul>
+            </nav>
+	  <div class="button-container">
+    <button class="left-button custom-button"><strong>Back</strong></button>
+    <div class="right-buttons">
+      <button class="custom-button"><strong>Add New</strong></button>
+      <button class="custom-button"><strong>Details</strong></button>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $("#myTable tbody tr").click(function() {
+        // Remove the "selected" class from all rows
+        $(this).siblings().removeClass("selected");
+        
+        // Add the "selected" class to the clicked row
+        $(this).addClass("selected");
+    });
+});
+</script>
+</body>
+</html>
