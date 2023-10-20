@@ -31,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header("Location: homeAdmin.html");
                 exit();
             } elseif ($userType === 'ketua') {
-                header("Location: homeketua.html");
+                header("Location: homeKetuaPenguji.html");
                 exit();
             } elseif ($userType === 'dosen') {
-                header("Location: homedosen.html");
+                header("Location: homeDosen.html");
                 exit();
             }
         } else {
