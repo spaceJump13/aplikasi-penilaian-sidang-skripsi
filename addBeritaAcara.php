@@ -1,6 +1,80 @@
 <?php
-include 'config.php';
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "manpro13";
+
+$connection = mysqli_connect($servername, $username, $password, $database);
+
+if (isset($_POST["add_berita_acara"])) {
+    // Get data from the form
+    $nrp = $_POST['nrp'];
+    $namaMhs = $_POST['namaMhs'];
+    $judulSkripsi = $_POST['judulSkripsi'];
+    $konsentrasi = $_POST['konsentrasi'];
+    $tanggalSidang = $_POST['tanggalSidang'];
+    $nilai = 'A'; // Fixed value
+    $hasilSidang = 'Lulus'; // Fixed value
+    $ketuaPenguji = $_POST['ketuaPenguji'];
+    $kehadiranKetuaPenguji = isset($_POST['kehadiranKetuaPenguji']) ? 1 : 0;
+    $dosenPenguji = $_POST['dosenPenguji'];
+    $kehadiranDosenPenguji = isset($_POST['kehadiranDosenPenguji']) ? 1 : 0;
+    $dosenPembimbing1 = $_POST['dosenPembimbing1'];
+    $kehadiranPembimbing1 = isset($_POST['kehadiranPembimbing1']) ? 1 : 0;
+    $dosenPembimbing2 = $_POST['dosenPembimbing2'];
+    $kehadiranPembimbing2 = isset($_POST['kehadiranPembimbing2']) ? 1 : 0;
+    $catatan= $_POST['catatansidang'];
+
+    /*
+    // Handle the radio button for tugas
+    $tugas = isset($_POST['tugas']) ? $_POST['tugas'] : '';
+
+    // Handle the file upload for tugas_tambahan (tugas_tambahan)
+    $tugasTambahan = '';
+
+    if (isset($_FILES['tugas_tambahan']) && $_FILES['tugas_tambahan']['error'] === 0) {
+        $upload_dir = 'uploads/'; // Create an 'uploads' directory in your project
+        $file_name = $_FILES['tugas_tambahan']['name'];
+        $file_path = $upload_dir . $file_name;
+
+        if (move_uploaded_file($_FILES['tugas_tambahan']['tmp_name'], $file_path)) {
+            $tugasTambahan = $file_path;
+        }
+    }
+    */
+
+    // Handle other fields like cpmk1, cpmk2, etc.
+    $cpmk1 = $_POST['cpmk1'];
+    $cpmk2 = $_POST['cpmk2'];
+    $cpmk3 = $_POST['cpmk3'];
+    $cpl1 = $_POST['cpl1'];
+    $cpl2 = $_POST['cpl2'];
+    $cpl3 = $_POST['cpl3'];
+    $cpl4 = $_POST['cpl4'];
+    $cpl5 = $_POST['cpl5'];
+    $cpl6 = $_POST['cpl6'];
+    $cpl7 = $_POST['cpl7'];
+    $cpl8 = $_POST['cpl8'];
+    $cpl9 = $_POST['cpl9'];
+    $cpl10 = $_POST['cpl10'];
+
+    $query = "INSERT INTO berita_acara (nrp, nama, judul_skripsi, konsentrasi, tanggal, nilai, ketua_penguji, ketua_penguji_hadir, dosen_penguji, dosen_penguji_hadir, dospem_1, dospem_1_hadir, dospem_2, dospem_2_hadir, tugas, tugas_tambahan, cpmk1, cpmk2, cpmk3, cpl1, cpl2, cpl3, cpl4, cpl5, cpl6, cpl7, cpl8, cpl9, cpl10, hasil_sidang, catatan) 
+          VALUES ('$nrp', '$namaMhs', '$judulSkripsi', '$konsentrasi', '$tanggalSidang', '$nilai', '$ketuaPenguji', $kehadiranKetuaPenguji, '$dosenPenguji', $kehadiranDosenPenguji, '$dosenPembimbing1', $kehadiranPembimbing1, '$dosenPembimbing2', $kehadiranPembimbing2, '', '', '$cpmk1', '$cpmk2', '$cpmk3', '$cpl1', '$cpl2', '$cpl3', '$cpl4', '$cpl5', '$cpl6', '$cpl7', '$cpl8', '$cpl9', '$cpl10', '$hasilSidang', '$catatan')";
+
+    if (mysqli_query($connection, $query)) {
+        mysqli_close($connection);
+        echo "<script>alert('Berita Acara added successfully.'); window.location = 'addBeritaAcara.php';</script>";
+        exit; // This is important to prevent further execution of the PHP script
+    } else {
+        echo "<script>alert('Error: " . mysqli_error($connection) . "');</script>";
+    }
+
+    // Close the database connection
+    mysqli_close($connection);
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +133,7 @@ include 'config.php';
                 </div>
             </div>
     
-            <form action="" method="get">
+            <form action="addBeritaAcara.php" method="post" enctype="multipart/form-data">
                 <div class="row mt-5">
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -116,7 +190,7 @@ include 'config.php';
                                 </div>
                             </div>
                             <label for="catatanSidang" style="margin-top: 5px;"><h5>Catatan Sidang</h5></label>
-                            <textarea class="form-control" id="catatanSidang" rows="6" placeholder="Catatan"></textarea>
+                            <textarea class="form-control" name="catatansidang" id="catatanSidang" rows="6" placeholder="Catatan"></textarea>
                             
                         </div>
                     </div>
@@ -217,29 +291,28 @@ include 'config.php';
                     
                             <br>
                             
-                            <label for="" style="margin-top: 3.5px;"><h5>Tugas Tambahan</h5></label>
-                            <br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="poster" value="option1">
-                                <label class="form-check-label" for="poster">Poster</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="video" value="option2">
-                                <label class="form-check-label" for="video">Video</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="penelitian" value="option3">
-                                <label class="form-check-label" for="penelitian">Laporan Penelitian</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="jurnal" value="option4">
-                                <label class="form-check-label" for="jurnal">Jurnal</label>
-                            </div>
+                            <label for="tugastambahan"><h5>Tugas Tambahan</h5></label>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="tugas" id="poster" value="poster">
+    <label class="form-check-label" for="poster">Poster</label>
+</div>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="tugas" id="video" value="video">
+    <label class="form-check-label" for="video">Video</label>
+</div>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="tugas" id="penelitian" value="penelitian">
+    <label class="form-check-label" for="penelitian">Laporan Penelitian</label>
+</div>
+<div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="tugas" id="jurnal" value="jurnal">
+    <label class="form-check-label" for="jurnal">Jurnal</label>
+</div>
     
                             <br>
     
                             <label class="form-label" for="customFile" style="margin-top: 18px;"><h5>Input Tugas</h5></label>
-                            <input type="file" class="form-control" id="customFile">
+                            <input type="file" class="form-control" id="customFile" name="tugas_tambahan">
     
                             <br>
                             <label for=""><h5>Nilai CPL (Averaged)</h5></label>
@@ -297,14 +370,14 @@ include 'config.php';
                     </div>
                 </div>
     
-                <div class="row" style="margin-top: 5px;">
-                    <div class="col-lg-6">
-                        <button class="btn btn-danger" style="float: right;">Discard</button>
-                    </div>
-                    <div class="col-lg-6">
-                        <button class="btn btn-dark">Add</button>
-                    </div>
-                </div>
+                <div class="row justify-content-end" style="margin-top: 5px;">
+    <div class="col-lg-6">
+        <a class="btn btn-danger">Discard</a>
+    </div>
+    <div class="col-lg-6">
+        <button type="submit" name="add_berita_acara" class="btn btn-dark">Add</button>
+    </div>
+</div>
             </form>
         </div>
     </div>
