@@ -211,7 +211,7 @@ include 'config.php';
             <div class="row">
                 <div class="col-lg-12">
                     <div>
-                        <button class="btn btn-dark">Back</button>
+                        <button class="btn btn-ocean" onclick="location.href='#'">Back</button>
                     </div>
                 </div>
             </div>

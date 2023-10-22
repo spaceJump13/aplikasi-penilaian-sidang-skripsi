@@ -255,7 +255,7 @@ if (isset($_POST["import"])) {
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-ocean" data-bs-dismiss="modal">Back</button>
+                                    <button type="button" class="btn btn-ocean" data-bs-dismiss="modal" onclick="location.href='#'">Back</button>
                                     <button type="submit" class="btn btn-ocean" name="import">Add</button>
                                 </div>
                             </form>

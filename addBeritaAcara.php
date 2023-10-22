@@ -118,7 +118,36 @@ if (isset($_POST["add_berita_acara"])) {
         padding-right: 5rem;
         padding-top: 2rem;
         padding-bottom: 2rem;
-}
+        }
+
+        #tabel_cpl{
+        text-align: center ;
+        }
+
+        #tabel_cpl input{
+        background-color: white;
+        border-color: white;
+        width: 40px;
+        text-align: center ;
+        }
+
+        /* ilangin arrow unk input number */
+        input[type="number"]{
+            -moz-appearance: textfield;
+            outline: none;
+        }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+        }
+
+        #discard, #add{
+            max-width: 100px;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+
     </style>
 </head>
 <body style="background-color: #0B6977;">
@@ -135,6 +164,7 @@ if (isset($_POST["add_berita_acara"])) {
     
             <form action="addBeritaAcara.php" method="post" enctype="multipart/form-data">
                 <div class="row mt-5">
+                    <!-- table kiri -->
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="nrp"><h5>NRP</h5></label>
@@ -199,7 +229,7 @@ if (isset($_POST["add_berita_acara"])) {
                     <div class="col-lg-6">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-lg-10">
+                                <div class="col-md-10">
                                     <label for="ketuaPenguji"><h5>Ketua Penguji</h5></label>
                                     <select class="form-select" aria-label="Default select example" name="ketuaPenguji">
                                         <option selected>Select</option>
@@ -213,7 +243,7 @@ if (isset($_POST["add_berita_acara"])) {
                                     </select>
                                 </div>
     
-                                <div class="col-lg-2">
+                                <div class="col-md-2">
                                     <div class="form-check checkbox-lg" style="margin-top: 40px;">
                                         <input class="form-check-input" type="checkbox" value="" id="kehadiranKetuaPenguji" name="kehadiranKetuaPenguji">
                                         <label class="form-check-label" for="flexCheckDefault" style="margin-top: -40px;">Hadir</label>
@@ -222,7 +252,7 @@ if (isset($_POST["add_berita_acara"])) {
                             </div>
                             
                             <div class="row" style="margin-top: 24px;">
-                                <div class="col-lg-10">
+                                <div class="col-md-10">
                                     <label  for="dosenPenguji"><h5>Dosen Penguji</h5></label>
                                     <select class="form-select" aria-label="Default select example" name="dosenPenguji">
                                         <option selected>Select</option>
@@ -236,7 +266,7 @@ if (isset($_POST["add_berita_acara"])) {
                                     </select>
                                 </div>
     
-                                <div class="col-lg-2">
+                                <div class="col-md-2">
                                     <div class="form-check checkbox-lg" style="margin-top: 40px;">
                                         <input class="form-check-input" type="checkbox" value="" id="kehadiranDosenPenguji" name="kehadiranDosenPenguji">
                                         <label class="form-check-label" for="flexCheckDefault" style="margin-top: -40px;">Hadir</label>
@@ -245,7 +275,7 @@ if (isset($_POST["add_berita_acara"])) {
                             </div>
     
                             <div class="row" style="margin-top: 24px;">
-                                <div class="col-lg-10">
+                                <div class="col-md-10">
                                     <label for="dosenPembimbing1"><h5>Dosen Pembimbing 1</h5></label>
                                     <select class="form-select" aria-label="Default select example" name="dosenPembimbing1">
                                         <option selected>Select</option>
@@ -259,7 +289,7 @@ if (isset($_POST["add_berita_acara"])) {
                                     </select>
                                 </div>
     
-                                <div class="col-lg-2">
+                                <div class="col-md-2">
                                     <div class="form-check checkbox-lg" style="margin-top: 40px;">
                                         <input class="form-check-input" type="checkbox" value="" id="kehadiranPembimbing1" name="kehadiranPembimbing1">
                                         <label class="form-check-label" for="flexCheckDefault" style="margin-top: -40px;">Hadir</label>
@@ -268,7 +298,7 @@ if (isset($_POST["add_berita_acara"])) {
                             </div>
     
                             <div class="row" style="margin-top: 24px;">
-                                <div class="col-lg-10">
+                                <div class="col-md-10">
                                     <label for="dosenPembimbing2"><h5>Dosen Pembimbing 2</h5></label>
                                     <select class="form-select" aria-label="Default select example" name="dosenPembimbing2">
                                         <option selected>Select</option>
@@ -281,7 +311,7 @@ if (isset($_POST["add_berita_acara"])) {
                                         <option value="7">Liliana</option>
                                     </select>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col-md-2">
                                     <div class="form-check checkbox-lg" style="margin-top: 40px;">
                                         <input class="form-check-input" type="checkbox" value="" id="kehadiranPembimbing2" name="kehadiranPembimbing2">
                                         <label class="form-check-label" for="flexCheckDefault" style="margin-top: -40px;">Hadir</label>
@@ -292,22 +322,22 @@ if (isset($_POST["add_berita_acara"])) {
                             <br>
                             
                             <label for="tugastambahan"><h5>Tugas Tambahan</h5></label>
-<div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="tugas" id="poster" value="poster">
-    <label class="form-check-label" for="poster">Poster</label>
-</div>
-<div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="tugas" id="video" value="video">
-    <label class="form-check-label" for="video">Video</label>
-</div>
-<div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="tugas" id="penelitian" value="penelitian">
-    <label class="form-check-label" for="penelitian">Laporan Penelitian</label>
-</div>
-<div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="tugas" id="jurnal" value="jurnal">
-    <label class="form-check-label" for="jurnal">Jurnal</label>
-</div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tugas" id="poster" value="poster">
+                                <label class="form-check-label" for="poster">Poster</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tugas" id="video" value="video">
+                                <label class="form-check-label" for="video">Video</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tugas" id="penelitian" value="penelitian">
+                                <label class="form-check-label" for="penelitian">Laporan Penelitian</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="tugas" id="jurnal" value="jurnal">
+                                <label class="form-check-label" for="jurnal">Jurnal</label>
+                            </div>
     
                             <br>
     
@@ -358,11 +388,11 @@ if (isset($_POST["add_berita_acara"])) {
                             <br>
     
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <h5>Nilai Akhir: A</h5>
+                                <div class="col-md-6">
+                                    <h5>Nilai Akhir: </h5><h5 id="hasil_akhir"></h5>
                                 </div>
-                                <div class="col-lg-6">
-                                    <h5 style="margin-left: 40px" >Hasil Sidang: Lulus</h5>
+                                <div class="col-md-6">
+                                    <h5>Hasil Sidang: </h5><h5 id="hasil_sidang"></h5>
                                 </div>
                             </div>
                         </div>
@@ -371,13 +401,13 @@ if (isset($_POST["add_berita_acara"])) {
                 </div>
     
                 <div class="row justify-content-end" style="margin-top: 5px;">
-    <div class="col-lg-6">
-        <a class="btn btn-danger">Discard</a>
-    </div>
-    <div class="col-lg-6">
-        <button type="submit" name="add_berita_acara" class="btn btn-dark">Add</button>
-    </div>
-</div>
+                    <div class="col-md-2">
+                        <button name="disc_berita_acara" class="btn btn-danger" id="discard" onclick="location.href='#'">Discard</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button name="add_berita_acara" class="btn btn-primary" id="add">Add</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
