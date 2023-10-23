@@ -183,7 +183,15 @@ if (isset($_POST["add_berita_acara"])) {
                             <br>
         
                             <label for="konsentrasi"><h5>Konsenstrasi Skripsi</h5></label>
-                            <input type="text" name="konsentrasi" id="konsentrasi" class="form-control" placeholder="Konsentrasi Skripsi">
+                            <select class="form-select" aria-label="Default select example" name="konsentrasi">
+                                <option selected>Konsentrasi Skripsi</option>
+                                <option value="AI">AI</option>
+                                <option value="cyber">Cyber Security</option>
+                                <option value="game">Game Development</option>
+                                <option value="mobdev">Mobile Application Development</option>
+                                <option value="enterprise">Enterprise Information System</option>
+                                <option value="BI">Business Intelligence</option>
+                            </select>
         
                             <br>
                             
