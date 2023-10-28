@@ -35,10 +35,7 @@ if ($tanda == "cariMahasiswa"){
             $result = mysqli_query($conn, $sql);
         }
     }
-    // else{
-    //     $result = mysqli_query($conn, $sql);
-    // }
-
+    
     if(mysqli_num_rows($result) > 0){
         ?>
         <table class="mx-auto table table-striped">
