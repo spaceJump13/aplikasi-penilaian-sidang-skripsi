@@ -1,0 +1,47 @@
+<?php
+    include '../config.php';
+    $keyword = $_GET["keyword"];
+    $fetch = "SELECT * FROM data_dosen WHERE nama LIKE '%$keyword%' OR nip LIKE '%$keyword%' OR jabatan LIKE '%$keyword%' or jurusan LIKE '%$keyword%'";
+    $stmt = mysqli_prepare($conn, $fetch);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+?>
+<!-- kode dibawah ini merupakan div yang id="wadah" di data_dosen.php -->
+<?php if (mysqli_num_rows($result) > 0): ?>
+    <table class="table table-striped">
+        <thead style="background-color:#0B6977; color: whitesmoke;">
+            <tr>
+            <th scope="col">NIP</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Jabatan</th>
+            <th scope="col">Jurusan</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                <tr>
+                    <td><?=$row['nip']?></td>
+                    <td><?=$row['nama']?></td>
+                    <td><?=$row['jabatan']?></td>
+                    <td><?=$row['jurusan']?></td>
+                </tr>
+        <?php endwhile ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <table class="table table-striped">
+        <thead style="background-color:#0B6977; color: whitesmoke;">
+            <tr>
+            <th scope="col">NIP</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Jabatan</th>
+            <th scope="col">Jurusan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="5"><h5 style="text-align: center; color: red;">Tidak ada data.</h5></td>
+            </tr>
+        </tbody>
+    </table>
+<?php endif ?>

@@ -6,31 +6,93 @@ if (isset($_POST["import"])) {
     
     if ($_FILES["file"]["size"] > 0) {
         $file = fopen($file_name, "r");
+        fgetcsv($file, 10000, ";");
         
         while (($column = fgetcsv($file, 10000, ";")) !== FALSE) {
-            $sql_checkNRP = "SELECT * from data_mahasiswa WHERE nrp = \"$column[0]\"";
-            $result = mysqli_query($conn, $sql_checkNRP);
+            $sql_checkID = "SELECT * FROM data_mahasiswa WHERE id = \"$column[0]\" OR tanggal_ruang = \"$column[1]\"";
+            $result = mysqli_query($conn, $sql_checkID);
 
-            if(mysqli_num_rows($result) == 0){
-                $sql_fetch = "SELECT * from data_mahasiswa";
-                $result_date = mysqli_query($conn, $sql_fetch);
-                $convert_date = date('Y-m-d', strtotime($column[6]));
-
-                    $sql_insert = "INSERT into data_mahasiswa (nrp, nama, pembimbing1, pembimbing2, penguji, ketuaPenguji, tanggal_sidang)
-                     values ('" . $column[0] . "','" . $column[1] . "','" . $column[2] . "','" . $column[3] . "','" . $column[4] . "','" . $column[5] . "', 
-                    '" . $convert_date . "')";
+            if (is_numeric($column[0]) AND $column[0] != NULL){
+                if(mysqli_num_rows($result) == 0){
+                    $sql_insert = "INSERT into data_mahasiswa (id, tanggal_ruang, mahasiswa, team_penguji, judul_skripsi)
+                        values ('" . $column[0] . "','" . $column[1] . "','" . $column[2] . "','" . $column[3] . "','" . $column[4] . "')";
                 
                     $result = mysqli_query($conn, $sql_insert);
                     
-                    if (!empty($result)) {
-                        echo "CSV data Imported ";
+                    // if (!empty($result)) {
+                    //     echo "CSV data Imported ";
+                    // } else {
+                    //     echo "Problem in importing csv";
+                    // }
+
+                    // update mahasiswa hilangkan breakline
+                    $remove_newLine = "SELECT REPLACE(mahasiswa, '\n', ' ') as tes FROM data_mahasiswa;";
+                    $result_newLine = mysqli_query($conn, $remove_newLine);
+
+                    $temp = 1;
+                    while ($row = mysqli_fetch_assoc($result_newLine)){
+                        $tes = $row['tes'];
+                        // echo $tes . "<br>";
+                        $update_query = "UPDATE data_mahasiswa SET mahasiswa = '$tes' WHERE id = $temp";
+                        $result_insert = mysqli_query($conn, $update_query);
+                        $temp = $temp + 1;
+                    }
+
+
+                    // fetch ketua penguji query
+                    $fetch_ketua_penguji = "SELECT REPLACE(SUBSTRING_INDEX(team_penguji, '\n', 2), '\n' , ' ') as tes FROM data_mahasiswa";
+                    $result_ketua_penguji = mysqli_query($conn, $fetch_ketua_penguji);
+                
+                    // fetch anggota penguji query
+                    $fetch_anggota_penguji = "SELECT TRIM(REPLACE(SUBSTRING_INDEX(LEFT(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -4), '-', 1), 
+                    CHAR_LENGTH(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -4), '-', 1)) - 17), 'Anggota', -1), '\n' , ' '))
+                    as tes FROM data_mahasiswa;";
+                    $result_anggota_penguji = mysqli_query($conn, $fetch_anggota_penguji);
+                
+                    // fetch pembimbing query
+                    $fetch_pembimbing = "SELECT REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '\n' , ' ') as tes FROM data_mahasiswa;";
+                    $result_pembimbing = mysqli_query($conn, $fetch_pembimbing);
+                
+                    // update jadi punya ketua penguji
+                    $temp = 1;
+                    while ($row = mysqli_fetch_assoc($result_ketua_penguji)){
+                        $tes = $row['tes'];
+                        // echo $tes . "<br>";
+                        $update_query = "UPDATE data_mahasiswa SET ketua_penguji = '$tes' WHERE id = $temp";
+                        $result_insert = mysqli_query($conn, $update_query);
+                        $temp = $temp + 1;
+                    }
+                
+                    // update jadi punya anggota penguji
+                    $temp = 1;
+                    while ($row = mysqli_fetch_assoc($result_anggota_penguji)){
+                        $tes = $row['tes'];
+                        // echo $tes . "<br>";
+                        $update_query = "UPDATE data_mahasiswa SET anggota_penguji = '$tes' WHERE id = $temp";
+                        $result_insert = mysqli_query($conn, $update_query);
+                        $temp = $temp + 1;
+                    }
+                
+                    // update jadi punya pembimbing
+                    $temp = 1;
+                    while ($row = mysqli_fetch_assoc($result_pembimbing)){
+                        $tes = $row['tes'];
+                        // echo $tes . "<br>";
+                        $update_query = "UPDATE data_mahasiswa SET pembimbing = '$tes' WHERE id = $temp";
+                        $result_insert = mysqli_query($conn, $update_query);
+                        $temp = $temp + 1;
+                    }
+
+                    if (!empty($result_insert)) {
+                        echo "Data updated";
                     } else {
                         echo "Problem in importing csv";
                     }
                 }
             }
-        }
+        }   
     }
+}
     
 ?>
 
@@ -110,8 +172,7 @@ if (isset($_POST["import"])) {
                 <div class="row mt-4">
                     <div class="col-lg-3">
                         <div class="input-group mb-3" style="margin-top: 20px;">
-                            <input type="text" name="nama" value="<?= isset($_GET['nama']) == true ? $_GET['nama']: '' ?>" 
-                            class="form-control" placeholder="Search">
+                            <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama atau NRP">
                         </div>
                     </div>
         
@@ -142,11 +203,11 @@ if (isset($_POST["import"])) {
     
                         if (isset($_GET['nama']) && $_GET['nama'] != '') {
                             $nama = $_GET['nama'];
-                            $sql_select .= " WHERE REPLACE(nama, ' ', '') LIKE ?";
+                            $sql_select .= " WHERE REPLACE(mahasiswa, ' ', '') LIKE ?";
                             // If searching by name and periode
                             if (isset($_GET['periode']) && $_GET['periode'] != 'Semua'){
                                 $selectedYear = $_GET['periode'];
-                                $sql_select .= " AND YEAR(tanggal_sidang) = ?";
+                                $sql_select .= " AND SUBSTRING(SUBSTRING_INDEX(SUBSTRING_INDEX(tanggal_ruang, ':', 1), ' ', -1), 1, 4) = ?";
                                 $stmt = mysqli_prepare($conn, $sql_select);
                                 $searchTerm = '%' . str_replace(' ', '', $nama) . '%';
                                 mysqli_stmt_bind_param($stmt, "ss", $searchTerm, $selectedYear);
@@ -164,11 +225,11 @@ if (isset($_POST["import"])) {
                         } 
                         elseif (isset($_GET['periode']) && $_GET['periode'] != 'Semua') {
                             $selectedYear = $_GET['periode'];
-                            $sql_select .= " WHERE YEAR(tanggal_sidang) = ?";
+                            $sql_select .= " WHERE SUBSTRING(SUBSTRING_INDEX(SUBSTRING_INDEX(tanggal_ruang, ':', 1), ' ', -1), 1, 4) = ?";
                             // If searching by name and periode
                             if (isset($_GET['nama']) && $_GET['nama'] != ''){
                                 $nama = $_GET['nama'];
-                                $sql_select .= " AND REPLACE(nama, ' ', '') LIKE ?";
+                                $sql_select .= " AND REPLACE(mahasiswa, ' ', '') LIKE ?";
                                 $stmt = mysqli_prepare($conn, $sql_select);
                                 $searchTerm = '%' . str_replace(' ', '', $nama) . '%';
                                 mysqli_stmt_bind_param($stmt, "ss", $selectedYear, $searchTerm);
@@ -192,29 +253,31 @@ if (isset($_POST["import"])) {
                         if(mysqli_num_rows($result) > 0){
                             ?>
                             <table class="mx-auto table table-striped">
-                                <thead style="background-color:#0B6977; color: whitesmoke;">
+                                <thead style="background-color:#0B6977; color: whitesmoke; text-align: center;">
                                     <tr>
-                                        <th>Tanggal Sidang</th>
-                                        <th>NRP</th>
-                                        <th>Nama</th>
-                                        <th>Pembimbing 1</th>
-                                        <th>Pembimbing 2</th>
-                                        <th>Penguji</th>
+                                        <th>ID</th>
+                                        <th>Tanggal Ruang</th>
+                                        <th>Mahasiswa</th>
+                                        <th>Team Penguji</th>
+                                        <th>Judul Skripsi</th>
                                         <th>Ketua Penguji</th>
+                                        <th>Anggota Penguji</th>
+                                        <th>Pembimbing</th>
                                     </tr>
                                 </thead>
                             <?php   
                             while ($row = mysqli_fetch_array($result)){
                                 ?>
-                                <tbody>
+                                <tbody style="text-align: center;">
                                     <tr>
-                                        <td><?php echo date('d-m-Y', strtotime($row['tanggal_sidang']));?></td>
-                                        <td><?php echo $row['nrp'];?></td>
-                                        <td><?php echo $row['nama'];?></td>
-                                        <td><?php echo $row['pembimbing1'];?></td>
-                                        <td><?php echo $row['pembimbing2'];?></td>
-                                        <td><?php echo $row['penguji'];?></td>
-                                        <td><?php echo $row['ketuaPenguji'];?></td>
+                                        <td><?php echo $row['id'];?></td>
+                                        <td><?php echo $row['tanggal_ruang'];?></td>
+                                        <td><?php echo $row['mahasiswa'];?></td>
+                                        <td><?php echo $row['team_penguji'];?></td>
+                                        <td><?php echo $row['judul_skripsi'];?></td>
+                                        <td><?php echo $row['ketua_penguji'];?></td>
+                                        <td><?php echo $row['anggota_penguji'];?></td>
+                                        <td><?php echo $row['pembimbing'];?></td>
                                     </tr>
                                 </tbody>
                                 <?php } ?>
@@ -255,7 +318,7 @@ if (isset($_POST["import"])) {
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-ocean" data-bs-dismiss="modal" onclick="location.href='#'">Back</button>
+                                    <button type="button" class="btn btn-ocean" data-bs-dismiss="modal">Back</button>
                                     <button type="submit" class="btn btn-ocean" name="import">Add</button>
                                 </div>
                             </form>
