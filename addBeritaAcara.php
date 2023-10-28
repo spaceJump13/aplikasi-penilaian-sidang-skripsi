@@ -192,6 +192,8 @@ if (isset($_POST["add_berita_acara"])) {
                                 <option value="enterprise">Enterprise Information System</option>
                                 <option value="BI">Business Intelligence</option>
                             </select>
+
+                            <br>
         
                             <br>
                             
