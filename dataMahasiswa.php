@@ -92,8 +92,7 @@ if (isset($_POST["import"])) {
             }
         }   
     }
-}
-    
+}   
 ?>
 
 <!DOCTYPE html>
@@ -168,11 +167,11 @@ if (isset($_POST["import"])) {
                 </div>
             </div>
     
-            <form action="" method="GET">
+            <form action="" method="POST">
                 <div class="row mt-4">
                     <div class="col-lg-3">
                         <div class="input-group mb-3" style="margin-top: 20px;">
-                            <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama atau NRP">
+                            <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Masukkan Nama atau NRP">
                         </div>
                     </div>
         
@@ -182,7 +181,7 @@ if (isset($_POST["import"])) {
     
                     <div class="col-lg-6">
                         <div style="float: right;">
-                        <select class="form-select" name="periode" class="Default select example" style="margin-top: 30px;">
+                        <select class="form-select" name="periode" id="periode" class="Default select example" style="margin-top: 30px;">
                             <option selected value="Semua">Semua</option>
                             <option value="2023">2023</option>
                             <option value="2022">2022</option>
@@ -196,98 +195,38 @@ if (isset($_POST["import"])) {
             </form>
     
             <div class="row mt-4">
-                <div class="col-lg">
-                    <?php
-                       // Initialize the SQL query
-                        $sql_select = "SELECT * FROM data_mahasiswa";
-    
-                        if (isset($_GET['nama']) && $_GET['nama'] != '') {
-                            $nama = $_GET['nama'];
-                            $sql_select .= " WHERE REPLACE(mahasiswa, ' ', '') LIKE ?";
-                            // If searching by name and periode
-                            if (isset($_GET['periode']) && $_GET['periode'] != 'Semua'){
-                                $selectedYear = $_GET['periode'];
-                                $sql_select .= " AND SUBSTRING(SUBSTRING_INDEX(SUBSTRING_INDEX(tanggal_ruang, ':', 1), ' ', -1), 1, 4) = ?";
-                                $stmt = mysqli_prepare($conn, $sql_select);
-                                $searchTerm = '%' . str_replace(' ', '', $nama) . '%';
-                                mysqli_stmt_bind_param($stmt, "ss", $searchTerm, $selectedYear);
-                                mysqli_stmt_execute($stmt);
-                                $result = mysqli_stmt_get_result($stmt);
-                            }
-                            else{
-                                // If searching by name
-                                $stmt = mysqli_prepare($conn, $sql_select);
-                                $searchTerm = '%' . str_replace(' ', '', $nama) . '%';
-                                mysqli_stmt_bind_param($stmt, "s", $searchTerm);
-                                mysqli_stmt_execute($stmt);
-                                $result = mysqli_stmt_get_result($stmt);
-                            }
-                        } 
-                        elseif (isset($_GET['periode']) && $_GET['periode'] != 'Semua') {
-                            $selectedYear = $_GET['periode'];
-                            $sql_select .= " WHERE SUBSTRING(SUBSTRING_INDEX(SUBSTRING_INDEX(tanggal_ruang, ':', 1), ' ', -1), 1, 4) = ?";
-                            // If searching by name and periode
-                            if (isset($_GET['nama']) && $_GET['nama'] != ''){
-                                $nama = $_GET['nama'];
-                                $sql_select .= " AND REPLACE(mahasiswa, ' ', '') LIKE ?";
-                                $stmt = mysqli_prepare($conn, $sql_select);
-                                $searchTerm = '%' . str_replace(' ', '', $nama) . '%';
-                                mysqli_stmt_bind_param($stmt, "ss", $selectedYear, $searchTerm);
-                                mysqli_stmt_execute($stmt);
-                                $result = mysqli_stmt_get_result($stmt);
-                            }
-                            else{
-                                // If searching by period
-                                $stmt = mysqli_prepare($conn, $sql_select);
-                                mysqli_stmt_bind_param($stmt, "s", $selectedYear);
-                                mysqli_stmt_execute($stmt);
-                                $result = mysqli_stmt_get_result($stmt);
-                            }
-                        } 
-                        else 
-                        {
-                            // If not searching by name or period, retrieve all data
-                            $result = mysqli_query($conn, $sql_select);
-                        }
-    
-                        if(mysqli_num_rows($result) > 0){
-                            ?>
-                            <table class="mx-auto table table-striped">
-                                <thead style="background-color:#0B6977; color: whitesmoke; text-align: center;">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Tanggal Ruang</th>
-                                        <th>Mahasiswa</th>
-                                        <th>Team Penguji</th>
-                                        <th>Judul Skripsi</th>
-                                        <th>Ketua Penguji</th>
-                                        <th>Anggota Penguji</th>
-                                        <th>Pembimbing</th>
-                                    </tr>
-                                </thead>
-                            <?php   
-                            while ($row = mysqli_fetch_array($result)){
-                                ?>
-                                <tbody style="text-align: center;">
-                                    <tr>
-                                        <td><?php echo $row['id'];?></td>
-                                        <td><?php echo $row['tanggal_ruang'];?></td>
-                                        <td><?php echo $row['mahasiswa'];?></td>
-                                        <td><?php echo $row['team_penguji'];?></td>
-                                        <td><?php echo $row['judul_skripsi'];?></td>
-                                        <td><?php echo $row['ketua_penguji'];?></td>
-                                        <td><?php echo $row['anggota_penguji'];?></td>
-                                        <td><?php echo $row['pembimbing'];?></td>
-                                    </tr>
-                                </tbody>
-                                <?php } ?>
-                            </table>
-                            <?php }
-                        else{
-                            echo '<h3 style="text-align: center;" >Tidak ada data</h3>';
-                        }
-    
-                    ?>
+                <div class="col-lg-12">
+                    <div id="searchResult">
+                        <table class="mx-auto table table-striped">
+                            <thead style="background-color:#0B6977; color: whitesmoke; text-align: center;">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tanggal Ruang</th>
+                                    <th>Mahasiswa</th>
+                                    <th>Team Penguji</th>
+                                    <th>Judul Skripsi</th>
+                                    <th>Ketua Penguji</th>
+                                    <th>Anggota Penguji</th>
+                                    <th>Pembimbing</th>
+                                </tr>
+                            </thead>
+                        
+                            <tbody style="text-align: center;">
+                                <?php while($row = mysqli_fetch_assoc($result)): ?>
+                                <tr>
+                                    <td><?php echo $row['id'];?></td>
+                                    <td><?php echo $row['tanggal_ruang'];?></td>
+                                    <td><?php echo $row['mahasiswa'];?></td>
+                                    <td><?php echo $row['team_penguji'];?></td>
+                                    <td><?php echo $row['judul_skripsi'];?></td>
+                                    <td><?php echo $row['ketua_penguji'];?></td>
+                                    <td><?php echo $row['anggota_penguji'];?></td>
+                                    <td><?php echo $row['pembimbing'];?></td>
+                                </tr>
+                                <?php endwhile ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
     
@@ -332,9 +271,54 @@ if (isset($_POST["import"])) {
 </html>
 
 <script>
-// Add the following code if you want the name of the file appear on select
-$(".custom-file-input").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-});
+
+    $(document).ready(function(){
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+
+        // Event listener untuk input teks (keyword)
+        $('#keyword').on('keyup', function(){
+            var keyword = $('#keyword').val();
+            console.log(keyword);
+            $.ajax({
+                url: "ajax/ajax_data_mahasiswa.php",
+                type: "POST",
+                data: {
+                    tanda: "cariMahasiswa",
+                    keyword: keyword,
+                },
+                success: function(respond) {
+                    console.log(respond);
+                    $("#searchResult").html(respond); // Ganti elemen target dengan ID yang benar
+                },
+                error: function() {
+                    alert("gagal");
+                }
+            });
+        });
+
+        // Event listener untuk dropdown select (periode)
+        $('#periode').on('change', function(){
+            var periode = $('#periode').val();
+            console.log(periode);
+            $.ajax({
+                url: "ajax/ajax_data_mahasiswa.php",
+                type: "POST",
+                data: {
+                    tanda: "cariMahasiswa",
+                    periode: periode,
+                },
+                success: function(respond) {
+                    console.log(respond);
+                    $("#searchResult").html(respond); // Ganti elemen target dengan ID yang benar
+                },
+                error: function() {
+                    alert("gagal");
+                }
+            });
+        });
+    })
 </script>

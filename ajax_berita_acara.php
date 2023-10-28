@@ -44,6 +44,7 @@ elseif ($tanda == 'Insert'){
     $timestamp = strtotime(str_replace('/', '-', $tanggalSidang));
     $newTime = date('Y-m-d H:i', $timestamp);
     $ruangSidang = $_POST['ruangSidang'];
+    $konsentrasi = $_POST['konsentrasi'];
 
     switch($ruangSidang){
         case 1:
@@ -67,15 +68,36 @@ elseif ($tanda == 'Insert'){
         case 7:
             $ruangSidang = "Lab Studio";
             break;
-
     }
+
+    switch($konsentrasi){
+        case 1:
+            $konsentrasi = "AI";
+            break;
+        case 2:
+            $konsentrasi = "Cyber Security";
+            break;
+        case 3:
+            $konsentrasi = "Game Development";
+            break;
+        case 4:
+            $konsentrasi = "Mobile Application Development";
+            break;
+        case 5:
+            $konsentrasi = "Enterprise Information System";
+            break;
+        case 6:
+            $konsentrasi = "Business Intelligence";
+            break;
+    }
+
     // cek apa sudah ada mahasiswa yang sama dengan tanggal sidang yang sama dan ruang yang sama(asumsi 1 mahasiswa bisa sidang 2 kali) di tabel berita acara
     $check_kejadian = "SELECT * FROM berita_acara WHERE tanggal_sidang = '$tanggalSidang' AND ruang_sidang = '$ruangSidang'";
     $result_kejadian = mysqli_query($conn, $check_kejadian);
 
     if (mysqli_num_rows($result_kejadian) == 0) {
         // Tambahkan data jika tidak ada data yang sama
-        $sql = "INSERT INTO berita_acara (id, nama_nrp, judul_skripsi, tanggal_sidang, ruang_sidang, ketua_penguji) VALUES (' ', '$namaMhs', '$judulSkripsi', '$newTime', '$ruangSidang', '$ketuaPenguji')";
+        $sql = "INSERT INTO berita_acara (id, nama_nrp, judul_skripsi, konsentrasi, tanggal_sidang, ruang_sidang, ketua_penguji) VALUES (' ', '$namaMhs', '$judulSkripsi', '$konsentrasi', '$newTime', '$ruangSidang', '$ketuaPenguji')";
         $result = mysqli_query($conn, $sql);
 
         $status_ketua = $_POST['status_ketua'];

@@ -28,6 +28,7 @@ else{
 
     <style>
         #rectangle {
+        position: fixed;
         width: 100%;
         height: 100%;
         flex-shrink: 0;
@@ -76,46 +77,53 @@ else{
         }
     </style>
 </head>
-<body>
-    <div class="container my-5">
-        <form action="" method="post">
-            <div class="row mb-4">
-                <div class="col-lg-3">
-                    <div class="input-group">
-                        <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Masukkan NRP atau nama" aria-label="Masukkan NRP atau nama" aria-describedby="basic-addon2">
-                        <button class="btn btn-ocean" type="submit" name="search" id="cari">Search</button>
-                    </div>
+<body style="background-color: #0B6977;">
+    <div id="rectangle">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mb-5">
+                    <h1 style="text-align: center; color: #0B6977" class="text-uppercase">data dosen</h1>
                 </div>
             </div>
-        </form>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div id="wadah">
-                    <?php if (mysqli_num_rows($result) > 0): ?>
-                        <table class="table table-striped">
-                            <thead style="background-color:#0B6977; color: whitesmoke;">
-                                <tr>
-                                <th scope="col">NIP</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Jabatan</th>
-                                <th scope="col">Jurusan</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+            <form action="" method="post">
+                <div class="row mb-4">
+                    <div class="col-lg-3">
+                        <div class="input-group">
+                            <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Masukkan NRP atau nama" aria-label="Masukkan NRP atau nama" aria-describedby="basic-addon2">
+                            <button class="btn btn-ocean" type="submit" name="search" id="cari">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="wadah">
+                        <?php if (mysqli_num_rows($result) > 0): ?>
+                            <table class="table table-striped">
+                                <thead style="background-color:#0B6977; color: whitesmoke;">
                                     <tr>
-                                        <td><?=$row['nip']?></td>
-                                        <td><?=$row['nama']?></td>
-                                        <td><?=$row['jabatan']?></td>
-                                        <td><?=$row['jurusan']?></td>
+                                    <th scope="col">NIP</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Jabatan</th>
+                                    <th scope="col">Jurusan</th>
                                     </tr>
-                            <?php endwhile ?>
-                            </tbody>
-                        </table>
-                    <?php else: ?>
-                        <h5>Tidak ada data</h5>
-                    <?php endif ?>
+                                </thead>
+                                <tbody>
+                                <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                                        <tr>
+                                            <td><?=$row['nip']?></td>
+                                            <td><?=$row['nama']?></td>
+                                            <td><?=$row['jabatan']?></td>
+                                            <td><?=$row['jurusan']?></td>
+                                        </tr>
+                                <?php endwhile ?>
+                                </tbody>
+                            </table>
+                        <?php else: ?>
+                            <h5>Tidak ada data</h5>
+                        <?php endif ?>
+                    </div>
                 </div>
             </div>
         </div>

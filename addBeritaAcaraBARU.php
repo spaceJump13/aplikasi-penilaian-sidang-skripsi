@@ -69,13 +69,10 @@ include 'config.php';
 </head>
 <body style="background-color: #0B6977;">
     <div id="rectangle">
-
         <div class="container"> <!--<div class="container my-5">-->
             <div class="row">
                 <div class="col-lg-12">
-                    <div>
-                        <h1 style="text-align: center; color: #0B6977" class="text-uppercase">Tambah Berita</h1>
-                    </div>
+                    <h1 style="text-align: center; color: #0B6977" class="text-uppercase">Tambah Berita</h1>
                 </div>
             </div>
     
@@ -96,14 +93,14 @@ include 'config.php';
                             <br>
         
                             <label for="konsentrasi"><h5>Konsenstrasi Skripsi</h5></label>
-                            <select class="form-select" aria-label="Default select example" name="konsentrasi">
+                            <select class="form-select" aria-label="Default select example" name="konsentrasi" id="konsentrasi">
                                 <option selected>Konsentrasi Skripsi</option>
-                                <option value="AI">AI</option>
-                                <option value="cyber">Cyber Security</option>
-                                <option value="game">Game Development</option>
-                                <option value="mobdev">Mobile Application Development</option>
-                                <option value="enterprise">Enterprise Information System</option>
-                                <option value="BI">Business Intelligence</option>
+                                <option value="1">AI</option>
+                                <option value="2">Cyber Security</option>
+                                <option value="3">Game Development</option>
+                                <option value="4">Mobile Application Development</option>
+                                <option value="5">Enterprise Information System</option>
+                                <option value="6">Business Intelligence</option>
                             </select>
         
                             <br>
@@ -412,6 +409,7 @@ include 'config.php';
                 var ketuaPenguji = $("#ketuaPenguji").val();
                 var tanggalSidang = $("#tanggalSidang").val();
                 var ruangSidang = $("#ruangSidang").val();
+                var konsentrasi = $("#konsentrasi").val();
                 var status_ketua = ""
 
                 if ($('#kehadiranKetuaPenguji').is(':checked')) {
@@ -444,6 +442,7 @@ include 'config.php';
                         ruangSidang: ruangSidang,
                         status_ketua: status_ketua,
                         statusPenguji: status_penguji,
+                        konsentrasi: konsentrasi,
                         // statusPembimbing1: status_pembimbing1,
                         // statusPembimbing2: status_pembimbing2,
                         tanda: "Insert"
