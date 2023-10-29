@@ -40,7 +40,7 @@ if (isset($_POST["import"])) {
 
 
                     // fetch ketua penguji query
-                    $fetch_ketua_penguji = "SELECT REPLACE(SUBSTRING_INDEX(team_penguji, '\n', 2), '\n' , ' ') as tes FROM data_mahasiswa";
+                    $fetch_ketua_penguji = "SELECT TRIM(REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', 2), 'Ketua', -1), '\n' , ' ')) as tes FROM data_mahasiswa;";
                     $result_ketua_penguji = mysqli_query($conn, $fetch_ketua_penguji);
                 
                     // fetch anggota penguji query
@@ -50,8 +50,14 @@ if (isset($_POST["import"])) {
                     $result_anggota_penguji = mysqli_query($conn, $fetch_anggota_penguji);
                 
                     // fetch pembimbing query
-                    $fetch_pembimbing = "SELECT REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '\n' , ' ') as tes FROM data_mahasiswa;";
-                    $result_pembimbing = mysqli_query($conn, $fetch_pembimbing);
+                    // $fetch_pembimbing = "SELECT REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '\n' , ' ') as tes FROM data_mahasiswa;";
+                    // $result_pembimbing = mysqli_query($conn, $fetch_pembimbing);
+
+                    // fetch pembimbing 1 query
+                    $fetch_pembimbing_1 = "SELECT TRIM(REPLACE(LEFT(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), CHAR_LENGTH(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1)) - 6), 
+                    '\n' , ' ')) as tes FROM data_mahasiswa;";
+                    $result_pembimbing_1 = mysqli_query($conn, $fetch_pembimbing_1);
+
                 
                     // update jadi punya ketua penguji
                     $temp = 1;
@@ -73,12 +79,12 @@ if (isset($_POST["import"])) {
                         $temp = $temp + 1;
                     }
                 
-                    // update jadi punya pembimbing
+                    // update jadi punya pembimbing 1
                     $temp = 1;
-                    while ($row = mysqli_fetch_assoc($result_pembimbing)){
+                    while ($row = mysqli_fetch_assoc($result_pembimbing_1)){
                         $tes = $row['tes'];
                         // echo $tes . "<br>";
-                        $update_query = "UPDATE data_mahasiswa SET pembimbing = '$tes' WHERE id = $temp";
+                        $update_query = "UPDATE data_mahasiswa SET pembimbing_1 = '$tes' WHERE id = $temp";
                         $result_insert = mysqli_query($conn, $update_query);
                         $temp = $temp + 1;
                     }
@@ -158,9 +164,9 @@ if (isset($_POST["import"])) {
 <body style="background-color: #0B6977;">
     <div id="rectangle">
         
-        <div class="container"> <!--<div class="container my-5">-->
+        <div class="container-lg"> <!--<div class="container my-5">-->
             <div class="row">
-                <div class="col-lg">
+                <div class="col-lg-12">
                     <div>
                         <h1 style="text-align: center; color: #0B6977">DATA MAHASISWA</h1>
                     </div>
@@ -207,23 +213,32 @@ if (isset($_POST["import"])) {
                                     <th>Judul Skripsi</th>
                                     <th>Ketua Penguji</th>
                                     <th>Anggota Penguji</th>
-                                    <th>Pembimbing</th>
+                                    <th>Pembimbing 1</th>
+                                    <th>Pembimbing 2</th>
+
                                 </tr>
                             </thead>
                         
                             <tbody style="text-align: center;">
-                                <?php while($row = mysqli_fetch_assoc($result)): ?>
-                                <tr>
-                                    <td><?php echo $row['id'];?></td>
-                                    <td><?php echo $row['tanggal_ruang'];?></td>
-                                    <td><?php echo $row['mahasiswa'];?></td>
-                                    <td><?php echo $row['team_penguji'];?></td>
-                                    <td><?php echo $row['judul_skripsi'];?></td>
-                                    <td><?php echo $row['ketua_penguji'];?></td>
-                                    <td><?php echo $row['anggota_penguji'];?></td>
-                                    <td><?php echo $row['pembimbing'];?></td>
-                                </tr>
-                                <?php endwhile ?>
+                                <?php if (mysqli_num_rows($result) > 0): ?>
+                                    <?php while($row = mysqli_fetch_assoc($result)): ?>
+                                    <tr>
+                                        <td><?php echo $row['id'];?></td>
+                                        <td><?php echo $row['tanggal_ruang'];?></td>
+                                        <td><?php echo $row['mahasiswa'];?></td>
+                                        <td><?php echo $row['team_penguji'];?></td>
+                                        <td><?php echo $row['judul_skripsi'];?></td>
+                                        <td><?php echo $row['ketua_penguji'];?></td>
+                                        <td><?php echo $row['anggota_penguji'];?></td>
+                                        <td><?php echo $row['pembimbing_1'];?></td>
+                                        <td><?php echo $row['pembimbing_2'];?></td>
+                                    </tr>
+                                    <?php endwhile ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="9"><h4 style="color: #0B6977;">Tidak ada data.</h4></td>
+                                    </tr>
+                                <?php endif ?>
                             </tbody>
                         </table>
                     </div>
@@ -271,7 +286,6 @@ if (isset($_POST["import"])) {
 </html>
 
 <script>
-
     $(document).ready(function(){
         // Add the following code if you want the name of the file appear on select
         $(".custom-file-input").on("change", function() {
@@ -279,7 +293,7 @@ if (isset($_POST["import"])) {
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
 
-        // Event listener untuk input teks (keyword)
+        // keyword (nama atau nrp)
         $('#keyword').on('keyup', function(){
             var keyword = $('#keyword').val();
             console.log(keyword);
@@ -292,7 +306,7 @@ if (isset($_POST["import"])) {
                 },
                 success: function(respond) {
                     console.log(respond);
-                    $("#searchResult").html(respond); // Ganti elemen target dengan ID yang benar
+                    $("#searchResult").html(respond);
                 },
                 error: function() {
                     alert("gagal");
@@ -300,7 +314,7 @@ if (isset($_POST["import"])) {
             });
         });
 
-        // Event listener untuk dropdown select (periode)
+        // periode
         $('#periode').on('change', function(){
             var periode = $('#periode').val();
             console.log(periode);
@@ -313,7 +327,7 @@ if (isset($_POST["import"])) {
                 },
                 success: function(respond) {
                     console.log(respond);
-                    $("#searchResult").html(respond); // Ganti elemen target dengan ID yang benar
+                    $("#searchResult").html(respond);
                 },
                 error: function() {
                     alert("gagal");

@@ -43,6 +43,7 @@ $result = mysqli_query($conn, $sql);
                         <table class="mx-auto table table-striped">
                             <thead style="background-color:#0B6977; color: whitesmoke; text-align: center;">
                                 <tr>
+                                    <th>Nomor Vakasi</th>
                                     <th>NIP</th>
                                     <th>Dosen</th>
                                     <th>Tanggal Sidang</th>
@@ -54,7 +55,8 @@ $result = mysqli_query($conn, $sql);
                                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                                 <tbody style="text-align: center;">
                                     <tr>
-                                        <td><?php echo $row['id']; ?></td>
+                                        <td><?php echo $row['nomor_vakasi']; ?></td>
+                                        <td><?php echo $row['nip']; ?></td>
                                         <td><?php echo $row['dosen']; ?></td>
                                         <td><?php echo $row['tanggal_sidang']; ?></td>
                                         <td><?php echo $row['nama_mhs']; ?></td>
@@ -65,7 +67,7 @@ $result = mysqli_query($conn, $sql);
                             <?php else: ?>
                                 <tbody style="text-align: center;">
                                     <tr>
-                                        <td colspan="5"><h3 style="text-align: center; color: red;">Tidak ada data.</h3></td>
+                                        <td colspan="5"><h3 style="text-align: center; color:#0B6977;">Tidak ada data.</h3></td>
                                     </tr>
                                 </tbody>
                             <?php endif ?>

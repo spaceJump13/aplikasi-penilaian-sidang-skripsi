@@ -153,7 +153,7 @@ include 'config.php';
                                 </div>
                             </div>
                             <label for="catatanSidang" style="margin-top: 5px;"><h5>Catatan Sidang</h5></label>
-                            <textarea class="form-control" id="catatanSidang" rows="6" placeholder="Catatan"></textarea>
+                            <textarea class="form-control" name="catatanSidang" id="catatanSidang" rows="6" placeholder="Catatan"></textarea>
                             
                         </div>
                     </div>
@@ -407,10 +407,13 @@ include 'config.php';
                 var judulSkripsi = $("#judul_skripsi").val();
                 var namaMhs = $("#nama_mhs").val();
                 var ketuaPenguji = $("#ketuaPenguji").val();
+                var dosenPenguji = $("#dosenPenguji").val();
                 var tanggalSidang = $("#tanggalSidang").val();
                 var ruangSidang = $("#ruangSidang").val();
                 var konsentrasi = $("#konsentrasi").val();
+                var catatanSidang = $("#catatanSidang").val();
                 var status_ketua = ""
+                var status_penguji = ""
 
                 if ($('#kehadiranKetuaPenguji').is(':checked')) {
                     status_ketua = "Ketua Penguji";
@@ -418,7 +421,7 @@ include 'config.php';
                     alert('Checkbox is checked');
                 }
                 if ($('#kehadiranDosenPenguji').is(':checked')) {
-                    var status_penguji = "Anggota Penguji";
+                    status_penguji = "Anggota Penguji";
                     // alert('Checkbox is checked');
                 }
                 // if ($('#kehadiranPembimbing1').is(':checked')) {
@@ -438,11 +441,13 @@ include 'config.php';
                         judulSkripsi: judulSkripsi,
                         namaMhs: namaMhs,
                         ketuaPenguji: ketuaPenguji,
+                        dosenPenguji: dosenPenguji,
                         tanggalSidang: tanggalSidang,
                         ruangSidang: ruangSidang,
                         status_ketua: status_ketua,
-                        statusPenguji: status_penguji,
+                        status_penguji: status_penguji,
                         konsentrasi: konsentrasi,
+                        catatanSidang: catatanSidang,
                         // statusPembimbing1: status_pembimbing1,
                         // statusPembimbing2: status_pembimbing2,
                         tanda: "Insert"

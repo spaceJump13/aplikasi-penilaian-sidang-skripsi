@@ -37,14 +37,16 @@ elseif ($tanda == 'Mahasiswa'){
 }
 
 elseif ($tanda == 'Insert'){
-    $judulSkripsi = $_POST['judulSkripsi'];
+    $judulSkripsi = trim($_POST['judulSkripsi']);
     $namaMhs = $_POST['namaMhs'];
     $ketuaPenguji = $_POST['ketuaPenguji'];
+    $dosenPenguji = trim($_POST['dosenPenguji']);
     $tanggalSidang = $_POST['tanggalSidang'];
     $timestamp = strtotime(str_replace('/', '-', $tanggalSidang));
     $newTime = date('Y-m-d H:i', $timestamp);
     $ruangSidang = $_POST['ruangSidang'];
     $konsentrasi = $_POST['konsentrasi'];
+    $catatanSidang = $_POST['catatanSidang'];
 
     switch($ruangSidang){
         case 1:
@@ -97,23 +99,34 @@ elseif ($tanda == 'Insert'){
 
     if (mysqli_num_rows($result_kejadian) == 0) {
         // Tambahkan data jika tidak ada data yang sama
-        $sql = "INSERT INTO berita_acara (id, nama_nrp, judul_skripsi, konsentrasi, tanggal_sidang, ruang_sidang, ketua_penguji) VALUES (' ', '$namaMhs', '$judulSkripsi', '$konsentrasi', '$newTime', '$ruangSidang', '$ketuaPenguji')";
+        $sql = "INSERT INTO berita_acara (id, nama_nrp, judul_skripsi, konsentrasi, tanggal_sidang, ruang_sidang, ketua_penguji, anggota_penguji, catatan) VALUES (' ', '$namaMhs', '$judulSkripsi', '$konsentrasi', '$newTime', '$ruangSidang', '$ketuaPenguji', '$dosenPenguji', '$catatanSidang')";
         $result = mysqli_query($conn, $sql);
 
         $status_ketua = $_POST['status_ketua'];
+        $status_penguji = $_POST['status_penguji'];
 
-        if (isset($status_ketua) && $status_ketua === "Ketua Penguji") {
+        if (isset($status_ketua) && $status_ketua == "Ketua Penguji") {
             $sql_get_id = "SELECT * FROM data_dosen WHERE nama LIKE '%$ketuaPenguji%'";
             $result_id = mysqli_query($conn, $sql_get_id);
             $row = mysqli_fetch_assoc($result_id);
-            $id_dosen = $row['nip'];
+            $nip_ketua = $row['nip'];
 
-            $sql = "INSERT INTO vakasi (id, dosen, tanggal_sidang, nama_mhs, anggota_penguji) VALUES ('$id_dosen', '$ketuaPenguji', '$tanggalSidang', '$namaMhs', '$status_ketua')";
+            $sql = "INSERT INTO vakasi (nomor_vakasi, nip, dosen, tanggal_sidang, nama_mhs, anggota_penguji) VALUES (' ', '$nip_ketua', '$ketuaPenguji', '$tanggalSidang', '$namaMhs', '$status_ketua')";
             $result = mysqli_query($conn, $sql);
         }
-        } else {
-            echo "Data dengan tanggal sidang dan ruang sidang yang sama sudah ada dalam database.";
+        if (isset($status_penguji) && $status_penguji == "Anggota Penguji") {
+            $sql_get_id = "SELECT * FROM data_dosen WHERE nama LIKE '%$dosenPenguji%'";
+            $result_id = mysqli_query($conn, $sql_get_id);
+            $row = mysqli_fetch_assoc($result_id);
+            $nip_penguji = $row['nip'];
+
+            $sql = "INSERT INTO vakasi (nomor_vakasi, nip, dosen, tanggal_sidang, nama_mhs, anggota_penguji) VALUES (' ', '$nip_penguji', '$dosenPenguji', '$tanggalSidang', '$namaMhs', '$status_penguji')";
+            $result = mysqli_query($conn, $sql);
         }
+        
+    } else {
+        echo "Data dengan tanggal sidang dan ruang sidang yang sama sudah ada dalam database.";
+    }
 
 
 
