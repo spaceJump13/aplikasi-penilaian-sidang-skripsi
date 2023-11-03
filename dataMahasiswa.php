@@ -54,11 +54,32 @@ if (isset($_POST["import"])) {
                     // $result_pembimbing = mysqli_query($conn, $fetch_pembimbing);
 
                     // fetch pembimbing 1 query
-                    $fetch_pembimbing_1 = "SELECT TRIM(REPLACE(LEFT(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), CHAR_LENGTH(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1)) - 6), 
-                    '\n' , ' ')) as tes FROM data_mahasiswa;";
+                    $fetch_pembimbing_1 = "SELECT 
+                    CASE
+                        WHEN REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
+                        '\n' , ' ') LIKE '%0%' OR REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
+                        '\n' , ' ') LIKE '%1%' OR REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
+                        '\n' , ' ') LIKE '%2%' OR REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
+                        '\n' , ' ') LIKE '%3%' OR REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
+                        '\n' , ' ') LIKE '%4%' OR REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
+                        '\n' , ' ') LIKE '%5%' OR REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
+                        '\n' , ' ') LIKE '%6%' OR REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
+                        '\n' , ' ') LIKE '%7%' OR REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
+                        '\n' , ' ') LIKE '%8%' OR REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
+                        '\n' , ' ') LIKE '%9%'
+                        THEN REPLACE(LEFT(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), CHAR_LENGTH(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1)) - 6), 
+                        '\n' , ' ')
+                        ELSE REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
+                        '\n' , ' ')
+                    END as tes
+                    FROM data_mahasiswa;";
                     $result_pembimbing_1 = mysqli_query($conn, $fetch_pembimbing_1);
 
-                
+                    // fetch pembimbing 2 query
+                    $fetch_pembimbing_2 = "SELECT TRIM(REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', -1), '\n' , ' ')) as tes FROM data_mahasiswa;";
+                    $result_pembimbing_2 = mysqli_query($conn, $fetch_pembimbing_2);
+
+
                     // update jadi punya ketua penguji
                     $temp = 1;
                     while ($row = mysqli_fetch_assoc($result_ketua_penguji)){
@@ -82,10 +103,27 @@ if (isset($_POST["import"])) {
                     // update jadi punya pembimbing 1
                     $temp = 1;
                     while ($row = mysqli_fetch_assoc($result_pembimbing_1)){
-                        $tes = $row['tes'];
+                        $tes = trim($row['tes']);
                         // echo $tes . "<br>";
                         $update_query = "UPDATE data_mahasiswa SET pembimbing_1 = '$tes' WHERE id = $temp";
                         $result_insert = mysqli_query($conn, $update_query);
+                        $temp = $temp + 1;
+                    }
+
+                    // update jadi punya pembimbing 2
+                    $temp = 1;
+                    while ($row = mysqli_fetch_assoc($result_pembimbing_2)){
+                        // $tes = '';
+                        $check_nama_pembimbing_1 = "SELECT * FROM data_mahasiswa WHERE id = $temp";
+                        $result = mysqli_query($conn, $check_nama_pembimbing_1);
+                        $row2 = mysqli_fetch_assoc($result);
+                        $nama_pembimbing_1 = $row2['pembimbing_1'];
+                        // echo $tes . "<br>";
+                        if ($nama_pembimbing_1 != $row['tes']){
+                            $nama_pembimbing_2 = $row['tes'];
+                            $update_query = "UPDATE data_mahasiswa SET pembimbing_2 = '$nama_pembimbing_2' WHERE id = $temp";
+                            $result_insert = mysqli_query($conn, $update_query);
+                        }
                         $temp = $temp + 1;
                     }
 
@@ -140,8 +178,8 @@ if (isset($_POST["import"])) {
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
 
-        /* Primary Button Styles */
-        .btn-ocean {
+         /* Primary Button Styles */
+         .btn-ocean {
         color: white;
         font-weight: 500;
         background-color: #0B6977;
@@ -149,11 +187,11 @@ if (isset($_POST["import"])) {
         }
 
         .btn-ocean:hover {
-        background-color: #0B6977;
-        border-color: #fff;
+        background-color: #fff;
+        /*border-color: #fff;*/
         border: 3px solid;
-        color: white;
-        box-shadow: 2px 2px 5px rgba(215, 24, 123, 0.20);
+        color: #0B6977;
+        /*box-shadow: 2px 2px 5px rgba(215, 24, 123, 0.20);*/
         }
 
         .btn-ocean:focus {
@@ -163,7 +201,6 @@ if (isset($_POST["import"])) {
 </head>
 <body style="background-color: #0B6977;">
     <div id="rectangle">
-        
         <div class="container-lg"> <!--<div class="container my-5">-->
             <div class="row">
                 <div class="col-lg-12">
@@ -172,17 +209,18 @@ if (isset($_POST["import"])) {
                     </div>
                 </div>
             </div>
+        </div> <!-- taroh paling bawah kalo mau lebih mengecil -->
     
             <form action="" method="POST">
                 <div class="row mt-4">
                     <div class="col-lg-3">
-                        <div class="input-group mb-3" style="margin-top: 20px;">
+                        <div class="input-group mb-3" style="margin-top: 30px;">
                             <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Masukkan Nama atau NRP">
                         </div>
                     </div>
         
                     <div class="col-lg-3">
-                        <button type="submit" class="btn btn-ocean" style="margin-top: 20px;">Search</button>
+                        <button type="submit" class="btn btn-ocean" style="margin-top: 30px;">Search</button>
                     </div>
     
                     <div class="col-lg-6">
@@ -211,10 +249,10 @@ if (isset($_POST["import"])) {
                                     <th>Mahasiswa</th>
                                     <th>Team Penguji</th>
                                     <th>Judul Skripsi</th>
-                                    <th>Ketua Penguji</th>
+                                    <!-- <th>Ketua Penguji</th>
                                     <th>Anggota Penguji</th>
                                     <th>Pembimbing 1</th>
-                                    <th>Pembimbing 2</th>
+                                    <th>Pembimbing 2</th> -->
 
                                 </tr>
                             </thead>
@@ -228,10 +266,10 @@ if (isset($_POST["import"])) {
                                         <td><?php echo $row['mahasiswa'];?></td>
                                         <td><?php echo $row['team_penguji'];?></td>
                                         <td><?php echo $row['judul_skripsi'];?></td>
-                                        <td><?php echo $row['ketua_penguji'];?></td>
+                                        <!-- <td><?php echo $row['ketua_penguji'];?></td>
                                         <td><?php echo $row['anggota_penguji'];?></td>
                                         <td><?php echo $row['pembimbing_1'];?></td>
-                                        <td><?php echo $row['pembimbing_2'];?></td>
+                                        <td><?php echo $row['pembimbing_2'];?></td> -->
                                     </tr>
                                     <?php endwhile ?>
                                 <?php else: ?>
@@ -281,7 +319,6 @@ if (isset($_POST["import"])) {
                 </div>
             </div>
         </div>
-    </div>
 </body>
 </html>
 

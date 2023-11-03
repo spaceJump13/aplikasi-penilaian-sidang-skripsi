@@ -65,6 +65,47 @@ include 'config.php';
         box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Add a shadow on focus */
         /* Add more focus styles as needed */
         }
+
+        /* Primary Button Styles */
+        .btn-ocean {
+        color: white;
+        font-weight: 500;
+        background-color: #0B6977;
+        border-color: #0B6977;
+        }
+
+        .btn-ocean:hover {
+        background-color: #fff;
+        /*border-color: #fff;*/
+        border: 3px solid;
+        color: #0B6977;
+        /*box-shadow: 2px 2px 5px rgba(215, 24, 123, 0.20);*/
+        }
+
+        .btn-ocean:focus {
+        box-shadow: 0 0 0 0.2rem rgba(11, 105, 119, 0.5);
+        }
+
+        /* Style the date input */
+        .input-selectTime {
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-inout;
+        }
+
+        /* Add hover and focus styles */
+        .input-selectTime:hover, .input-selectTime:focus {
+        border-color: #007BFF;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
     </style>
 </head>
 <body style="background-color: #0B6977;">
@@ -88,7 +129,7 @@ include 'config.php';
                             <br>
         
                             <label for="judul_skripsi"><h5>Judul Skripsi</h5></label>
-                            <input type="text" name="judul_skripsi" id="judul_skripsi" class="form-control" placeholder="Judul Skripsi">
+                            <input type="text" name="judul_skripsi" id="judul_skripsi" style="background-color: white;" class="form-control" placeholder="Judul Skripsi" readonly>
         
                             <br>
         
@@ -104,9 +145,40 @@ include 'config.php';
                             </select>
         
                             <br>
-                            
-                            <label for="tanggalSidang"><h5>Tanggal Sidang</h5></label>
-                            <input type="datetime-local" name="tanggalSidang" id="tanggalSidang" class="form-control">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label for="tanggalSidang"><h5>Tanggal Sidang</h5></label>
+                                    <input type="date" name="tanggalSidang" id="tanggalSidang" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="waktuSidang"><h5>Waktu Sidang</h5></label>
+                                    <select class="input-selectTime" id="waktuSidang" name="waktuSidang">
+                                        <option value="07:00">07:00</option>
+                                        <option value="07:30">07:30</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="08:30">08:30</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="09:30">09:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:30">11:30</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:30">14:30</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="15:30">15:30</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="16:30">16:30</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="17:30">17:30</option>
+                                        <option value="18:00">18:00</option>
+                                    </select>
+                                </div>
+                            </div>
         
                             <br>
 
@@ -130,7 +202,7 @@ include 'config.php';
                                 <div class="col-4">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" for="cpmk1">CPMK 1</label>
+                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk1">CPMK 1</label>
                                         </div>
                                         <input type="number" name="cpmk1" id="cpmk1" class="form-control" placeholder="Nilai">
                                     </div>
@@ -138,7 +210,7 @@ include 'config.php';
                                 <div class="col-4">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" for="cpmk2">CPMK 2</label>
+                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk2">CPMK 2</label>
                                         </div>
                                         <input type="number" name="cpmk2" id="cpmk2" class="form-control" placeholder="Nilai">
                                     </div>
@@ -146,7 +218,7 @@ include 'config.php';
                                 <div class="col-4">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text" for="cpmk3">CPMK 3</label>
+                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk3">CPMK 3</label>
                                         </div>
                                         <input type="number" name="cpmk3" id="cpmk3" class="form-control" placeholder="Nilai">
                                     </div>
@@ -191,7 +263,7 @@ include 'config.php';
                             <div class="row" style="margin-top: 24px;">
                                 <div class="col-lg-10">
                                     <label  for="dosenPenguji"><h5>Dosen Penguji</h5></label>
-                                    <input type="text" name="dosenPenguji" id="dosenPenguji" class="form-control" placeholder="Dosen Penguji">
+                                    <input type="text" name="dosenPenguji" id="dosenPenguji" style="background-color: white;" class="form-control" placeholder="Dosen Penguji" readonly>
                                 </div>
     
                                 <div class="col-lg-2">
@@ -204,17 +276,8 @@ include 'config.php';
     
                             <div class="row" style="margin-top: 24px;">
                                 <div class="col-lg-10">
-                                    <label for="dosenPembimbing1"><h5>Dosen Pembimbing 1</h5></label>
-                                    <select class="form-select" aria-label="Default select example" name="dosenPembimbing1">
-                                        <option selected>Select</option>
-                                        <option value="1">Silvia</option>
-                                        <option value="2">Henry</option>
-                                        <option value="3">Agus</option>
-                                        <option value="4">Stephanus</option>
-                                        <option value="5">Adi</option>
-                                        <option value="6">Djoni</option>
-                                        <option value="7">Liliana</option>
-                                    </select>
+                                    <label for="pembimbing1"><h5>Dosen Pembimbing 1</h5></label>
+                                    <input type="text" name="pembimbing1" id="pembimbing1" class="form-control" style="background-color: white;" placeholder="Dosen Pembimbing 1" readonly>
                                 </div>
     
                                 <div class="col-lg-2">
@@ -227,18 +290,10 @@ include 'config.php';
     
                             <div class="row" style="margin-top: 24px;">
                                 <div class="col-lg-10">
-                                    <label for="dosenPembimbing2"><h5>Dosen Pembimbing 2</h5></label>
-                                    <select class="form-select" aria-label="Default select example" name="dosenPembimbing2">
-                                        <option selected>Select</option>
-                                        <option value="1">Silvia</option>
-                                        <option value="2">Henry</option>
-                                        <option value="3">Agus</option>
-                                        <option value="4">Stephanus</option>
-                                        <option value="5">Adi</option>
-                                        <option value="6">Djoni</option>
-                                        <option value="7">Liliana</option>
-                                    </select>
+                                    <label for="pembimbing2"><h5>Dosen Pembimbing 2</h5></label>
+                                    <input type="text" name="pembimbing2" id="pembimbing2" class="form-control" style="background-color: white;" placeholder="Dosen Pembimbing 2" readonly>
                                 </div>
+
                                 <div class="col-lg-2">
                                     <div class="form-check checkbox-lg" style="margin-top: 40px;">
                                         <input class="form-check-input" type="checkbox" value="" id="kehadiranPembimbing2" name="kehadiranPembimbing2">
@@ -334,7 +389,7 @@ include 'config.php';
                         <button class="btn btn-danger" style="float: right;">Discard</button>
                     </div>
                     <div class="col-lg-6">
-                        <button class="btn btn-dark" name="add" id="add">Add</button>
+                        <button class="btn btn-ocean" name="add" id="add">Add</button>
                     </div>
                 </div>
             </form>
@@ -344,6 +399,8 @@ include 'config.php';
 
     <script>
         $(document).ready(function(){
+
+            // ketua penguji
             $('#ketuaPenguji').on('change', function(){
                 var ketuaPenguji = $(this).val();
                 console.log(ketuaPenguji);
@@ -362,27 +419,8 @@ include 'config.php';
                     }
                 })
             })
-
-            $('#nama_mhs').on('change', function(){
-                var nama_mhs = $(this).val();
-                console.log(nama_mhs);
-                $.ajax({
-                    url: "ajax_berita_acara.php",
-                    type: "POST",
-                    data:{
-                        tanda: "Judul",
-                        id:nama_mhs               
-                    },
-                    success:function(respond){
-                        console.log(respond);
-                        $("#judul_skripsi").val(respond);
-                    },
-                    error:function(){
-                        alert("gagal");
-                    }
-                })
-            })
-
+            
+            // dosen penguji
             $('#nama_mhs').on('change', function(){
                 var nama_mhs = $(this).val();
                 console.log(nama_mhs);
@@ -402,65 +440,152 @@ include 'config.php';
                     }
                 })
             })
+            
+            // dosen pembimbing 1
+            $('#nama_mhs').on('change', function(){
+                var nama_mhs = $(this).val();
+                $.ajax({
+                    url: "ajax_berita_acara.php",
+                    type: "POST",
+                    data:{
+                        tanda: "Pembimbing_1",
+                        id:nama_mhs               
+                    },
+                    success:function(respond){
+                        console.log(respond);
+                        $("#pembimbing1").val(respond);
+                    },
+                    error:function(){
+                        alert("gagal");
+                    }
+                })
+            })
+
+            // dosen pembimbing 2
+            $('#nama_mhs').on('change', function(){
+                var nama_mhs = $(this).val();
+                $.ajax({
+                    url: "ajax_berita_acara.php",
+                    type: "POST",
+                    data:{
+                        tanda: "Pembimbing_2",
+                        id:nama_mhs               
+                    },
+                    success:function(respond){
+                        console.log(respond);
+                        $("#pembimbing2").val(respond);
+                    },
+                    error:function(){
+                        alert("gagal");
+                    }
+                })
+            })
+
+            // judul skripsi
+            $('#nama_mhs').on('change', function(){
+                var nama_mhs = $(this).val();
+                $.ajax({
+                    url: "ajax_berita_acara.php",
+                    type: "POST",
+                    data:{
+                        tanda: "Judul",
+                        id:nama_mhs               
+                    },
+                    success:function(respond){
+                        console.log(respond);
+                        $("#judul_skripsi").val(respond);
+                    },
+                    error:function(){
+                        alert("gagal");
+                    }
+                })
+            })
+
+            $('#tanggalSidang').on('click', function(){
+                var tanggalSidang = $(this).val();
+                console.log(tanggalSidang);
+            })
 
             $("#add").on("click", function() {
                 var judulSkripsi = $("#judul_skripsi").val();
                 var namaMhs = $("#nama_mhs").val();
                 var ketuaPenguji = $("#ketuaPenguji").val();
                 var dosenPenguji = $("#dosenPenguji").val();
+                var pembimbing1 = $("#pembimbing1").val();
+                var pembimbing2 = $("#pembimbing2").val();
                 var tanggalSidang = $("#tanggalSidang").val();
+                var waktuSidang = $("#waktuSidang").val(); 
                 var ruangSidang = $("#ruangSidang").val();
                 var konsentrasi = $("#konsentrasi").val();
                 var catatanSidang = $("#catatanSidang").val();
-                var status_ketua = ""
-                var status_penguji = ""
+                var status_ketua = "";
+                var status_penguji = "";
+                var status_pembimbing1 = "";
+                var status_pembimbing2 = "";
 
-                if ($('#kehadiranKetuaPenguji').is(':checked')) {
-                    status_ketua = "Ketua Penguji";
-                    // console.log(status_ketua);
-                    alert('Checkbox is checked');
+                if (konsentrasi == "Konsentrasi Skripsi" || ruangSidang == "Select" || namaMhs == "Pilih Mahasiswa"){
+                    event.preventDefault();
+                    alert("Mohon isi field yang kosong!");
                 }
-                if ($('#kehadiranDosenPenguji').is(':checked')) {
-                    status_penguji = "Anggota Penguji";
-                    // alert('Checkbox is checked');
-                }
-                // if ($('#kehadiranPembimbing1').is(':checked')) {
-                //     var status_pembimbing1 = "Pembimbing 1";
-                //     // alert('Checkbox is checked');
-                // }
-                // if ($('#kehadiranPembimbing2').is(':checked')) {
-                //     var status_pembimbing2 = "Pembimbing 2";
-                //     // alert('Checkbox is checked');
-                // }
-
-                
-                $.ajax({
-                    url: "ajax_berita_acara.php",
-                    method: "POST",
-                    data: {
-                        judulSkripsi: judulSkripsi,
-                        namaMhs: namaMhs,
-                        ketuaPenguji: ketuaPenguji,
-                        dosenPenguji: dosenPenguji,
-                        tanggalSidang: tanggalSidang,
-                        ruangSidang: ruangSidang,
-                        status_ketua: status_ketua,
-                        status_penguji: status_penguji,
-                        konsentrasi: konsentrasi,
-                        catatanSidang: catatanSidang,
-                        // statusPembimbing1: status_pembimbing1,
-                        // statusPembimbing2: status_pembimbing2,
-                        tanda: "Insert"
-                    },
-                    success: function(respond) {
-                        $("#add").html(respond)
-                        alert("Berhasil add!");
-                    },
-                    error: function() {
-                        alert("An error occurred during the insertion.");
+                else{
+                    if ($('#kehadiranKetuaPenguji').is(':checked')) {
+                        status_ketua = "Ketua Penguji";
+                        //alert('Checkbox is checked');
                     }
-                });
+                    if ($('#kehadiranDosenPenguji').is(':checked')) {
+                        status_penguji = "Anggota Penguji";
+                        //alert('Checkbox is checked');
+                    }
+                    if ($('#kehadiranPembimbing1').is(':checked')) {
+                        status_pembimbing1 = "Pembimbing 1";
+                        //alert('Checkbox is checked');
+                    }
+                    if ($('#kehadiranPembimbing2').is(':checked')) {
+                        status_pembimbing2 = "Pembimbing 2";
+                        //alert('Checkbox is checked');
+                    }
+                    
+                    $.ajax({
+                        url: "ajax_berita_acara.php",
+                        method: "POST",
+                        data: {
+                            judulSkripsi: judulSkripsi,
+                            namaMhs: namaMhs,
+                            ketuaPenguji: ketuaPenguji,
+                            dosenPenguji: dosenPenguji,
+                            pembimbing1: pembimbing1,
+                            pembimbing2: pembimbing2,
+                            tanggalSidang: tanggalSidang,
+                            waktuSidang: waktuSidang,
+                            ruangSidang: ruangSidang,
+                            status_ketua: status_ketua,
+                            status_penguji: status_penguji,
+                            status_pembimbing1: status_pembimbing1,
+                            status_pembimbing2: status_pembimbing2,
+                            konsentrasi: konsentrasi,
+                            catatanSidang: catatanSidang,
+                            tanda: "Insert"
+                        },
+                        success: function(respond) {
+                            $("#add").html(respond)
+                            console.log(respond);
+                            var trim_respond = respond.trim();
+                            if (trim_respond == "Berhasil Add!") {
+                                alert("Data added successfully!");
+                                // You can also perform other actions or redirect here if needed
+                            } else if (trim_respond == "bentrok") {
+                                alert("Tanggal Sidang dan Ruang Sidang bertabrakan!.");
+                            } else {
+                                alert("An unknown response was received: " + trim_respond);
+                            }
+                        },
+                        error: function() {
+                            alert("An error occurred during the insertion.");
+                        }
+                    });
+                }
             });
+
         });
     </script>
 </body>
