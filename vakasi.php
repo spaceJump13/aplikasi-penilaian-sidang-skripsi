@@ -30,6 +30,26 @@ $result = mysqli_query($conn, $sql);
         padding-top: 2rem;
         padding-bottom: 2rem;
         }
+        .btn.btn-outline-ocean {
+        color: #fff; 
+        background-color: #0B6977; 
+        border: 3px solid #0B6977; 
+        padding: 8px 16px; 
+        font-weight: 500;
+        border-radius: 5px; 
+        text-decoration: none; 
+        display: inline-block; 
+        font-size: 16px; 
+        text-align: center; 
+        cursor: pointer; 
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+        }
+   
+        .btn.btn-outline-ocean:hover {
+            color: #0B6977; 
+            background-color: #fff; 
+            border-color: #0B6977; 
+        }
 </style>
 <body style="background-color: #0B6977;">
         <div id="rectangle">

@@ -42,24 +42,25 @@ include 'config.php';
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
 
-        /* Primary Button Styles */
-        .btn-ocean {
-        color: white;
+        .btn.btn-outline-ocean {
+        color: #fff; 
+        background-color: #0B6977; 
+        border: 3px solid #0B6977; 
+        padding: 8px 16px; 
         font-weight: 500;
-        background-color: #0B6977;
-        border-color: #0B6977;
+        border-radius: 5px; 
+        text-decoration: none; 
+        display: inline-block; 
+        font-size: 16px; 
+        text-align: center; 
+        cursor: pointer; 
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
         }
-
-        .btn-ocean:hover {
-        background-color: #0B6977;
-        border-color: #fff;
-        border: 3px solid;
-        color: white;
-        box-shadow: 2px 2px 5px rgba(215, 24, 123, 0.20);
-        }
-
-        .btn-ocean:focus {
-        box-shadow: 0 0 0 0.2rem rgba(11, 105, 119, 0.5);
+   
+        .btn.btn-outline-ocean:hover {
+            color: #0B6977; 
+            background-color: #fff; 
+            border-color: #0B6977; 
         }
     </style>
 </head>
@@ -193,7 +194,7 @@ include 'config.php';
             <div class="row">
                 <div class="col-lg-12">
                     <div>
-                        <button class="btn btn-ocean" onclick="location.href='#'">Back</button>
+                        <button class="btn-outline-ocean" onclick="location.href='#'">Back</button>
                     </div>
                 </div>
             </div>

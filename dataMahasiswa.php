@@ -178,24 +178,25 @@ if (isset($_POST["import"])) {
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
 
-         /* Primary Button Styles */
-         .btn-ocean {
-        color: white;
+        .btn.btn-outline-ocean {
+        color: #fff; 
+        background-color: #0B6977; 
+        border: 3px solid #0B6977; 
+        padding: 8px 16px; 
         font-weight: 500;
-        background-color: #0B6977;
-        border-color: #0B6977;
+        border-radius: 5px; 
+        text-decoration: none; 
+        display: inline-block; 
+        font-size: 16px; 
+        text-align: center; 
+        cursor: pointer; 
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
         }
-
-        .btn-ocean:hover {
-        background-color: #fff;
-        /*border-color: #fff;*/
-        border: 3px solid;
-        color: #0B6977;
-        /*box-shadow: 2px 2px 5px rgba(215, 24, 123, 0.20);*/
-        }
-
-        .btn-ocean:focus {
-        box-shadow: 0 0 0 0.2rem rgba(11, 105, 119, 0.5);
+   
+        .btn.btn-outline-ocean:hover {
+            color: #0B6977; 
+            background-color: #fff; 
+            border-color: #0B6977; 
         }
     </style>
 </head>
@@ -220,7 +221,7 @@ if (isset($_POST["import"])) {
                     </div>
         
                     <div class="col-lg-3">
-                        <button type="submit" class="btn btn-ocean" style="margin-top: 30px;">Search</button>
+                        <button type="submit" class="btn btn-outline-ocean" style="margin-top: 30px;">Search</button>
                     </div>
     
                     <div class="col-lg-6">
@@ -285,11 +286,11 @@ if (isset($_POST["import"])) {
     
             <div class="row mt-2">
                 <div class="col-lg-6">
-                <a href="dataMahasiswa.php" style="color: white; text-decoration: none;"><button type="button" class="btn btn-ocean">Back</button></a>
+                <a href="dataMahasiswa.php" style="color: white; text-decoration: none;"><button type="button" class="btn btn-outline-ocean">Back</button></a>
                 </div>
                 <div class="col-lg-6">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-ocean" style="float: right;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <button type="button" class="btn btn-outline-ocean" style="float: right;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Import
                     </button>
     
@@ -310,8 +311,8 @@ if (isset($_POST["import"])) {
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-ocean" data-bs-dismiss="modal">Back</button>
-                                    <button type="submit" class="btn btn-ocean" name="import">Add</button>
+                                    <button type="button" class="btn btn-outline-ocean" data-bs-dismiss="modal">Back</button>
+                                    <button type="submit" class="btn btn-outline-ocean" name="import">Add</button>
                                 </div>
                             </form>
                         </div>

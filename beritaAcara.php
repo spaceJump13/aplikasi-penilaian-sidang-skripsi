@@ -46,24 +46,25 @@ include 'config.php';
     padding-top: 2rem;
     padding-bottom: 2rem;
     }
-        /* Primary Button Styles */
-        .btn-ocean {
-    color: white;
-    font-weight: 500;
-    background-color: #0B6977;
-    border-color: #0B6977;
+    .btn.btn-outline-ocean {
+        color: #fff; 
+        background-color: #0B6977; 
+        border: 3px solid #0B6977; 
+        padding: 8px 16px; 
+        font-weight: 500;
+        border-radius: 5px; 
+        text-decoration: none; 
+        display: inline-block; 
+        font-size: 16px; 
+        text-align: center; 
+        cursor: pointer; 
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
     }
-
-    .btn-ocean:hover {
-    background-color: #fff;
-    /*border-color: #fff;*/
-    border: 3px solid;
-    color: #0B6977;
-    /*box-shadow: 2px 2px 5px rgba(215, 24, 123, 0.20);*/
-    }
-
-    .btn-ocean:focus {
-    box-shadow: 0 0 0 0.2rem rgba(11, 105, 119, 0.5);
+   
+    .btn.btn-outline-ocean:hover {
+        color: #0B6977; 
+        background-color: #fff; 
+        border-color: #0B6977; 
     }
 </style>
 <body style="background-color: #0B6977;">
@@ -85,7 +86,7 @@ include 'config.php';
                 </div>
     
                 <div class="col-lg-3">
-                    <button type="submit" class="btn btn-ocean" style="margin-top: 30px;">Search</button>
+                    <button type="submit" class="btn btn-outline-ocean" style="margin-top: 30px;">Search</button>
                 </div>
 
                 <div class="col-lg-6">

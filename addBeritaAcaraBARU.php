@@ -66,24 +66,46 @@ include 'config.php';
         /* Add more focus styles as needed */
         }
 
-        /* Primary Button Styles */
-        .btn-ocean {
-        color: white;
+        .btn.btn-outline-ocean {
+        color: #fff; 
+        background-color: #0B6977; 
+        border: 3px solid #0B6977; 
+        padding: 8px 16px; 
         font-weight: 500;
-        background-color: #0B6977;
-        border-color: #0B6977;
+        border-radius: 5px; 
+        text-decoration: none; 
+        display: inline-block; 
+        font-size: 16px; 
+        text-align: center; 
+        cursor: pointer; 
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+        }
+   
+        .btn.btn-outline-ocean:hover {
+            color: #0B6977; 
+            background-color: #fff; 
+            border-color: #0B6977; 
         }
 
-        .btn-ocean:hover {
-        background-color: #fff;
-        /*border-color: #fff;*/
-        border: 3px solid;
-        color: #0B6977;
-        /*box-shadow: 2px 2px 5px rgba(215, 24, 123, 0.20);*/
+        .btn.btn-outline-red {
+        color: #fff; 
+        background-color: #952323; 
+        border: 3px solid #952323; 
+        padding: 8px 16px; 
+        font-weight: 500;
+        border-radius: 5px; 
+        text-decoration: none; 
+        display: inline-block; 
+        font-size: 16px; 
+        text-align: center; 
+        cursor: pointer; 
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
         }
-
-        .btn-ocean:focus {
-        box-shadow: 0 0 0 0.2rem rgba(11, 105, 119, 0.5);
+   
+        .btn.btn-outline-red:hover {
+            color: #952323; 
+            background-color: #fff; 
+            border-color: #952323; 
         }
 
         /* Style the date input */
@@ -119,119 +141,6 @@ include 'config.php';
     
             <form action="" method="POST">   
                 <div class="row mt-5">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label for="nama_mhs"><h5>Mahasiswa</h5></label>
-                                <select class="form-select" aria-label="Default select example" name="nama_mhs" id="nama_mhs">
-                                    <option>Pilih Mahasiswa</option>
-                                </select>
-                
-                            <br>
-        
-                            <label for="judul_skripsi"><h5>Judul Skripsi</h5></label>
-                            <input type="text" name="judul_skripsi" id="judul_skripsi" style="background-color: white;" class="form-control" placeholder="Judul Skripsi" readonly>
-        
-                            <br>
-        
-                            <label for="konsentrasi"><h5>Konsenstrasi Skripsi</h5></label>
-                            <select class="form-select" aria-label="Default select example" name="konsentrasi" id="konsentrasi">
-                                <option selected>Konsentrasi Skripsi</option>
-                                <option value="1">AI</option>
-                                <option value="2">Cyber Security</option>
-                                <option value="3">Game Development</option>
-                                <option value="4">Mobile Application Development</option>
-                                <option value="5">Enterprise Information System</option>
-                                <option value="6">Business Intelligence</option>
-                            </select>
-        
-                            <br>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label for="tanggalSidang"><h5>Tanggal Sidang</h5></label>
-                                    <input type="date" name="tanggalSidang" id="tanggalSidang" class="form-control">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label for="waktuSidang"><h5>Waktu Sidang</h5></label>
-                                    <select class="input-selectTime" id="waktuSidang" name="waktuSidang">
-                                        <option value="07:00">07:00</option>
-                                        <option value="07:30">07:30</option>
-                                        <option value="08:00">08:00</option>
-                                        <option value="08:30">08:30</option>
-                                        <option value="09:00">09:00</option>
-                                        <option value="09:30">09:30</option>
-                                        <option value="10:00">10:00</option>
-                                        <option value="10:30">10:30</option>
-                                        <option value="11:00">11:00</option>
-                                        <option value="11:30">11:30</option>
-                                        <option value="12:00">12:00</option>
-                                        <option value="12:30">12:30</option>
-                                        <option value="13:00">13:00</option>
-                                        <option value="13:30">13:30</option>
-                                        <option value="14:00">14:00</option>
-                                        <option value="14:30">14:30</option>
-                                        <option value="15:00">15:00</option>
-                                        <option value="15:30">15:30</option>
-                                        <option value="16:00">16:00</option>
-                                        <option value="16:30">16:30</option>
-                                        <option value="17:00">17:00</option>
-                                        <option value="17:30">17:30</option>
-                                        <option value="18:00">18:00</option>
-                                    </select>
-                                </div>
-                            </div>
-        
-                            <br>
-
-                            <label for="ruangSidang"><h5>Ruang Sidang</h5></label>
-                            <br>
-                                <select class="form-select" aria-label="Default select example" name="ruangSidang" id="ruangSidang">
-                                    <option selected>Select</option>
-                                    <option value="1">P308</option>
-                                    <option value="2">P309</option>
-                                    <option value="3">P307</option>
-                                    <option value="4">P318</option>
-                                    <option value="5">Lab MM</option>
-                                    <option value="6">Lab PG</option>
-                                    <option value="7">Lab Studio</option>
-                                </select>
-                            
-                            <br>
-                            
-                            <label><h5>Nilai Sidang</h5></label>
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk1">CPMK 1</label>
-                                        </div>
-                                        <input type="number" name="cpmk1" id="cpmk1" class="form-control" placeholder="Nilai">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk2">CPMK 2</label>
-                                        </div>
-                                        <input type="number" name="cpmk2" id="cpmk2" class="form-control" placeholder="Nilai">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk3">CPMK 3</label>
-                                        </div>
-                                        <input type="number" name="cpmk3" id="cpmk3" class="form-control" placeholder="Nilai">
-                                    </div>
-                                </div>
-                            </div>
-                            <label for="catatanSidang" style="margin-top: 5px;"><h5>Catatan Sidang</h5></label>
-                            <textarea class="form-control" name="catatanSidang" id="catatanSidang" rows="6" placeholder="Catatan"></textarea>
-                            
-                        </div>
-                    </div>
-                    
-                    </select>
-                    <!-- table kanan -->
                     <div class="col-lg-6">
                         <div class="form-group">
                             <div class="row">
@@ -301,35 +210,159 @@ include 'config.php';
                                     </div>
                                 </div>
                             </div>
-                    
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label for="tanggalSidang"><h5>Tanggal Sidang</h5></label>
+                                    <input type="date" name="tanggalSidang" id="tanggalSidang" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="waktuSidang"><h5>Waktu Sidang</h5></label>
+                                    <select class="input-selectTime" id="waktuSidang" name="waktuSidang">
+                                        <option value="07:00">07:00</option>
+                                        <option value="07:30">07:30</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="08:30">08:30</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="09:30">09:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:30">11:30</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:30">14:30</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="15:30">15:30</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="16:30">16:30</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="17:30">17:30</option>
+                                        <option value="18:00">18:00</option>
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <br>
+
+                            <label for="ruangSidang"><h5>Ruang Sidang</h5></label>
+                            <br>
+                                <select class="form-select" aria-label="Default select example" name="ruangSidang" id="ruangSidang">
+                                    <option selected>Select</option>
+                                    <option value="1">P308</option>
+                                    <option value="2">P309</option>
+                                    <option value="3">P307</option>
+                                    <option value="4">P318</option>
+                                    <option value="5">Lab MM</option>
+                                    <option value="6">Lab PG</option>
+                                    <option value="7">Lab Studio</option>
+                                </select>
+                            
                             <br>
                             
-                            <label for="" style="margin-top: -1px;"><h5>Tugas Tambahan</h5></label>
+                            <!-- <label><h5>Nilai Sidang</h5></label>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk1">CPMK 1</label>
+                                        </div>
+                                        <input type="number" name="cpmk1" id="cpmk1" class="form-control" placeholder="Nilai">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk2">CPMK 2</label>
+                                        </div>
+                                        <input type="number" name="cpmk2" id="cpmk2" class="form-control" placeholder="Nilai">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk3">CPMK 3</label>
+                                        </div>
+                                        <input type="number" name="cpmk3" id="cpmk3" class="form-control" placeholder="Nilai">
+                                    </div>
+                                </div>
+                            </div> -->
+                            <label for="catatanSidang" style="margin-top: 5px;"><h5>Catatan Sidang</h5></label>
+                            <textarea class="form-control" name="catatanSidang" id="catatanSidang" rows="3" placeholder="Catatan"></textarea>
+                            
+                        </div>
+                    </div>
+                    
+                    </select>
+                    <!-- table kanan -->
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="nama_mhs"><h5>Mahasiswa</h5></label>
+                                    <select class="form-select" aria-label="Default select example" name="nama_mhs" id="nama_mhs">
+                                        <option>Pilih Mahasiswa</option>
+                                    </select>
+                    
+                            </div>
+                                
                             <br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="poster" value="option1">
-                                <label class="form-check-label" for="poster">Poster</label>
+
+                            <div class="row">
+                                <label for="judul_skripsi"><h5>Judul Skripsi</h5></label>
+                                <input type="text" name="judul_skripsi" id="judul_skripsi" style="background-color: white;" class="form-control" placeholder="Judul Skripsi" readonly>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="video" value="option2">
-                                <label class="form-check-label" for="video">Video</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="penelitian" value="option3">
-                                <label class="form-check-label" for="penelitian">Laporan Penelitian</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="jurnal" value="option4">
-                                <label class="form-check-label" for="jurnal">Jurnal</label>
+            
+                            <br>
+                            
+                            <div class="row">
+                                <label for="konsentrasi"><h5>Konsenstrasi Skripsi</h5></label>
+                                <select class="form-select" aria-label="Default select example" name="konsentrasi" id="konsentrasi">
+                                    <option selected>Konsentrasi Skripsi</option>
+                                    <option value="1">AI</option>
+                                    <option value="2">Cyber Security</option>
+                                    <option value="3">Game Development</option>
+                                    <option value="4">Mobile Application Development</option>
+                                    <option value="5">Enterprise Information System</option>
+                                    <option value="6">Business Intelligence</option>
+                                </select>
                             </div>
     
                             <br>
+
+                            <div class="row">
+                                <label for="" style="margin-top: -1px;"><h5>Tugas Tambahan</h5></label>
+                            </div>
+                            
+                            <div style="margin-top: 5px;">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="poster" value="option1">
+                                    <label class="form-check-label" for="poster">Poster</label>
+                                </div>
     
-                            <label class="form-label" for="customFile" style="margin-top: 15px;"><h5>Input Tugas</h5></label>
-                            <input type="file" class="form-control" id="customFile">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="video" value="option2">
+                                    <label class="form-check-label" for="video">Video</label>
+                                </div>
     
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="penelitian" value="option3">
+                                    <label class="form-check-label" for="penelitian">Laporan Penelitian</label>
+                                </div>
+                                
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="jurnal" value="option4">
+                                    <label class="form-check-label" for="jurnal">Jurnal</label>
+                                </div>
+                            </div>
+
                             <br>
-                            <label for=""><h5>Nilai CPL (Averaged)</h5></label>
+    
+                            <label for="" style="margin-top: 7px;"><h5>Nilai CPL (Averaged)</h5></label>
                             <div class="col-sm-12">
                                 <div class="table-responsive" id="tabel_cpl">
                                     <table class="table table-bordered">
@@ -379,17 +412,18 @@ include 'config.php';
                                     <h5 style="margin-left: 40px" >Hasil Sidang: Lulus</h5>
                                 </div>
                             </div>
+
+                            <br>
+
+                            <div class="row" style="margin-top: 5px;">
+                                <div class="col-lg-2">
+                                    <button class="btn btn-outline-red" style="float: left;">Discard</button>
+                                </div>
+                                <div class="col-lg-6">
+                                    <button class="btn btn-outline-ocean" name="add" id="add">Add</button>
+                                </div>
+                            </div>
                         </div>
-                        <br>
-                    </div>
-                </div>
-    
-                <div class="row" style="margin-top: 5px;">
-                    <div class="col-lg-6">
-                        <button class="btn btn-danger" style="float: right;">Discard</button>
-                    </div>
-                    <div class="col-lg-6">
-                        <button class="btn btn-ocean" name="add" id="add">Add</button>
                     </div>
                 </div>
             </form>
