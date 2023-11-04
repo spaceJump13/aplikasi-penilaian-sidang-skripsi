@@ -28,13 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_type'] = $userType;
 
             if ($userType === 'admin') {
-                header("Location: homeAdmin.html");
+                header("Location: homeAdmin.php");
                 exit();
             } elseif ($userType === 'ketua') {
-                header("Location: homeKetuaPenguji.html");
+                header("Location: homeKetuaPenguji.php");
                 exit();
             } elseif ($userType === 'dosen') {
-                header("Location: homeDosen.html");
+                header("Location: homeDosen.php");
                 exit();
             }
         } else {
@@ -54,31 +54,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleLogin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Login</title>
 </head>
-<body style="background-color:#4478FF">
-    <div class="login-form">
-        <h3 style="font-weight:600">WELCOME</h3>
-        <form method="post">
-            <div class="input-group mb-3">
-                <label for="InputEmail1" class="form-label" style="padding-right: 10px;">Username</label>
-                <input type="text" class="form-control" id="InputEmail1" name="username" required>
-                <span class="input-group-text" id="emailaddrss">@peter.petra.ac.id</span>
+<body>
+    <div class="wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 10px;">
+            <div class="container-fluid">
+                <img src="Asset/image/pcu logo.png" alt="" style="width: 200px; height:50px;">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav" style= "font-weight: 500; font-size: 20px;">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#" style="color: #0B6977;">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="input-group mb-3">
-                <label for="InputPassword1" class="form-label" style="padding-right: 15px;">Password</label>
-                <input type="password" class="form-control" id="InputPassword1" name="password" required>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="main">
+                    <div class="row content-login"> <!-- Center the row horizontally -->
+                        <div class="col-lg-5 side-image">
+                            <div class="text-image">
+                                <h2 style="font-size: 80px;">login</h2>
+                            </div>
+                            <img src="Asset/image/pcu logo2.png" alt="" class="img-left">
+                            <!-- <img src="Asset/image/pcu_logo2.jpg" alt="" style="height: 50px; width: auto;"> -->
+                        </div>
+                        <div class="col-lg-7 right">
+                            <img src="Asset/image/pcu logo.png" alt="" class="img-right">
+                            <div style="margin-top: 30px;">
+                                <h2 class="text-uppercase" style="font-weight:600; margin-bottom:10px; color: #0B6977; text-align: center;">welcome</h2>
+                                <form method="post">
+                                    <div class="form-group">
+                                        <label for="username"><p style="font-weight: 500; font-size: 20px; margin-bottom: 3px; color: #0B6977;">Username</p></label>
+                                        <div class="class input-group mb-3">
+                                            <input type="email" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter email" required>
+                                            <span class="input-group-text" id="emailaddrss">@peter.petra.ac.id</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="inputPassword"><p style="font-weight: 500; font-size: 20px; margin-bottom: 3px; color: #0B6977;">Password</p></label>
+                                        <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" required>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                                        <label class="form-check-label" for="rememberMe">Remember Me</label>
+                                    </div>
+            
+                                    <button type="submit" class="btn btn-outline-ocean">Login</button>
+                                        <?php if (isset($loginError)) { ?>
+                                            <p style="color: red;"><?php echo $loginError; ?></p>
+                                        <?php } ?>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="button_login">
-                <button type="submit" class="btn btn-warning" id="login">Login</button>
-            </div>
-            <?php if (isset($loginError)) { ?>
-                <p style="color: red;"><?php echo $loginError; ?></p>
-            <?php } ?>
-        </form>
+        </div>
     </div>
 </body>
 </html>
