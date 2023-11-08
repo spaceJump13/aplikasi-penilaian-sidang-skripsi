@@ -647,7 +647,7 @@ include 'config.php';
                             if (trim_respond == "Berhasil Add!") {
                                 console.log(trim_respond);
                                 $("#successModal").modal('show');
-                                alert(respond);
+                                // alert(respond);
                             } 
                             else if (trim_respond == "bentrok") {
                                 alert("Tanggal Sidang dan Ruang Sidang bertabrakan!.");
