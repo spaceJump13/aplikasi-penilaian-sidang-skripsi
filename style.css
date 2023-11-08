@@ -7,18 +7,6 @@ h3{
     text-align: center;
 }
 
-.wrapper{
-    background: #FFD600;
-    padding: 5px;
-}
-
-.main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
 .login-form{
     max-width: 400px;
     background-color:white;
@@ -63,36 +51,14 @@ h3{
    border: 1px solid #FFD600;
 }
 
-
-/*setting tombol drop down*/
-.dropdown{
-    width: 100%;
-    max-width: 330px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -30%);
-}
-
-.btn.dropdown-toggle{
-    background-color:#ddd;
-    color: black;
-    width: 100%;
-    max-width: 330px;
-    text-align: left;
-    text-align: center;
-}
-.btn.dropdown-toggle:hover{
-    background-color:grey;
-    color: white;
-}
-
-
-
 /*HOME ADMIN*/
 h1{
-    color: white;
+    color: #FFF;
     text-align: center;
-    padding: 45px 0 20px 0;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 /*kotak putih unk ALL HOME*/
@@ -105,7 +71,6 @@ h1{
     justify-content: center;
     width: fit-content;
     height: fit-content;
-    
 }
 
 /*kotak kuning besat ALL HOME --> tmbah berita acara riwayat sidang, atur bobot, berita acara*/
@@ -194,115 +159,4 @@ h1{
     top: 55%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-}
-
-
-/*TAMBAH BERITA ACARA*/
-
-#content_BA{
-    display : flex;
-    flex-direction : row;
-    max-height: 900px;
-    height: 100%;
-    width: 100%;
-    background-color: white;
-    border-radius:50px;
-    position: relative;
-    padding: 20px 10px;
-}
-
-h5{
-    text-align: center;
-}
-
-#nrp, #nama, #judul, #tanggal, #konsen, #nilai1, #nilai2, #nilai3{
-    border-radius: 8px;
-} 
-
-/*kontainer isi*/
-.col-md-6{
-    padding: 10px 30px;
-    margin: 0 10px;
-}
-
-/*label*/
-.col-sm-4{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/*tempat input*/
-.col-md-6 input{
-    background-color: #ddd;
-}
-
-/*div input*/
-.col-sm-8{
-    padding:10px;
-    width: 100%;
-}
-
-#cmpk_title , #hasil{
-    padding: 5px;
-}
-
-.col-sm-2 input{
-    margin: 5px;
-    max-width: 50px;
-}
-
-/*ilangin arrow atas bawah unk input number*/
-input[type="number"]{
-    -moz-appearance: textfield;
-    outline: none;
-}
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button{
-    -webkit-appearance: none;
-    
-}
-
-#keterangan{
-    width: 100%;
-    max-width: 580px;
-    text-align: center;
-}
-
-#kiri label{
-    width: 100%;
-}
-
-#nilaicpmk td{
-    width: 20px;
-}
-
-/* supaya dropdown width besar */
-.btn-group{ 
-    width: 100%;
-}
-
-/*setting tabel nilai*/
-#tabel_cpl input{
-    background-color: white;
-    border-color: white;
-    width: 35px;
-    text-align: center ;
-}
-
-#tabel_cpl{
-    text-align: center ;
-}
-
-
-/*div button*/
-#button_op{
-    display: flex;
-    justify-content: right;
-    margin:30px 0 0 0;
-}
-
-#discard, #add{
-    margin:0 30px; 
-    width: 100px;
 }

@@ -42,5 +42,10 @@
                 </div>
             </div> 
         </div>
+        <div class="logout_btn" style="padding: 20px 0;">
+            <form action="logout.php" method="post" style="float:right; margin-right:15%;">
+                <input class="btn btn-warning btn-lg" type="submit" value="Log Out">
+            </form>
+        </div>
     </body>
 </html>

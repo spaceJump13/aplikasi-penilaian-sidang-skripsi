@@ -31,17 +31,6 @@
         align-items: center; /* Center vertically */
         }
 
-        #rectangle {
-        width: 100vw;
-        height: 85vh;
-        flex-shrink: 0;
-        border-radius: 6.25rem 6.25rem 0rem 0rem;
-        background: #FFF;
-        padding-left: 5rem;
-        padding-right: 5rem;
-        padding-top: 3rem;
-        }
-
         #content{
         display: flex;
         background-color: white;
@@ -98,7 +87,7 @@
             <div class="container" id="content">
                 <div class="col">
                     <center>
-                        <div class="col-lg-3" id="riwayat_sidang" onclick="location.href='#'">
+                        <div class="col-lg-3 md-6" id="riwayat_sidang" onclick="location.href='#'">
                             <div id="title_rsidang"><p>RIWAYAT SIDANG</p> 
                                 <div class="row md-3" id="file"><img src="asset/image/file.png"></div>
                             </div>
@@ -108,6 +97,10 @@
                 </div> 
             </div>
         </center>
-        
+        <div class="logout_btn">
+            <form action="logout.php" method="post" style="float:right; margin-right:30%;">
+                <input class="btn btn-warning btn-lg" type="submit" value="Log Out">
+            </form>
+        </div>
     </body>
 </html>

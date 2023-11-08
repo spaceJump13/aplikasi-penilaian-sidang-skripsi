@@ -30,17 +30,6 @@
         align-items: center; /* Center vertically */
         }
 
-        #rectangle {
-        width: 100vw;
-        height: 85vh;
-        flex-shrink: 0;
-        border-radius: 6.25rem 6.25rem 0rem 0rem;
-        background: #FFF;
-        padding-left: 5rem;
-        padding-right: 5rem;
-        padding-top: 3rem;
-        }
-
         #content{
         display: flex;
         background-color: white;
@@ -87,10 +76,6 @@
         padding-top: 20px;
         }
 
-        p{
-        
-        }
-
         
     </style>
 
@@ -133,5 +118,10 @@
                 </div>  
             </div>
         </center>
+        <div class="logout_btn">
+            <form action="logout.php" method="post" style="float:right; margin-right:30%;">
+                <input class="btn btn-warning btn-lg" type="submit" value="Log Out">
+            </form>
+        </div>
     </body>
 </html>
