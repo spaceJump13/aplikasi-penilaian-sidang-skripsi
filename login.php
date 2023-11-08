@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="wrapper">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 10px;">
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 10px;">
             <div class="container-fluid">
                 <img src="Asset/image/pcu logo.png" alt="" style="width: 200px; height:50px;">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> -->
         <div class="container">
             <div class="row">
                 <div class="main">
