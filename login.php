@@ -98,11 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div style="margin-top: 30px;">
                                 <h2 class="text-uppercase" style="font-weight:600; margin-bottom:10px; color: #0B6977; text-align: center;">welcome</h2>
                                 <form method="post">
-                                    <div class="form-group">
+                                    <div class="form-group" style="width: 360px;">
                                         <label for="username"><p style="font-weight: 500; font-size: 20px; margin-bottom: 3px; color: #0B6977;">Username</p></label>
                                         <div class="class input-group mb-3">
                                             <input type="email" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter email" required>
-                                            <span class="input-group-text" id="emailaddrss">@peter.petra.ac.id</span>
                                         </div>
                                     </div>
                                     <div class="form-group mb-2">
