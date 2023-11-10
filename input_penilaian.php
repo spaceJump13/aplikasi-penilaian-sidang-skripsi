@@ -350,7 +350,7 @@ if (isset($_POST['cek'])){
 
             $('#nama_mhs').on('change', function(){
                 var nama_mhs = $(this).val();
-                var nama_dosen = "SILVIA ROSTIANINGSIH, S.Kom., M.MT.";
+                var nama_dosen = $('#dosen_penilai').val();
                 console.log(nama_mhs);
                 console.log(nama_dosen);
                 $.ajax({

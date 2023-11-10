@@ -1,3 +1,23 @@
+<?php
+    include 'config.php';
+    
+    if(!isset($_SESSION['login'])){
+        header("Location: login.php");
+        exit;
+    }
+
+    if(isset($_SESSION['login'])){
+        if ($_SESSION['usertype'] === 'admin'){
+            header("Location: homeAdmin.php");
+            exit();
+        }
+        elseif ($_SESSION['usertype'] === 'dosen'){
+            header("Location: homeDosen.php");
+            exit();
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -81,7 +101,7 @@
 
     <body style="background-color:#0B6977">
         <div id="header1">
-            <h1>ANDA ADALAH KETUA PENGUJI</h1>
+            <h1>WELCOME, <?php echo $_SESSION['username'];?>!</h1>
         </div>
         <center>
             <div class="col-md-4" id="judul">
@@ -98,7 +118,7 @@
             <div class="container" id="content">
                 <div class="col-6">
                     <center>
-                        <div class="row-lg-3" id="riwayat_sidang" onclick="location.href='#'">
+                        <div class="row-lg-3" id="addBeritaAcara" onclick="location.href='addBeritaAcaraBARU.php'">
                             <p>TAMBAH BERITA ACARA</p> 
                             <center>
                                 <div class="row md-3" id="news"><img src="asset/image/news.png"></div>

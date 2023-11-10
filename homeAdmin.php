@@ -1,3 +1,23 @@
+<?php
+    include 'config.php';
+    
+    if(!isset($_SESSION['login'])){
+        header("Location: login.php");
+        exit;
+    }
+
+    if(isset($_SESSION['login'])){
+        if ($_SESSION['usertype'] === 'dosen'){
+            header("Location: homeDosen.php");
+            exit();
+        }
+        elseif ($_SESSION['usertype'] === 'ketua'){
+            header("Location: homeKetuaPenguji.php");
+            exit();
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,7 +31,7 @@
     </head>
     <body style="background-color:#0B6977">
         <div class="head">
-            <h1>WELCOME ADMIN!</h1>
+            <h1>WELCOME, <?php echo $_SESSION['username'];?>!</h1>
         </div>
         
         <div class="container" id="content">
