@@ -435,7 +435,7 @@ $nama_dosen = $_SESSION['username'];
                 </div>
             </form>
 
-            <div class="modal fade" id="notKetuaPengujiModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <!-- <div class="modal fade" id="notKetuaPengujiModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -451,7 +451,7 @@ $nama_dosen = $_SESSION['username'];
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
             
             <div class="modal fade" id="emptyField" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -499,6 +499,7 @@ $nama_dosen = $_SESSION['username'];
             console.log(ketuaPenguji);
 
             if (ketuaPenguji == "?"){
+                console.log("Bukan Ketua Penguji")
                 $('#notKetuaPengujiModal').modal('show');
             }
             else{
