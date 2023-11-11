@@ -1,6 +1,14 @@
 <?php
 include 'config.php';
 
+if(!isset($_SESSION['login'])){
+    header("Location: login.php");
+    exit;
+}
+
+$nama_dosen = $_SESSION['username'];
+echo $nama_dosen;
+
 ?>
 
 <!DOCTYPE html>
@@ -8,9 +16,11 @@ include 'config.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>History Sidang</title>
 
     <style>
@@ -89,9 +99,9 @@ include 'config.php';
                 <table class="table table-striped">
                     <thead style="background-color:#0B6977; color: white">
                         <tr>
+                        <th scope="col"></th>
                         <th scope="col">Tanggal</th>
-                        <th scope="col">NRP</th>
-                        <th scope="col">Nama</th>
+                        <th scope="col">Mahasiswa</th>
                         <th scope="col">Jabatan</th>
                         </tr>
                     </thead>

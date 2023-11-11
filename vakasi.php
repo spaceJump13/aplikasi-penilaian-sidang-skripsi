@@ -53,49 +53,93 @@ $result = mysqli_query($conn, $sql);
 </style>
 <body style="background-color: #0B6977;">
         <div id="rectangle">
-            <div class="container">
+            <div class="container-lg">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 style="text-align: center; color: #0B6977" class="text-uppercase">vakasi dosen</h1>
                     </div>
+                </div>
 
-                    <div class="col-lg-12 mt-5">
-                        <table class="mx-auto table table-striped">
-                            <thead style="background-color:#0B6977; color: whitesmoke; text-align: center;">
-                                <tr>
-                                    <th>Nomor Vakasi</th>
-                                    <th>NIP</th>
-                                    <th>Dosen</th>
-                                    <th>Tanggal Sidang</th>
-                                    <th>Nama Mahasiswa</th>
-                                    <th>Team Penguji</th>
-                                </tr>
-                            </thead>
-                            <?php if (mysqli_num_rows($result) > 0): ?>
-                                <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                                <tbody style="text-align: center;">
+                <form action="" method="POST">
+                    <div class="row mt-4">
+                        <div class="col-lg-3">
+                            <div class="input-group mb-3" style="margin-top: 30px;">
+                                <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Masukkan Nama atau NIP dosen">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <button type="submit" class="btn btn-outline-ocean" style="margin-top: 30px;">Search</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="row">
+                    <div class="col-lg-12 mt-4">
+                        <div id="searchResult">
+                            <table class="mx-auto table table-striped">
+                                <thead style="background-color:#0B6977; color: whitesmoke; text-align: center;">
                                     <tr>
-                                        <td><?php echo $row['nomor_vakasi']; ?></td>
-                                        <td><?php echo $row['nip']; ?></td>
-                                        <td><?php echo $row['dosen']; ?></td>
-                                        <td><?php echo $row['tanggal_sidang']; ?></td>
-                                        <td><?php echo $row['nama_mhs']; ?></td>
-                                        <td><?php echo $row['anggota_penguji']; ?></td>
+                                        <th>Nomor Vakasi</th>
+                                        <th>NIP</th>
+                                        <th>Dosen</th>
+                                        <th>Tanggal Sidang</th>
+                                        <th>Ruang Sidang</th>
+                                        <th>Nama Mahasiswa</th>
+                                        <th>Team Penguji</th>
                                     </tr>
-                                </tbody>
-                                <?php endwhile ?>
-                            <?php else: ?>
-                                <tbody style="text-align: center;">
-                                    <tr>
-                                        <td colspan="5"><h3 style="text-align: center; color:#0B6977;">Tidak ada data.</h3></td>
-                                    </tr>
-                                </tbody>
-                            <?php endif ?>
-                        </table>
+                                </thead>
+                                <?php if (mysqli_num_rows($result) > 0): ?>
+                                    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                                    <tbody style="text-align: center;">
+                                        <tr>
+                                            <td><?php echo $row['nomor_vakasi']; ?></td>
+                                            <td><?php echo $row['nip']; ?></td>
+                                            <td><?php echo $row['dosen']; ?></td>
+                                            <td><?php echo $row['tanggal_sidang']; ?></td>
+                                            <td><?php echo $row['ruang_sidang']; ?></td>
+                                            <td><?php echo $row['nama_mhs']; ?></td>
+                                            <td><?php echo $row['anggota_penguji']; ?></td>
+                                        </tr>
+                                    </tbody>
+                                    <?php endwhile ?>
+                                <?php else: ?>
+                                    <tbody style="text-align: center;">
+                                        <tr>
+                                            <td colspan="7"><h3 style="text-align: center; color:#0B6977;">Tidak ada data.</h3></td>
+                                        </tr>
+                                    </tbody>
+                                <?php endif ?>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     
 </body>
+<script>
+    $(document).ready(function(){
+        $('#keyword').on('keyup', function(){
+            var keyword = $('#keyword').val();
+            console.log(keyword);
+            $.ajax({
+                url: "ajax/ajax_vakasi.php",
+                type: "POST",
+                data: {
+                    keyword: keyword,
+                },
+                success: function(respond) {
+                    console.log(respond);
+                    $("#searchResult").html(respond);
+                },
+                error: function() {
+                    alert("gagal");
+                }
+            });
+        })
+    })
+
+</script>
 </html>

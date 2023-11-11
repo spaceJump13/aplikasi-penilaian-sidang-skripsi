@@ -106,7 +106,7 @@
             <div class="container" id="content">
                 <div class="col">
                     <center>
-                        <div class="col-lg-3 md-6" id="riwayat_sidang" onclick="location.href='#'">
+                        <div class="col-lg-3 md-6" id="riwayat_sidang" onclick="location.href='historySidang.php'">
                             <div id="title_rsidang"><p>RIWAYAT SIDANG</p> 
                                 <div class="row md-3" id="file"><img src="asset/image/file.png"></div>
                             </div>

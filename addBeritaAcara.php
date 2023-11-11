@@ -1,13 +1,12 @@
 <?php
-include 'config.php';
+    include 'config.php';
 
-if(!isset($_SESSION['login'])){
-    header("Location: login.php");
-    exit;
-}
+    if(!isset($_SESSION['login'])){
+        header("Location: login.php");
+        exit;
+    }
 
-$nama_dosen = $_SESSION['username'];
-
+    $nama_dosen = $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>
@@ -15,8 +14,9 @@ $nama_dosen = $_SESSION['username'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="jquery-3.7.1.min.js"></script>
+    <!-- <script src="jquery-3.7.1.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Add Berita Acara</title>
@@ -228,7 +228,6 @@ $nama_dosen = $_SESSION['username'];
                                 <div class="col-lg-6">
                                     <label for="waktuSidang"><h5>Waktu Sidang</h5></label>
                                     <select class="input-selectTime" id="waktuSidang" name="waktuSidang">
-                                        <option value="07:00">07:00</option>
                                         <option value="07:30">07:30</option>
                                         <option value="08:00">08:00</option>
                                         <option value="08:30">08:30</option>
@@ -272,33 +271,6 @@ $nama_dosen = $_SESSION['username'];
                             
                             <br>
                             
-                            <!-- <label><h5>Nilai Sidang</h5></label>
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk1">CPMK 1</label>
-                                        </div>
-                                        <input type="number" name="cpmk1" id="cpmk1" class="form-control" placeholder="Nilai">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk2">CPMK 2</label>
-                                        </div>
-                                        <input type="number" name="cpmk2" id="cpmk2" class="form-control" placeholder="Nilai">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="cpmk3">CPMK 3</label>
-                                        </div>
-                                        <input type="number" name="cpmk3" id="cpmk3" class="form-control" placeholder="Nilai">
-                                    </div>
-                                </div>
-                            </div> -->
                             <label for="catatanSidang" style="margin-top: 5px;"><h5>Catatan Sidang</h5></label>
                             <textarea class="form-control" name="catatanSidang" id="catatanSidang" rows="3" placeholder="Catatan"></textarea>
                             
@@ -434,60 +406,6 @@ $nama_dosen = $_SESSION['username'];
                     </div>
                 </div>
             </form>
-
-            <div class="modal fade" id="notKetuaPengujiModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalCenterTitle">Anda bukan Ketua Penguji!</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        <div class="modal-body ">
-                            <h5>Tidak ada mahasiswa yang mempunyai anda sebagai ketua penguji!</h5>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-red" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="modal fade" id="emptyField" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Masih ada field yang kosong!</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        <div class="modal-body ">
-                            <h5>Silakan isi field yang kosong!</h5>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-red" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="modal fade" id="successModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Success!</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        <div class="modal-body ">
-                            <h5>Berhasil Add Data!</h5>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-red" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -500,11 +418,19 @@ $nama_dosen = $_SESSION['username'];
 
             if (ketuaPenguji == "?"){
                 console.log("Bukan Ketua Penguji")
-                $('#notKetuaPengujiModal').modal('show');
+                Swal.fire({
+                    title: "Anda bukan Ketua Penguji!",
+                    text: "Tidak ada mahasiswa yang memiliki anda sebagai ketua penguji!",
+                    icon: "error",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "homeDosen.php";
+                    }
+                });
             }
             else{
                 $.ajax({
-                    url: "ajax_berita_acara.php",
+                    url: "ajax/ajax_berita_acara.php",
                     type: "POST",
                     data:{
                         tanda: "Mahasiswa",
@@ -524,7 +450,7 @@ $nama_dosen = $_SESSION['username'];
                 var nama_mhs = $(this).val();
                 console.log(nama_mhs);
                 $.ajax({
-                    url: "ajax_berita_acara.php",
+                    url: "ajax/ajax_berita_acara.php",
                     type: "POST",
                     data:{
                         tanda: "Penguji",
@@ -544,7 +470,7 @@ $nama_dosen = $_SESSION['username'];
             $('#nama_mhs').on('change', function(){
                 var nama_mhs = $(this).val();
                 $.ajax({
-                    url: "ajax_berita_acara.php",
+                    url: "ajax/ajax_berita_acara.php",
                     type: "POST",
                     data:{
                         tanda: "Pembimbing_1",
@@ -564,7 +490,7 @@ $nama_dosen = $_SESSION['username'];
             $('#nama_mhs').on('change', function(){
                 var nama_mhs = $(this).val();
                 $.ajax({
-                    url: "ajax_berita_acara.php",
+                    url: "ajax/ajax_berita_acara.php",
                     type: "POST",
                     data:{
                         tanda: "Pembimbing_2",
@@ -584,7 +510,7 @@ $nama_dosen = $_SESSION['username'];
             $('#nama_mhs').on('change', function(){
                 var nama_mhs = $(this).val();
                 $.ajax({
-                    url: "ajax_berita_acara.php",
+                    url: "ajax/ajax_berita_acara.php",
                     type: "POST",
                     data:{
                         tanda: "Judul",
@@ -620,11 +546,15 @@ $nama_dosen = $_SESSION['username'];
                 event.preventDefault();
 
                 if (konsentrasi == "Konsentrasi Skripsi" || ruangSidang == "Select" || namaMhs == "Pilih Mahasiswa"){
-                    $("#emptyField").modal('show');
+                    Swal.fire({
+                        title: "Masih ada field yang kosong!",
+                        text: "Silakan isi field yang kosong!",
+                        icon: "error"
+                    });
                     return;
-                    // alert("Mohon isi field yang kosong!");
                 }
                 else{
+
                     if ($('#kehadiranKetuaPenguji').is(':checked')) {
                         status_ketua = "Ketua Penguji";
                         //alert('Checkbox is checked');
@@ -643,7 +573,7 @@ $nama_dosen = $_SESSION['username'];
                     }
                     
                     $.ajax({
-                        url: "ajax_berita_acara.php",
+                        url: "ajax/ajax_berita_acara.php",
                         method: "POST",
                         data: {
                             judulSkripsi: judulSkripsi,
@@ -666,21 +596,28 @@ $nama_dosen = $_SESSION['username'];
                         success: function(respond) {                           
                             // console.log(respond);
                             var trim_respond = respond.trim();
-
+    
                             if (trim_respond == "Berhasil Add!") {
                                 console.log(trim_respond);
-                                $("#successModal").modal('show');
-                                // alert(respond);
+                                Swal.fire({
+                                    title: "Berhasil Add!",
+                                    text: "Berita Acara sudah ditambahkan!",
+                                    icon: "success"
+                                });
                             } 
                             else if (trim_respond == "bentrok") {
-                                alert("Tanggal Sidang dan Ruang Sidang bertabrakan!.");
+                                Swal.fire({
+                                    title: "Sudah terpakai!",
+                                    text: "Tanggal dan ruang sidang bertabrakan dengan jadwal lain, Silakan pilih jadwal lain!",
+                                    icon: "warning"
+                                });
                             }
                             else {
                                 alert("An unknown response was received: " + trim_respond);
                             }
                         },
-                        error: function() {
-                            alert("An error occurred during the insertion.");
+                        error: function(respond) {
+                            alert(respond);
                         }
                     });
                 }
