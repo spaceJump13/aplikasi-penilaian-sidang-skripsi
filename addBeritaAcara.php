@@ -19,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="navbar.css">
     <title>Add Berita Acara</title>
     <style>
         .checkbox-lg .form-check-input{
@@ -136,6 +137,45 @@
     </style>
 </head>
 <body style="background-color: #0B6977;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 10px;">
+        <img class="logopcu" src="Asset\image\pcu logo.png" alt="" style="margin-right: 20px;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mynav">
+                <li class="nav-link">
+                    <a class="text-decoration-none" aria-current="page" href="homeDosen.php">Home</a>
+                </li>
+                <li class="nav-link">
+                    <a class="text-decoration-none" href="historySidang.php">Riwayat Sidang</a>
+                </li>
+                <li class="nav-link">
+                    <a class="text-decoration-none" href="input_penilaian.php">Input Nilai</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse justify-content-end" style="margin-right: 50px;">
+            <ul class="navbar-nav mynav" style="margin-right: 10px;">
+                <li class="nav-item dropdown">
+                    <a class="nav-item dropdown-toggle text-decoration-none" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="Asset\image\user.png" alt="" id="profileUserImg">
+                        <span style="font-size: large; font-weight:500;"><?php echo $_SESSION['username'];?></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="logout.php">
+                                <span style="font-size: large; color:#0B6977">Logout</span>
+                                <img src="Asset\image\logout.png" alt="" id="logoutImg" style="float: right;">
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div id="rectangle">
         <div class="container"> <!--<div class="container my-5">-->
             <div class="row">
@@ -458,7 +498,9 @@
                     },
                     success:function(respond){
                         console.log(respond);
-                        $("#dosenPenguji").val(respond);
+                        var response = JSON.parse(respond)
+                        var dosen_penguji = response.dosen_penguji
+                        $("#dosenPenguji").val(dosen_penguji);
                     },
                     error:function(){
                         alert("gagal");
@@ -478,7 +520,9 @@
                     },
                     success:function(respond){
                         console.log(respond);
-                        $("#pembimbing1").val(respond);
+                        var response = JSON.parse(respond)
+                        var dosen_pembimbing_1 = response.dosen_pembimbing_1
+                        $("#pembimbing1").val(dosen_pembimbing_1);
                     },
                     error:function(){
                         alert("gagal");
@@ -498,7 +542,9 @@
                     },
                     success:function(respond){
                         console.log(respond);
-                        $("#pembimbing2").val(respond);
+                        var response = JSON.parse(respond)
+                        var dosen_pembimbing_2 = response.dosen_pembimbing_2
+                        $("#pembimbing2").val(dosen_pembimbing_2);
                     },
                     error:function(){
                         alert("gagal");
@@ -518,7 +564,9 @@
                     },
                     success:function(respond){
                         console.log(respond);
-                        $("#judul_skripsi").val(respond);
+                        var response = JSON.parse(respond)
+                        var judul_skripsi = response.judul
+                        $("#judul_skripsi").val(judul_skripsi);
                     },
                     error:function(){
                         alert("gagal");

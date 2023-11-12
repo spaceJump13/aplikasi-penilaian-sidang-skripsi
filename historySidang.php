@@ -7,7 +7,10 @@ if(!isset($_SESSION['login'])){
 }
 
 $nama_dosen = $_SESSION['username'];
-echo $nama_dosen;
+$sql = "SELECT * FROM vakasi WHERE dosen LIKE '%$nama_dosen%'";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
 
 ?>
 
@@ -16,11 +19,11 @@ echo $nama_dosen;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="jquery-3.7.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="navbar.css">
     <title>History Sidang</title>
 
     <style>
@@ -35,7 +38,7 @@ echo $nama_dosen;
         padding-left: 5rem;
         padding-right: 5rem;
         padding-top: 2rem;
-        padding-bottom: 2rem;
+        padding-bottom: 500px;
         }
         .btn {
         display: inline-block;
@@ -75,6 +78,47 @@ echo $nama_dosen;
     </style>
 </head>
 <body style="background-color: #0B6977; height: 100%;">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 10px;">
+        <img class="logopcu" src="Asset\image\pcu logo.png" alt="" style="margin-right: 20px;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mynav">
+                <li class="nav-link">
+                    <a class="text-decoration-none" aria-current="page" href="homeDosen.php">Home</a>
+                </li>
+                <li class="nav-link">
+                    <a class="text-decoration-none" href="addBeritaAcara.php">Add Berita Acara</a>
+                </li>
+                <li class="nav-link">
+                    <a class="text-decoration-none" href="input_penilaian.php">Input Nilai</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse justify-content-end" style="margin-right: 50px;">
+            <ul class="navbar-nav mynav" style="margin-right: 10px;">
+                <li class="nav-item dropdown">
+                    <a class="nav-item dropdown-toggle text-decoration-none" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="Asset\image\user.png" alt="" id="profileUserImg">
+                        <span style="font-size: large; font-weight:500;"><?php echo $_SESSION['username'];?></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="logout.php">
+                                <span style="font-size: large;">Logout</span>
+                                <img src="Asset\image\logout.png" alt="" id="logoutImg" style="float: right;">
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div id="rectangle">
         <div class="container">
             <div class="row">
@@ -96,134 +140,34 @@ echo $nama_dosen;
     
             <div class="row mt-4">
                 <div class="col-lg-12">
-                <table class="table table-striped">
-                    <thead style="background-color:#0B6977; color: white">
-                        <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Tanggal</th>
-                        <th scope="col">Mahasiswa</th>
-                        <th scope="col">Jabatan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210226</td>
-                            <td>Kevin Sadino</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210086</td>
-                            <td>Richard Aditya</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210091</td>
-                            <td>Bowen Victorius</td>
-                            <td>Ketua Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210226</td>
-                            <td>Kevin Sadino</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210086</td>
-                            <td>Richard Aditya</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210091</td>
-                            <td>Bowen Victorius</td>
-                            <td>Ketua Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210226</td>
-                            <td>Kevin Sadino</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210086</td>
-                            <td>Richard Aditya</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210091</td>
-                            <td>Bowen Victorius</td>
-                            <td>Ketua Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210226</td>
-                            <td>Kevin Sadino</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210086</td>
-                            <td>Richard Aditya</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210091</td>
-                            <td>Bowen Victorius</td>
-                            <td>Ketua Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210226</td>
-                            <td>Kevin Sadino</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210086</td>
-                            <td>Richard Aditya</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210091</td>
-                            <td>Bowen Victorius</td>
-                            <td>Ketua Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210226</td>
-                            <td>Kevin Sadino</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210086</td>
-                            <td>Richard Aditya</td>
-                            <td>Anggota Penguji</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Date</th>
-                            <td>C14210091</td>
-                            <td>Bowen Victorius</td>
-                            <td>Ketua Penguji</td>
-                        </tr>
-                    </tbody>
+                    <table class="mx-auto table table-striped">
+                        <thead style="text-align: center; background-color:#0B6977; color:whitesmoke">
+                            <tr>
+                                <th>Waktu Sidang</th>
+                                <th>Ruang Sidang</th>
+                                <th>Nama Mahasiswa</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <?php if (mysqli_num_rows($result) > 0): ?>
+                            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                            <tbody style="text-align: center;">
+                                <tr>
+                                    <td><?php echo date('Y-m-d H:i', strtotime($row['tanggal_sidang'])); ?></td>
+                                    <td><?php echo $row['ruang_sidang']; ?></td>
+                                    <td><?php echo $row['nama_mhs']; ?></td>
+                                    <td><?php echo $row['anggota_penguji']; ?></td>
+                                </tr>
+                            </tbody>
+                            <?php endwhile ?>
+                        <?php else: ?>
+                            <tbody style="text-align: center;">
+                                <tr>
+                                    <td colspan="4"><h3 style="text-align: center; color:#0B6977;">Tidak ada data.</h3></td>
+                                </tr>
+                            </tbody>
+                        <?php endif ?>
                     </table>
-                </div>
-            </div>
-    
-            <div class="row">
-                <div class="col-lg-12">
-                    <div>
-                        <button class="btn btn-outline-ocean" onclick="location.href='#'">Back</button>
-                    </div>
                 </div>
             </div>
         </div>

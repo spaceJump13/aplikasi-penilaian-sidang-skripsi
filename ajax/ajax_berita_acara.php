@@ -10,8 +10,14 @@ if ($tanda == 'Judul'){
 
     if ($row = mysqli_fetch_assoc($result)){
         $judul_skripsi = trim($row['judul_skripsi']);
-        echo $judul_skripsi;
+        //echo $judul_skripsi;
     }
+
+    $response = array(
+        'judul' => $judul_skripsi
+    );
+    echo json_encode($response);
+    exit;
 }
 elseif ($tanda == 'Penguji'){
     $id = $_POST['id'];
@@ -20,8 +26,14 @@ elseif ($tanda == 'Penguji'){
 
     if ($row = mysqli_fetch_assoc($result)){
         $dosen_penguji = trim($row['anggota_penguji']);
-        echo $dosen_penguji;
+        //echo $dosen_penguji;
     }
+
+    $response = array(
+        'dosen_penguji' => $dosen_penguji
+    );
+    echo json_encode($response);
+    exit;
 }
 elseif ($tanda == 'Pembimbing_1'){
     $id = $_POST['id'];
@@ -30,8 +42,14 @@ elseif ($tanda == 'Pembimbing_1'){
 
     if ($row = mysqli_fetch_assoc($result)){
         $dosen_pembimbing_1 = trim($row['pembimbing_1']);
-        echo trim($dosen_pembimbing_1);
+        //echo trim($dosen_pembimbing_1);
     }
+
+    $response = array(
+        'dosen_pembimbing_1' => $dosen_pembimbing_1
+    );
+    echo json_encode($response);
+    exit;
 }
 elseif ($tanda == 'Pembimbing_2'){
     $id = $_POST['id'];
@@ -41,12 +59,15 @@ elseif ($tanda == 'Pembimbing_2'){
     if ($row = mysqli_fetch_assoc($result)){
         $dosen_pembimbing_2 = trim($row['pembimbing_2']);
         if (empty($dosen_pembimbing_2)){
-            echo '-';
-        }
-        else{
-            echo trim($dosen_pembimbing_2);
+            $dosen_pembimbing_2 = "-";
         }
     }
+
+    $response = array(
+        'dosen_pembimbing_2' => $dosen_pembimbing_2
+    );
+    echo json_encode($response);
+    exit;
 }
 elseif ($tanda == 'Mahasiswa'){
     $id = $_POST['id'];

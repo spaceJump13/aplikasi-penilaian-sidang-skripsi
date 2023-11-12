@@ -16,7 +16,7 @@ if ($tanda == 'status_dosen') {
 
     if (mysqli_num_rows($result) > 0){
         $status = "Ketua Penguji";
-        echo $status;
+        //echo $status;
     }
     else{
         $sql = "SELECT * FROM data_mahasiswa WHERE mahasiswa LIKE '%$nama_mhs%' AND anggota_penguji LIKE '%$nama_dosen%'";
@@ -24,7 +24,7 @@ if ($tanda == 'status_dosen') {
 
         if (mysqli_num_rows($result) > 0){
             $status = "Anggota Penguji";
-            echo $status;
+            //echo $status;
         }
         else{
             $sql = "SELECT * FROM data_mahasiswa WHERE mahasiswa LIKE '%$nama_mhs%' AND pembimbing_1 LIKE '%$nama_dosen%'";
@@ -32,7 +32,7 @@ if ($tanda == 'status_dosen') {
     
             if (mysqli_num_rows($result) > 0){
                 $status = "Pembimbing 1";
-                echo $status;
+                //echo $status;
             }
             else{
                 $sql = "SELECT * FROM data_mahasiswa WHERE mahasiswa LIKE '%$nama_mhs%' AND pembimbing_2 LIKE '%$nama_dosen%'";
@@ -40,11 +40,19 @@ if ($tanda == 'status_dosen') {
         
                 if (mysqli_num_rows($result) > 0){
                     $status = "Pembimbing 2";
-                    echo $status;
+                    //echo $status;
                 }
             }
         }
     }
+
+    $response = array(
+        'status' => $status
+    );
+
+    // Send the response as JSON
+    echo json_encode($response);
+    exit;
 }
 
 elseif($tanda == 'hitungNilai'){
@@ -56,6 +64,7 @@ elseif($tanda == 'hitungNilai'){
     $bab_5_kesimpulanValue = floatval($_POST['bab_5_kesimpulanValue']);
     $programValue = floatval($_POST['programValue']);
 
+    $judul_dan_abstrakValue = floatval($judul_dan_abstrakValue * 0.05);
     $totalSum = $judul_dan_abstrakValue + $bab_1_2 + $bab_3_4_sibValue + $bab_3_4_inforValue + $bukuValue + $bab_5_kesimpulanValue
     + $programValue;
 

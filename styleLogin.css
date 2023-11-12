@@ -1,29 +1,43 @@
-.wrapper{
-    background: #0B6977;
-}
-
-.main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0 auto;
-}
-
-.content-login{
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 990px;
     height: 550px;
+    display: flex;
+    flex-direction: column;
     box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
     border-radius: 0px 10px 0px 10px;
 }
 
-.side-image{
-    /* background-color: #2E97A7; */
-    background-position: center;
-    border-radius: 10px 0 0 10px;
+.row {
+    flex: 1;
+    display: flex;
+}
+
+.col-lg-5 {
     background-image: linear-gradient(45deg, #3e32a8, #e310c7);
+    height: 100%;
+    border-radius: 10px 0px 0px 10px;
     position: relative;
-    /* background-image: url("Asset/image/pcu_logo2.jpg"); */
+}
+
+.col-lg-7 {
+    background-color: #fff;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.img-right{
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
 .img-left{
@@ -35,22 +49,10 @@
     height: 110px;
 }
 
-.img-right{
-    position:absolute;
-    top: 20px;
-    left: 20px;
-    height: 70px;
-}
-
-.right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    background: white;
-    border-radius: 0px 10px 10px 0px;
-    position: relative;
+.content-login {
+    width: 400px;
+    height: 300px;
+    margin-top: 20px;
 }
 
 .text-image{
@@ -62,8 +64,7 @@
     margin-top: 30px;
 }
 
-
-.btn.btn-outline-ocean {
+.btn-outline-ocean {
     color: #fff; 
     background-color: #0B6977; 
     border: 3px solid #0B6977; 
@@ -71,15 +72,16 @@
     font-weight: 500;
     border-radius: 5px; 
     text-decoration: none; 
-    display: inline-block; 
+    display: inline-block;
     font-size: 16px; 
     text-align: center; 
     cursor: pointer; 
     transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
-    }
+}
 
-.btn.btn-outline-ocean:hover {
+.btn-outline-ocean:hover {
     color: #0B6977; 
     background-color: #fff; 
     border-color: #0B6977; 
 }
+

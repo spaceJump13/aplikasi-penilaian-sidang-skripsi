@@ -18,12 +18,6 @@ if (isset($_POST["import"])) {
                         values ('" . $column[0] . "','" . $column[1] . "','" . $column[2] . "','" . $column[3] . "','" . $column[4] . "')";
                 
                     $result = mysqli_query($conn, $sql_insert);
-                    
-                    // if (!empty($result)) {
-                    //     echo "CSV data Imported ";
-                    // } else {
-                    //     echo "Problem in importing csv";
-                    // }
 
                     // update mahasiswa hilangkan breakline
                     $remove_newLine = "SELECT REPLACE(mahasiswa, '\n', ' ') as tes FROM data_mahasiswa;";
@@ -49,11 +43,6 @@ if (isset($_POST["import"])) {
                     as tes FROM data_mahasiswa;";
                     $result_anggota_penguji = mysqli_query($conn, $fetch_anggota_penguji);
                 
-                    // fetch pembimbing query
-                    // $fetch_pembimbing = "SELECT REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '\n' , ' ') as tes FROM data_mahasiswa;";
-                    // $result_pembimbing = mysqli_query($conn, $fetch_pembimbing);
-
-                    // fetch pembimbing 1 query
                     $fetch_pembimbing_1 = "SELECT 
                     CASE
                         WHEN REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(team_penguji, '\n', -3), 'Pembimbing', -1), '-', 2), '-', -1), 
@@ -118,7 +107,7 @@ if (isset($_POST["import"])) {
                         $result = mysqli_query($conn, $check_nama_pembimbing_1);
                         $row2 = mysqli_fetch_assoc($result);
                         $nama_pembimbing_1 = $row2['pembimbing_1'];
-                        // echo $tes . "<br>";
+
                         if ($nama_pembimbing_1 != $row['tes']){
                             $nama_pembimbing_2 = $row['tes'];
                             $update_query = "UPDATE data_mahasiswa SET pembimbing_2 = '$nama_pembimbing_2' WHERE id = $temp";
@@ -127,11 +116,11 @@ if (isset($_POST["import"])) {
                         $temp = $temp + 1;
                     }
 
-                    if (!empty($result_insert)) {
-                        echo "Data updated";
-                    } else {
-                        echo "Problem in importing csv";
-                    }
+                    // if (!empty($result_insert)) {
+                    //     echo "Data updated";
+                    // } else {
+                    //     echo "Problem in importing csv";
+                    // }
                 }
             }
         }   
@@ -241,7 +230,16 @@ if (isset($_POST["import"])) {
     
             <div class="row mt-4">
                 <div class="col-lg-12">
-                    <div id="searchResult">
+                <?php
+                    $rowsPerPage = 10;
+                    $totalPages = ceil(mysqli_num_rows($result) / $rowsPerPage);
+                    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $offset = ($current_page - 1) * $rowsPerPage;
+                    $query = "SELECT * FROM data_mahasiswa LIMIT $offset, $rowsPerPage";
+                    $result = mysqli_query($conn, $query);
+                ?>
+
+                    <div id="searchResult" class="table-responsive">
                         <table class="mx-auto table table-striped">
                             <thead style="background-color:#0B6977; color: whitesmoke; text-align: center;">
                                 <tr>
@@ -281,6 +279,15 @@ if (isset($_POST["import"])) {
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Pagination -->
+                    <ul class="pagination justify-content-center">
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                            <li class="page-item <?php echo ($current_page == $i ? 'active' : ''); ?>">
+                                <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                            </li>
+                        <?php endfor; ?>
+                    </ul>
                 </div>
             </div>
     
