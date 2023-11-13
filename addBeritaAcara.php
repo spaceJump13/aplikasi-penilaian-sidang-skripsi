@@ -381,7 +381,7 @@
 
                             <br>
     
-                            <label for="" style="margin-top: 7px;"><h5>Nilai CPL (Averaged)</h5></label>
+                            <!-- <label for="" style="margin-top: 7px;"><h5>Nilai CPL (Averaged)</h5></label>
                             <div class="col-sm-12">
                                 <div class="table-responsive" id="tabel_cpl">
                                     <table class="table table-bordered">
@@ -419,9 +419,9 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            </div> -->
     
-                            <br>
+                            <!-- <br> -->
     
                             <div class="row">
                                 <div class="col-lg-6">
@@ -432,15 +432,16 @@
                                 </div>
                             </div>
 
-                            <br>
+                            <!-- <br> -->
 
-                            <div class="row" style="margin-top: 5px;">
-                                <div class="col-lg-2">
-                                    <button class="btn btn-outline-red" style="float: left;">Discard</button>
-                                </div>
-                                <div class="col-lg-6">
+                            <div class="row bg-warning justify-content-end" style="margin-top: 5px;">
+                                <div class="col-lg-12">
+                                    <button class="btn btn-outline-red">Discard</button>
                                     <button class="btn btn-outline-ocean" name="add" id="add">Add</button>
                                 </div>
+                                <!-- <div class="col-lg-6 bg-info">
+                                    <button class="btn btn-outline-ocean" name="add" id="add">Add</button>
+                                </div> -->
                             </div>
                         </div>
                     </div>

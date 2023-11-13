@@ -1,0 +1,26 @@
+.logopcu{
+    height: 50px;
+    width: 200px;
+    margin-left: 15px;
+}
+
+#profileUserImg{
+    height: 25px;
+    width: 25px;
+}
+
+#logoutImg{
+    height: 25px;
+    width: 25px;
+}
+
+.mynav>li>a{
+    color: #0B6977;
+    font-weight: 500;
+    font-size: 20px;
+    /* margin-left: 10px; */
+}
+
+.mynav .nav-link {
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
