@@ -8,6 +8,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <title>Document</title>
+    <style>
+    .error-message {
+      color: red;
+    }
+  </style>
 </head>
 <body style="background-color: #ddd; padding-bottom: 2000px">
 
@@ -36,62 +41,39 @@
             </div>
         </nav>
 
-        <!-- <ul class="nav justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul> -->
-
-    <label for="">Masukkan Angka</label>
-    <input type="number" id="angka"><br>
-
-    <button type="submit" class="btn btn-primary" id="hitung">Hitung</button>
-    <div id="showresult" style="display: none;" >
-        <h5 id="result">Hasil: </h5>
-    </div>
-
-
-
-    <!-- <div class="container-satu">
-        <div class="kolom-utama">
-            <h2>Judul Artikel</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis repudiandae voluptatibus exercitationem modi facilis repellendus minus fuga voluptas ab, pariatur sint a magni! Omnis, alias.</p>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo, cum, repellendus dolorem aperiam, asperiores aliquam nostrum magni maiores debitis aliquid soluta odio ipsa assumenda natus earum nisi exercitationem. Quam, accusamus.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique quod provident assumenda dolore impedit expedita deleniti sint eveniet. Vel sit consequatur blanditiis tenetur, pariatur vero dicta! Deleniti ab ratione numquam!</p>
+        <div class="container-lg">
+            
         </div>
-        <div class="sidebar-satu">
-            <h3>Sidebar 1</h3>
-            <ul>
-                <li><a href="">Link 1</a></li>
-                <li><a href="">Link 2</a></li>
-                <li><a href="">Link 3</a></li>
-                <li><a href="">Link 4</a></li>
-                <li><a href="">Link 5</a></li>
-            </ul>
-        </div>
-        <div class="sidebar-dua">
-            <h3>Sidebar 2</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore error iure quibusdam dolor consequatur in!</p>
-        </div>
-    </div>
-
-    <div class="container-dua">
-        <div class="kotak">
-            <h4>agujv</h4>
-        </div>
-    </div> -->
+        
 </body>
 <script>
     $(document).ready(function(){
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+
+            (() => {
+  'use strict';
+
+  // Fetch the form we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Add an event listener for form submission
+  forms.addEventListener('submit', event => {
+    // Validate only specific fields
+    const valid1 = form.querySelector('#validationCustomUsername');
+    const valid2 = form.querySelector('#validationCustom05');
+
+    // Check the validity of the desired fields
+    if (!valid1.checkValidity() || !valid2.checkValidity()) {
+      // If any of the fields are not valid, prevent form submission
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    // Add the 'was-validated' class to the form to apply Bootstrap styling
+    form.classList.add('was-validated');
+  }, false);
+})();
+
         $('#hitung').on('click', function(){
             var angka = $('#angka').val();
             console.log(angka)
