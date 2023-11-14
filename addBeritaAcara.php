@@ -134,6 +134,12 @@
         outline: 0;
         box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
+        .error-message {
+            color: red;
+        }
+        .is-invalid {
+            border: 1px solid red !important;
+        }
     </style>
 </head>
 <body style="background-color: #0B6977;">
@@ -268,6 +274,7 @@
                                 <div class="col-lg-6">
                                     <label for="waktuSidang"><h5>Waktu Sidang</h5></label>
                                     <select class="input-selectTime" id="waktuSidang" name="waktuSidang">
+                                        <option selected>Pilih Jam</option>
                                         <option value="07:30">07:30</option>
                                         <option value="08:00">08:00</option>
                                         <option value="08:30">08:30</option>
@@ -291,6 +298,7 @@
                                         <option value="17:30">17:30</option>
                                         <option value="18:00">18:00</option>
                                     </select>
+                                    <div class="error-message" id="errorWaktu"></div>
                                 </div>
                             </div>
         
@@ -307,13 +315,8 @@
                                     <option value="5">Lab MM</option>
                                     <option value="6">Lab PG</option>
                                     <option value="7">Lab Studio</option>
-                                </select>
-                            
-                            <br>
-                            
-                            <label for="catatanSidang" style="margin-top: 5px;"><h5>Catatan Sidang</h5></label>
-                            <textarea class="form-control" name="catatanSidang" id="catatanSidang" rows="3" placeholder="Catatan"></textarea>
-                            
+                                </select> 
+                                <div class="error-message" id="errorRuangSidang"></div>   
                         </div>
                     </div>
                     
@@ -327,6 +330,7 @@
                                 <select class="form-select" aria-label="Default select example" name="nama_mhs" id="nama_mhs">
                                     <option value="Pilih Mahasiswa">Pilih Mahasiswa</option>
                                 </select>
+                                <div class="error-message" id="errorNamaMhs"></div>
                             </div>
                                 
                             <br>
@@ -349,8 +353,14 @@
                                     <option value="5">Enterprise Information System</option>
                                     <option value="6">Business Intelligence</option>
                                 </select>
+                                <div class="error-message" id="errorKonsentrasi"></div>
                             </div>
     
+                            <br>
+
+                            <label for="catatanSidang" style="margin-top: 5px;"><h5>Catatan Sidang</h5></label>
+                            <textarea class="form-control" name="catatanSidang" id="catatanSidang" rows="3" placeholder="Catatan"></textarea>
+
                             <br>
 
                             <div class="row">
@@ -428,22 +438,17 @@
                                     <h5>Nilai Akhir: A</h5>
                                 </div>
                                 <div class="col-lg-6">
-                                    <h5 style="margin-left: 40px" >Hasil Sidang: Lulus</h5>
+                                    <h5 style="margin-left: 5px;" >Hasil Sidang: Lulus</h5>
                                 </div>
-                            </div>
-
-                            <!-- <br> -->
-
-                            <div class="row bg-warning justify-content-end" style="margin-top: 5px;">
-                                <div class="col-lg-12">
-                                    <button class="btn btn-outline-red">Discard</button>
-                                    <button class="btn btn-outline-ocean" name="add" id="add">Add</button>
-                                </div>
-                                <!-- <div class="col-lg-6 bg-info">
-                                    <button class="btn btn-outline-ocean" name="add" id="add">Add</button>
-                                </div> -->
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-lg-12 d-flex flex-row justify-content-center mt-2">
+                        <button class="btn btn-outline-red" style="margin-right: 7px;">Discard</button>
+                        <button class="btn btn-outline-ocean" name="add" id="add">Add</button>
                     </div>
                 </div>
             </form>
@@ -575,7 +580,57 @@
                 })
             })
 
-            $("#add").on("click", function(event) {               
+            // insert function
+            var konsentrasiFilled = false;
+            var ruangSidangFilled = false;
+            var mahasiswaFilled = false;
+            var waktuFilled = false;
+
+            $("#konsentrasi").on("input", function() {
+                if ($(this).val() !== "Konsentrasi Skripsi") {
+                    $("#errorKonsentrasi").text('');
+                    $(this).removeClass('is-invalid');
+                   konsentrasiFilled = true;
+                }
+                else{
+                    konsentrasiFilled = false;
+                }
+            });
+
+            $("#ruangSidang").on("input", function() {
+                if ($(this).val() !== "Select") {
+                    $("#errorRuangSidang").text('');
+                    $(this).removeClass('is-invalid');
+                    ruangSidangFilled = true;
+                }
+                else{
+                    ruangSidangFilled = false;
+                }
+            });
+
+            $("#nama_mhs").on("input", function() {
+                if ($(this).val() !== "Pilih Mahasiswa") {
+                    $("#errorNamaMhs").text('');
+                    $(this).removeClass('is-invalid');
+                    mahasiswaFilled = true;
+                }
+                else{
+                    mahasiswaFilled = false;
+                }
+            });
+
+            $("#waktuSidang").on("input", function() {
+                if ($(this).val() !== "Pilih Jam") {
+                    $("#errorWaktu").text('');
+                    $(this).removeClass('is-invalid');
+                    waktuFilled = true;
+                }
+                else{
+                    waktuFilled = false;
+                }
+            });
+
+            $("#add").on("click", function(event) {             
                 var judulSkripsi = $("#judul_skripsi").val();
                 var namaMhs = $("#nama_mhs").val();
                 var ketuaPenguji = $("#ketuaPenguji").val();
@@ -591,19 +646,77 @@
                 var status_penguji = "";
                 var status_pembimbing1 = "";
                 var status_pembimbing2 = "";
+                $('.error-message').text('');
+                $('.form-control').removeClass('is-invalid');  
 
                 event.preventDefault();
 
-                if (konsentrasi == "Konsentrasi Skripsi" || ruangSidang == "Select" || namaMhs == "Pilih Mahasiswa"){
-                    Swal.fire({
-                        title: "Masih ada field yang kosong!",
-                        text: "Silakan isi field yang kosong!",
-                        icon: "error"
-                    });
-                    return;
-                }
-                else{
+                if (!konsentrasiFilled || !ruangSidangFilled || !mahasiswaFilled || !waktuFilled){
+                    if(konsentrasi == "Konsentrasi Skripsi"){
+                        $("#errorKonsentrasi").text('Konsentrasi harus diisi.');
+                        $("#konsentrasi").addClass('is-invalid');
+    
+                        Swal.fire({
+                            title: "Masih ada field yang kosong!",
+                            text: "Silakan isi field yang kosong!",
+                            icon: "error"
+                        });
+                    }
+    
+                    if(ruangSidang == "Select"){
+                        $("#errorRuangSidang").text('Ruang Sidang harus diisi.');
+                        $("#ruangSidang").addClass('is-invalid');
+    
+                        Swal.fire({
+                            title: "Masih ada field yang kosong!",
+                            text: "Silakan isi field yang kosong!",
+                            icon: "error"
+                        });
+                    }
 
+                    if(namaMhs == "Pilih Mahasiswa"){
+                        $("#errorNamaMhs").text('Mahasiswa harus dipilih.');
+                        $("#nama_mhs").addClass('is-invalid');
+    
+                        Swal.fire({
+                            title: "Masih ada field yang kosong!",
+                            text: "Silakan isi field yang kosong!",
+                            icon: "error"
+                        });
+                    }
+
+                    if(waktuSidang == "Pilih Jam"){
+                        $("#errorWaktu").text('Silakan pilih jam sidang.');
+                        $("#waktuSidang").addClass('is-invalid');
+    
+                        Swal.fire({
+                            title: "Masih ada field yang kosong!",
+                            text: "Silakan isi field yang kosong!",
+                            icon: "error"
+                        });
+                    }
+                }
+
+                // if (konsentrasi == "Konsentrasi Skripsi" || ruangSidang == "Select" || namaMhs == "Pilih Mahasiswa") {
+                //     $("#errorKonsentrasi").text('Konsentrasi harus diisi.');
+                //     $("#konsentrasi").addClass('is-invalid');
+
+                //     $("#errorRuangSidang").text('Ruang Sidang harus diisi.');
+                //     $("#ruangSidang").addClass('is-invalid');
+
+                //     $("#errorNamaMhs").text('Mahasiswa harus dipilih.');
+                //     $("#nama_mhs").addClass('is-invalid');
+
+                //     Swal.fire({
+                //         title: "Masih ada field yang kosong!",
+                //         text: "Silakan isi field yang kosong!",
+                //         icon: "error"
+                //     });
+                //     return;
+                // }
+
+
+                else {
                     if ($('#kehadiranKetuaPenguji').is(':checked')) {
                         status_ketua = "Ketua Penguji";
                         //alert('Checkbox is checked');
@@ -671,7 +784,6 @@
                     });
                 }
             });
-
         });
     </script>
 </body>

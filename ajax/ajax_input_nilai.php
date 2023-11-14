@@ -64,14 +64,11 @@ elseif($tanda == 'hitungNilai'){
     $bab_5_kesimpulanValue = floatval($_POST['bab_5_kesimpulanValue']);
     $programValue = floatval($_POST['programValue']);
 
-    $judul_dan_abstrakValue = floatval($judul_dan_abstrakValue * 0.05);
-    $totalSum = $judul_dan_abstrakValue + $bab_1_2 + $bab_3_4_sibValue + $bab_3_4_inforValue + $bukuValue + $bab_5_kesimpulanValue
-    + $programValue;
+    $totalSum = floatval(($judul_dan_abstrakValue * 0.05) + ($bab_1_2 * 0.1) + ($bab_3_4_sibValue * 0.25) + ($bab_3_4_inforValue * 0.25) + ($bukuValue * 0.1) + 
+    ($bab_5_kesimpulanValue * 0.25) + ($programValue * 0.25));
 
-    $avg = number_format(floatval($totalSum / 7), 2);
 
     $response = array(
-        'avg' => $avg,
         'totalSum' => $totalSum
     );
 

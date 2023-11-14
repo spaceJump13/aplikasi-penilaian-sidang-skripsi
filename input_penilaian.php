@@ -287,15 +287,15 @@ $result = $stmt->get_result();
 
                     <div class="col-lg-3" style="margin-top: 32px; display: none;">
                         <div id="result1">
-                            <h4 id="sum_result">Nilai Akhir: </h4>
+                            <h4 id="sum_result"></h4>
                         </div>
                     </div>
 
-                    <div class="col-lg-4" style="margin-top: 32px; display: none;">
+                    <!-- <div class="col-lg-4" style="margin-top: 32px; display: none;">
                         <div id="result2" >
                             <h4 id="sum_avg_result">Nilai Akhir (Averaged): </h4>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 
                 <div class="row mt-4">
@@ -410,12 +410,9 @@ $result = $stmt->get_result();
                         var response = JSON.parse(respond);
                         var avg = response.avg;
                         var totalSum = response.totalSum;
-
-                        $("#sum_result").text("Nilai Akhir: " + totalSum);
+                        var colorText = totalSum <= 50 ? 'red' : 'green';
+                        $("#sum_result").html("Nilai Akhir: <span style='color: " + colorText + "'>" + totalSum + "</span>");
                         $("#result1").parent().show();
-
-                        $("#sum_avg_result").text("Nilai Akhir(Averaged): " + avg);
-                        $("#result2").parent().show();
                     },
                     error:function(){
                         alert("gagal");

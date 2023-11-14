@@ -136,6 +136,7 @@ if (isset($_POST["import"])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="navbar.css">
     <title>Data Mahasiswa</title>
 
     <style>
@@ -190,6 +191,46 @@ if (isset($_POST["import"])) {
     </style>
 </head>
 <body style="background-color: #0B6977;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 10px;">
+        <img class="logopcu" src="Asset\image\pcu logo.png" alt="" style="margin-right: 20px;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mynav">
+                <li class="nav-link">
+                    <a class="text-decoration-none" aria-current="page" href="homeAdmin.php">Home</a>
+                </li>
+                <li class="nav-link">
+                    <a class="text-decoration-none" href="vakasi.php">Vakasi</a>
+                </li>
+                <li class="nav-link">
+                    <a class="text-decoration-none" href="beritaAcara.php">Berita Acara</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse justify-content-end" style="margin-right: 50px;">
+            <ul class="navbar-nav mynav" style="margin-right: 10px;">
+                <li class="nav-item dropdown">
+                    <a class="nav-item dropdown-toggle text-decoration-none" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="Asset\image\user.png" alt="" id="profileUserImg">
+                        <span style="font-size: large; font-weight:500;"><?php echo $_SESSION['username'];?></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="logout.php">
+                                <span style="font-size: large; color:#0B6977">Logout</span>
+                                <img src="Asset\image\logout.png" alt="" id="logoutImg" style="float: right;">
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
     <div id="rectangle">
         <div class="container-lg"> <!--<div class="container my-5">-->
             <div class="row">
