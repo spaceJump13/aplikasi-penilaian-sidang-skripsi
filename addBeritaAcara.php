@@ -476,7 +476,7 @@
             }
             else{
                 $.ajax({
-                    url: "ajax/ajax_berita_acara.php",
+                    url: "ajax/ajax_add_berita_acara.php",
                     type: "POST",
                     data:{
                         tanda: "Mahasiswa",
@@ -496,7 +496,7 @@
                 var nama_mhs = $(this).val();
                 console.log(nama_mhs);
                 $.ajax({
-                    url: "ajax/ajax_berita_acara.php",
+                    url: "ajax/ajax_add_berita_acara.php",
                     type: "POST",
                     data:{
                         tanda: "Penguji",
@@ -518,7 +518,7 @@
             $('#nama_mhs').on('change', function(){
                 var nama_mhs = $(this).val();
                 $.ajax({
-                    url: "ajax/ajax_berita_acara.php",
+                    url: "ajax/ajax_add_berita_acara.php",
                     type: "POST",
                     data:{
                         tanda: "Pembimbing_1",
@@ -540,7 +540,7 @@
             $('#nama_mhs').on('change', function(){
                 var nama_mhs = $(this).val();
                 $.ajax({
-                    url: "ajax/ajax_berita_acara.php",
+                    url: "ajax/ajax_add_berita_acara.php",
                     type: "POST",
                     data:{
                         tanda: "Pembimbing_2",
@@ -562,7 +562,7 @@
             $('#nama_mhs').on('change', function(){
                 var nama_mhs = $(this).val();
                 $.ajax({
-                    url: "ajax/ajax_berita_acara.php",
+                    url: "ajax/ajax_add_berita_acara.php",
                     type: "POST",
                     data:{
                         tanda: "Judul",
@@ -735,7 +735,7 @@
                     }
                     
                     $.ajax({
-                        url: "ajax/ajax_berita_acara.php",
+                        url: "ajax/ajax_add_berita_acara.php",
                         method: "POST",
                         data: {
                             judulSkripsi: judulSkripsi,

@@ -1,0 +1,140 @@
+button {
+  align-items: center;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 18px;
+  justify-content: center;
+  line-height: 1em;
+  width: 100%;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all .3s;
+ }
+ 
+ button:active,
+ button:hover {
+  outline: 0;
+ }
+ 
+ button span {
+  background-color: #363062;
+  /* background-color: rgb(5, 6, 45); */
+  padding: 16px 24px;
+  border-radius: 6px;
+  width: 100%;
+  height: 100%;
+  transition: 300ms;
+ }
+ 
+ button:hover span {
+  background: none;
+ }
+ 
+ button:active {
+  transform: scale(0.9);
+ }
+
+  .group {
+  position: relative;
+  }
+  
+  .input {
+  font-size: 16px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #515151;
+  background: transparent;
+  }
+  
+  .input:focus {
+  outline: none;
+  }
+  
+  .label-custom {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+  }
+  
+  .input:focus ~ .label-custom, .input:valid ~ .label-custom {
+  top: -20px;
+  font-size: 16px;
+  color: #5264AE;
+  }
+  
+  .bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  }
+  
+  .bar:before, .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #5264AE;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+  }
+  
+  .bar:before {
+  left: 50%;
+  }
+  
+  .bar:after {
+  right: 50%;
+  }
+  
+  .input:focus ~ .bar:before, .input:focus ~ .bar:after {
+  width: 50%;
+  }
+  
+  .highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  }
+  
+  .input:focus ~ .highlight {
+  animation: inputHighlighter 0.3s ease;
+  }
+  
+  @keyframes inputHighlighter {
+  from {
+    background: #5264AE;
+  }
+  
+  to {
+    width: 0;
+    background: transparent;
+  }
+  }

@@ -14,11 +14,32 @@
     width: 25px;
 }
 
-.mynav>li>a{
+.mynav>li>a {
     color: #0B6977;
     font-weight: 500;
     font-size: 20px;
-    /* margin-left: 10px; */
+    position: relative;
+}
+
+.mynav>li>a::before{
+    content: "";
+    position: absolute;
+    top: 110%;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #0B6977;
+    transition: width 0.3s ease;
+}
+
+.mynav>li>a:hover::before {
+    width: 100%; 
+}
+
+.mynav>li>a:hover {
+    font-weight: 500;
+    font-size: 23px;
 }
 
 .mynav .nav-link {

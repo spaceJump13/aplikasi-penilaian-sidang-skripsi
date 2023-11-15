@@ -232,7 +232,6 @@ if (isset($_POST["import"])) {
     </nav>
     
     <div id="rectangle">
-        <div class="container-lg"> <!--<div class="container my-5">-->
             <div class="row">
                 <div class="col-lg-12">
                     <div>
@@ -240,7 +239,6 @@ if (isset($_POST["import"])) {
                     </div>
                 </div>
             </div>
-        </div> <!-- taroh paling bawah kalo mau lebih mengecil -->
     
             <form action="" method="POST">
                 <div class="row mt-4">
@@ -251,7 +249,7 @@ if (isset($_POST["import"])) {
                     </div>
         
                     <div class="col-lg-3">
-                        <button type="submit" class="btn btn-outline-ocean" style="margin-top: 30px;">Search</button>
+                        <button type="submit" class="btn btn-outline-ocean" id="refresh" style="margin-top: 30px;">Refresh</button>
                     </div>
     
                     <div class="col-lg-6">
@@ -373,6 +371,7 @@ if (isset($_POST["import"])) {
 
 <script>
     $(document).ready(function(){
+
         $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

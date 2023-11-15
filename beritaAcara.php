@@ -1,5 +1,12 @@
 <?php
 include 'config.php';
+
+if (isset($_POST['keyword'])){
+    $keyword = $_POST['keyword'];
+
+    $sql = "SELECT * FROM berita_acara WHERE nama_nrp LIKE '%$keyword%'";
+    $result = mysqli_query($conn, $sql);
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +52,7 @@ include 'config.php';
     padding-left: 5rem;
     padding-right: 5rem;
     padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 500px;
     }
     .btn.btn-outline-ocean {
         color: #fff; 
@@ -122,7 +129,7 @@ include 'config.php';
             <div class="row mt-4">
                 <div class="col-lg-3">
                     <div class="input-group mb-3" style="margin-top: 30px;">
-                        <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Masukkan Nama atau NRP">
+                        <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
                     </div>
                 </div>
     
@@ -198,4 +205,26 @@ include 'config.php';
         </div>
     </div>
 </body>
+<script>
+    $(document).ready(function(){
+        $('#keyword').on('keyup', function(){
+            var keyword = $('#keyword').val();
+            console.log(keyword);
+            $.ajax({
+                url: "ajax/ajax_berita_acara.php",
+                type: "POST",
+                data: {
+                    keyword: keyword,
+                },
+                success: function(respond) {
+                    // console.log(respond);
+                    $("#searchResult").html(respond);
+                },
+                error: function() {
+                    alert("gagal");
+                }
+            });
+        })
+    })
+</script>
 </html>

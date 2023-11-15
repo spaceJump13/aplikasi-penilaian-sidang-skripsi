@@ -29,7 +29,7 @@ $result = mysqli_query($conn, $sql);
         padding-left: 5rem;
         padding-right: 5rem;
         padding-top: 2rem;
-        padding-bottom: 2rem;
+        padding-bottom: 500px;
         }
         .btn.btn-outline-ocean {
         color: #fff; 

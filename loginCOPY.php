@@ -69,7 +69,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <link rel="stylesheet" href="styleee.css">
+    <link rel="stylesheet" href="input_box.css">
 
     <title>Login</title>
 
@@ -136,7 +136,7 @@
         color: whitesmoke;
         text-transform: uppercase;
         display: flex;
-        justify-content: center;
+        justify-content: end;
         padding: 20px;
         margin-top: 30px;
     }
@@ -177,32 +177,30 @@
                 <img src="Asset/image/pcu logo.png" alt="" class="img-right">
                 
                 <div class="content-login">
-                    <h1 style="text-align: center; color:#0C356A;" class="mb-4">Welcome</h1>
+                    <h1 style="text-align: center; color:#0B6977;" class="mb-4">Welcome</h1>
 
                     <form method="POST">
                         <div class="form-group mb-4">
                             <div class="group">
-                                <input required="" type="text" class="input" name="username">
+                                <input required="" type="text" class="input" id="username">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
-                                <label class="label-custom">Username</label>
+                                <label class="label-custom">Name</label>
                             </div>
                         </div>
                         <div class="form-group mb-3">
                             <div class="group">
-                                <input required="" type="password" class="input" name="inputPassword">
+                                <input required="" type="password" class="input" id="inputPassword">
                                 <span class="highlight"></span>
                                 <span class="bar"></span>
                                 <label class="label-custom">Password</label>
                             </div>
                         </div>
-                        <div class="form-check mb-3">
+                        <div class="form-check mb-2">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Remember Me</label>
                         </div>
-                        <button type="submit" name="login">
-                            <span>Login</span>
-                        </button>
+                        <button type="submit" class="btn-outline-ocean" name="login" style="width: 100%; margin-bottom:10px;">Login</button>
                         <?php if (isset($loginError)) { ?>
                             <p style="color: red;"><?php echo $loginError; ?></p>
                         <?php } ?>

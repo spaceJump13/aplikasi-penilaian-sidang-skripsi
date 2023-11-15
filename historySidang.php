@@ -143,7 +143,7 @@ $result = $stmt->get_result();
                     <table class="mx-auto table table-striped">
                         <thead style="text-align: center; background-color:#0B6977; color:whitesmoke">
                             <tr>
-                                <th>Waktu Sidang</th>
+                                <th>Tanggal Sidang</th>
                                 <th>Ruang Sidang</th>
                                 <th>Nama Mahasiswa</th>
                                 <th>Status</th>
