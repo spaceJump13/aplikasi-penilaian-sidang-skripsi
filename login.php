@@ -10,10 +10,6 @@
             header("Location: homeDosen.php");
             exit();
         }
-        elseif (isset($_SESSION['usertype']) && $_SESSION['usertype'] === 'ketua'){
-            header("Location: homeKetuaPenguji.php");
-            exit();
-        }
     }
 
     if (isset($_POST['login'])){

@@ -11,10 +11,6 @@
             header("Location: homeDosen.php");
             exit();
         }
-        elseif ($_SESSION['usertype'] === 'ketua'){
-            header("Location: homeKetuaPenguji.php");
-            exit();
-        }
     }
 
     $username = $_SESSION['username'];
