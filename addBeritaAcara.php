@@ -697,25 +697,6 @@
                     }
                 }
 
-                // if (konsentrasi == "Konsentrasi Skripsi" || ruangSidang == "Select" || namaMhs == "Pilih Mahasiswa") {
-                //     $("#errorKonsentrasi").text('Konsentrasi harus diisi.');
-                //     $("#konsentrasi").addClass('is-invalid');
-
-                //     $("#errorRuangSidang").text('Ruang Sidang harus diisi.');
-                //     $("#ruangSidang").addClass('is-invalid');
-
-                //     $("#errorNamaMhs").text('Mahasiswa harus dipilih.');
-                //     $("#nama_mhs").addClass('is-invalid');
-
-                //     Swal.fire({
-                //         title: "Masih ada field yang kosong!",
-                //         text: "Silakan isi field yang kosong!",
-                //         icon: "error"
-                //     });
-                //     return;
-                // }
-
-
                 else {
                     if ($('#kehadiranKetuaPenguji').is(':checked')) {
                         status_ketua = "Ketua Penguji";
