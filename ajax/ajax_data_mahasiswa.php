@@ -46,10 +46,10 @@ if ($tanda == "cariMahasiswa"){
                     <th>Mahasiswa</th>
                     <th>Team Penguji</th>
                     <th>Judul Skripsi</th>
-                    <th>Ketua Penguji</th>
+                    <!-- <th>Ketua Penguji</th>
                     <th>Anggota Penguji</th>
                     <th>Pembimbing 1</th>
-                    <th>Pembimbing 2</th>
+                    <th>Pembimbing 2</th> -->
                 </tr>
             </thead>
         <?php   
@@ -62,10 +62,10 @@ if ($tanda == "cariMahasiswa"){
                     <td><?php echo $row['mahasiswa'];?></td>
                     <td><?php echo $row['team_penguji'];?></td>
                     <td><?php echo $row['judul_skripsi'];?></td>
-                    <td><?php echo $row['ketua_penguji'];?></td>
+                    <!-- <td><?php echo $row['ketua_penguji'];?></td>
                     <td><?php echo $row['anggota_penguji'];?></td>
                     <td><?php echo $row['pembimbing_1'];?></td>
-                    <td><?php echo $row['pembimbing_2'];?></td>
+                    <td><?php echo $row['pembimbing_2'];?></td> -->
                 </tr>
             </tbody>
             <?php } ?>
