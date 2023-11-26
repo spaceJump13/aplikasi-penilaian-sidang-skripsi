@@ -58,33 +58,34 @@
         }
 
         #content{
-        display: flex;
         background-color: white;
-        border-radius: 50px;
-        padding: 30px;
-        margin: 20px;
-        max-width: 1050px;
-        height: fit-content;
-        justify-content: center;
+        border-radius: 40px;
+        padding: 35px 0 35px 0;
+        max-width: 1000px;
+        width: 100%;
+        margin: auto;
+        margin-top: 20px;
+        /* top right bottom left */
         }
 
-        .col-4{
+        .grid-dashboard {
         background-color:#FFD600B2;
         border: 1px solid #ddd;
         border-radius: 15px;
         position: relative;
-        max-height: 300px;
-        width: 100%;
-        max-width: 300px;
         font-size: 30px;
         font-weight: bold;
+        height: 300px;
+        max-width: 300px;
+        width: 100%;
+        margin: 0 10px;
         color: white;
+        line-height: normal;
         text-align: center;
         text-shadow: 2px 2px grey ;
-        margin: 0 10px;
         }
 
-        .col-4:hover{
+        .grid-dashboard:hover{
         background-color:white;
         color: #FFD600;
         text-shadow: 2px 2px black ;
@@ -92,22 +93,21 @@
         border-width: 3px;
         }
 
-        #score{
+        #score>img{
         max-width: 200px;
         width: 100%;
         }
 
-        #news{
-        margin: 10px 0;
+        #news>img{
         max-width: 170px;
         width: 100%; 
+        align-items: center;
         }
 
-        #file{
-        margin: 10px 0;
-        max-width: 190px;
+        #file>img{
+        max-width: 200px;
         width: 100%;
-        padding-top: 20px;
+        margin-left: 20px;
         }
     </style>
 
@@ -139,53 +139,40 @@
             </div>
         </nav>
 
-        <div class="container" style="position: fixed; top: 50%; left: 50%;  transform: translate(-50%, -50%);">
+        <div class="container" style="margin-top: 3em">
             <div id="header1">
                 <p><h1>Welcome,</h1></p>
                 <p><h3><?php echo $nama_dosen;?></h3></p>
             </div>
 
-            <center>
-                <div class="container justify-content-center" id="content">
-                    <div class="col-4">
-                        <center>
-                            <div class="row-lg-3" id="input_nilai" onclick="window.location.href = 'input_penilaian.php';">
-                                <p>INPUT NILAI</p> 
-                                <center>
-                                    <div class="row md-3" id="score"><img src="asset/image/score.png"></div>
-                                </center>
+            <div class="container">
+                <div id="content">
+                    <div class="row align-items-center justify-content-center">
+
+                        <div class="col-4 grid-dashboard">
+                            <div id="score" onclick="window.location.href = 'input_penilaian.php';">
+                                <p>INPUT NILAI</p>                                 
+                                <img src="asset/image/score.png">                          
                             </div>
-                        </center>
-                    </div> 
-                    <div class="col-4">
-                        <center>
-                            <div class="row-lg-3" id="riwayat_sidang" onclick="window.location.href = 'addBeritaAcara.php';">
+                        </div>
+
+                        <div class="col-md-4 grid-dashboard">
+                            <div id="news" class="row-lg-3" onclick="window.location.href = 'addBeritaAcara.php';">
                                 <p>TAMBAH BERITA ACARA</p> 
-                                <center>
-                                    <div class="row md-3" id="news"><img src="asset/image/news.png"></div>
-                                </center>
+                                <img src="asset/image/news.png">
                             </div>
-                        </center>
+                        </div>
+
+                        <div class="col-md-4 grid-dashboard">
+                            <div id="file" onclick="window.location.href = 'historySidang.php';">
+                                <p>RIWAYAT SIDANG</p>                                 
+                                <img src="asset/image/file.png">                             
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="col-4">
-                        <center>
-                            <div class="row-lg-3" id="riwayat_sidang" onclick="window.location.href = 'historySidang.php';">
-                                <p>RIWAYAT SIDANG</p> 
-                                <center>
-                                    <div class="row md-3" id="file"><img src="asset/image/file.png"></div>
-                                </center>
-                            </div>
-                        </center>
-                    </div>  
                 </div>
-            </center>
+            </div>
         </div>
-
-
-        <!-- <div class="logout_btn">
-            <form action="logout.php" method="post" style="float:right; margin-right:20%;">
-                <input class="btn btn-warning btn-lg" type="submit" value="Log Out">
-            </form>
-        </div> -->
     </body>
 </html>

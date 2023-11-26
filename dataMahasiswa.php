@@ -1,3 +1,4 @@
+
 <?php
 include 'config.php';
 
@@ -151,7 +152,7 @@ if (isset($_POST["import"])) {
         padding-left: 5rem;
         padding-right: 5rem;
         padding-top: 2rem;
-        padding-bottom: 500px;
+        padding-bottom: 200px;
         }
         .btn {
         display: inline-block;
@@ -331,12 +332,9 @@ if (isset($_POST["import"])) {
             </div>
     
             <div class="row mt-2">
-                <div class="col-lg-6">
-                <a href="dataMahasiswa.php" style="color: white; text-decoration: none;"><button type="button" class="btn btn-outline-ocean">Back</button></a>
-                </div>
-                <div class="col-lg-6">
+                <div class="col-lg-12 d-flex justify-content-end">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-ocean" style="float: right;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <button type="button" class="btn btn-outline-ocean" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Import
                     </button>
     
@@ -380,6 +378,8 @@ if (isset($_POST["import"])) {
         // keyword (nama atau nrp)
         $('#keyword').on('keyup', function(){
             var keyword = $('#keyword').val();
+            var periode = $('#periode').val();
+
             console.log(keyword);
             $.ajax({
                 url: "ajax/ajax_data_mahasiswa.php",
@@ -387,9 +387,10 @@ if (isset($_POST["import"])) {
                 data: {
                     tanda: "cariMahasiswa",
                     keyword: keyword,
+                    periode: periode
                 },
                 success: function(respond) {
-                    console.log(respond);
+                    // console.log(respond);
                     $("#searchResult").html(respond);
                 },
                 error: function() {
@@ -399,8 +400,11 @@ if (isset($_POST["import"])) {
         });
 
         // periode
-        $('#periode').on('change', function(){
+        $('#periode').on('change', function()
+        {
             var periode = $('#periode').val();
+            var keyword = $('#keyword').val();
+
             console.log(periode);
             $.ajax({
                 url: "ajax/ajax_data_mahasiswa.php",
@@ -408,9 +412,10 @@ if (isset($_POST["import"])) {
                 data: {
                     tanda: "cariMahasiswa",
                     periode: periode,
+                    keyword: keyword,
                 },
                 success: function(respond) {
-                    console.log(respond);
+                    // console.log(respond);
                     $("#searchResult").html(respond);
                 },
                 error: function() {
