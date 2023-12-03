@@ -355,11 +355,6 @@
                                 </select>
                                 <div class="error-message" id="errorKonsentrasi"></div>
                             </div>
-    
-                            <br>
-
-                            <label for="catatanSidang" style="margin-top: 5px;"><h5>Catatan Sidang</h5></label>
-                            <textarea class="form-control" name="catatanSidang" id="catatanSidang" rows="3" placeholder="Catatan"></textarea>
 
                             <br>
 
@@ -388,6 +383,11 @@
                                     <label class="form-check-label" for="jurnal">Jurnal</label>
                                 </div>
                             </div>
+
+                            <br>
+
+                            <label for="catatanSidang" style="margin-top: 5px;"><h5>Catatan Sidang</h5></label>
+                            <textarea class="form-control" name="catatanSidang" id="catatanSidang" rows="3" placeholder="Catatan"></textarea>
 
                             <br>
     
