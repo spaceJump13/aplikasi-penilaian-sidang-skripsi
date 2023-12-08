@@ -391,48 +391,6 @@
 
                             <br>
     
-                            <!-- <label for="" style="margin-top: 7px;"><h5>Nilai CPL (Averaged)</h5></label>
-                            <div class="col-sm-12">
-                                <div class="table-responsive" id="tabel_cpl">
-                                    <table class="table table-bordered">
-                                        <thead style="width: 10px;">
-                                            <tr>
-                                                <th scope="col" style="width: 5px;">1</th>
-                                                <th scope="col">2</th>
-                                                <th scope="col">3</th>
-                                                <th scope="col">4</th>
-                                                <th scope="col">5</th>
-                                                <th scope="col">6</th>
-                                                <th scope="col">7</th>
-                                                <th scope="col">8</th>
-                                                <th scope="col">9</th>
-                                                <th scope="col">10</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-outline w-25">
-                                                        <input type="number" name="cpl1" id="cpl1">
-                                                    </div>
-                                                </td>
-                                                <td><input type="number" name="cpl2" id="cpl2"></td>
-                                                <td><input type="number" name="cpl3" id="cpl3"></td>
-                                                <td><input type="number" name="cpl4" id="cpl4"></td>
-                                                <td><input type="number" name="cpl5" id="cpl5"></td>
-                                                <td><input type="number" name="cpl6" id="cpl6"></td>
-                                                <td><input type="number" name="cpl7" id="cpl7"></td>
-                                                <td><input type="number" name="cpl8" id="cpl8"></td>
-                                                <td><input type="number" name="cpl9" id="cpl9"></td>
-                                                <td><input type="number" name="cpl10" id="cpl10"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div> -->
-    
-                            <!-- <br> -->
-    
                             <div class="row">
                                 <div class="col-lg-6">
                                     <h5>Nilai Akhir: A</h5>
@@ -494,7 +452,6 @@
             // dosen penguji
             $('#nama_mhs').on('change', function(){
                 var nama_mhs = $(this).val();
-                console.log(nama_mhs);
                 $.ajax({
                     url: "ajax/ajax_add_berita_acara.php",
                     type: "POST",
@@ -503,7 +460,6 @@
                         id:nama_mhs               
                     },
                     success:function(respond){
-                        console.log(respond);
                         var response = JSON.parse(respond)
                         var dosen_penguji = response.dosen_penguji
                         $("#dosenPenguji").val(dosen_penguji);
@@ -525,7 +481,6 @@
                         id:nama_mhs               
                     },
                     success:function(respond){
-                        console.log(respond);
                         var response = JSON.parse(respond)
                         var dosen_pembimbing_1 = response.dosen_pembimbing_1
                         $("#pembimbing1").val(dosen_pembimbing_1);
@@ -547,15 +502,16 @@
                         id:nama_mhs
                     },
                     success:function(respond){
-                        console.log(respond);
                         var response = JSON.parse(respond)
                         var dosen_pembimbing_2 = response.dosen_pembimbing_2
+                        console.log(dosen_pembimbing_2)
                         $("#pembimbing2").val(dosen_pembimbing_2);
                     },
                     error:function(){
                         alert("gagal");
                     }
                 })
+                console.log(nama_mhs)
             })
 
             // judul skripsi
@@ -569,7 +525,6 @@
                         id:nama_mhs               
                     },
                     success:function(respond){
-                        console.log(respond);
                         var response = JSON.parse(respond)
                         var judul_skripsi = response.judul
                         $("#judul_skripsi").val(judul_skripsi);
@@ -696,73 +651,83 @@
                         });
                     }
                 }
-
                 else {
-                    if ($('#kehadiranKetuaPenguji').is(':checked')) {
-                        status_ketua = "Ketua Penguji";
-                        //alert('Checkbox is checked');
+                    if (pembimbing2 == '-'){
+                        Swal.fire({
+                            title: "3",
+                            text: "3 penguji",
+                            icon: "error"
+                        });
                     }
-                    if ($('#kehadiranDosenPenguji').is(':checked')) {
-                        status_penguji = "Anggota Penguji";
-                        //alert('Checkbox is checked');
+                    else{
+                        Swal.fire({
+                            title: "4",
+                            text: "4 penguji",
+                            icon: "success"
+                        });
+                        // if ($('#kehadiranKetuaPenguji').is(':checked')) {
+                        //     status_ketua = "Ketua Penguji";
+                        //     //alert('Checkbox is checked');
+                        // }
+                        // if ($('#kehadiranDosenPenguji').is(':checked')) {
+                        //     status_penguji = "Anggota Penguji";
+                        // }
+                        // if ($('#kehadiranPembimbing1').is(':checked')) {
+                        //     status_pembimbing1 = "Pembimbing 1";
+                        // }
+                        // if ($('#kehadiranPembimbing2').is(':checked')) {
+                        //     status_pembimbing2 = "Pembimbing 2";
+                        // }
+                        
+                        // $.ajax({
+                        //     url: "ajax/ajax_add_berita_acara.php",
+                        //     method: "POST",
+                        //     data: {
+                        //         judulSkripsi: judulSkripsi,
+                        //         namaMhs: namaMhs,
+                        //         ketuaPenguji: ketuaPenguji,
+                        //         dosenPenguji: dosenPenguji,
+                        //         pembimbing1: pembimbing1,
+                        //         pembimbing2: pembimbing2,
+                        //         tanggalSidang: tanggalSidang,
+                        //         waktuSidang: waktuSidang,
+                        //         ruangSidang: ruangSidang,
+                        //         status_ketua: status_ketua,
+                        //         status_penguji: status_penguji,
+                        //         status_pembimbing1: status_pembimbing1,
+                        //         status_pembimbing2: status_pembimbing2,
+                        //         konsentrasi: konsentrasi,
+                        //         catatanSidang: catatanSidang,
+                        //         tanda: "Insert"
+                        //     },
+                        //     success: function(respond) {                           
+                        //         // console.log(respond);
+                        //         var trim_respond = respond.trim();
+        
+                        //         if (trim_respond == "Berhasil Add!") {
+                        //             console.log(trim_respond);
+                        //             Swal.fire({
+                        //                 title: "Berhasil Add!",
+                        //                 text: "Berita Acara sudah ditambahkan!",
+                        //                 icon: "success"
+                        //             });
+                        //         } 
+                        //         else if (trim_respond == "bentrok") {
+                        //             Swal.fire({
+                        //                 title: "Sudah terpakai!",
+                        //                 text: "Tanggal dan ruang sidang bertabrakan dengan jadwal lain, Silakan pilih jadwal lain!",
+                        //                 icon: "warning"
+                        //             });
+                        //         }
+                        //         else {
+                        //             alert("An unknown response was received: " + trim_respond);
+                        //         }
+                        //     },
+                        //     error: function(respond) {
+                        //         alert(respond);
+                        //     }
+                        // });
                     }
-                    if ($('#kehadiranPembimbing1').is(':checked')) {
-                        status_pembimbing1 = "Pembimbing 1";
-                        //alert('Checkbox is checked');
-                    }
-                    if ($('#kehadiranPembimbing2').is(':checked')) {
-                        status_pembimbing2 = "Pembimbing 2";
-                        //alert('Checkbox is checked');
-                    }
-                    
-                    $.ajax({
-                        url: "ajax/ajax_add_berita_acara.php",
-                        method: "POST",
-                        data: {
-                            judulSkripsi: judulSkripsi,
-                            namaMhs: namaMhs,
-                            ketuaPenguji: ketuaPenguji,
-                            dosenPenguji: dosenPenguji,
-                            pembimbing1: pembimbing1,
-                            pembimbing2: pembimbing2,
-                            tanggalSidang: tanggalSidang,
-                            waktuSidang: waktuSidang,
-                            ruangSidang: ruangSidang,
-                            status_ketua: status_ketua,
-                            status_penguji: status_penguji,
-                            status_pembimbing1: status_pembimbing1,
-                            status_pembimbing2: status_pembimbing2,
-                            konsentrasi: konsentrasi,
-                            catatanSidang: catatanSidang,
-                            tanda: "Insert"
-                        },
-                        success: function(respond) {                           
-                            // console.log(respond);
-                            var trim_respond = respond.trim();
-    
-                            if (trim_respond == "Berhasil Add!") {
-                                console.log(trim_respond);
-                                Swal.fire({
-                                    title: "Berhasil Add!",
-                                    text: "Berita Acara sudah ditambahkan!",
-                                    icon: "success"
-                                });
-                            } 
-                            else if (trim_respond == "bentrok") {
-                                Swal.fire({
-                                    title: "Sudah terpakai!",
-                                    text: "Tanggal dan ruang sidang bertabrakan dengan jadwal lain, Silakan pilih jadwal lain!",
-                                    icon: "warning"
-                                });
-                            }
-                            else {
-                                alert("An unknown response was received: " + trim_respond);
-                            }
-                        },
-                        error: function(respond) {
-                            alert(respond);
-                        }
-                    });
                 }
             });
         });

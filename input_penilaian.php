@@ -37,6 +37,7 @@ $result = $stmt->get_result();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
@@ -264,7 +265,7 @@ $result = $stmt->get_result();
                     </div>
 
                     <div class="col-lg-4">
-                        <label for=""><h5>Penilaian 5 dan KESIMPULAN</h5></label>
+                        <label for=""><h5>Penilaian Bab 5 & Kesimpulan</h5></label>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" style="background-color: #0B6977; color: whitesmoke; font-weight: 700;" for="bab_5_kesimpulan">CP 8</label>
@@ -369,7 +370,7 @@ $result = $stmt->get_result();
                     data:{
                         tanda: "status_dosen",
                         nama_mhs:nama_mhs,
-                        nama_dosen: nama_dosen              
+                        nama_dosen:nama_dosen              
                     },
                     success:function(respond){
                         var response = JSON.parse(respond);
@@ -420,7 +421,60 @@ $result = $stmt->get_result();
                 })
             })
 
-            // $('#nama_mhs').selectpicker();
+            $('#input').on('click', function(){
+                const judul_dan_abstrakValue = parseFloat($("#judul_dan_abstrak").val()) || 0;
+                const bab_1_2 = parseFloat($("#bab_1_2").val()) || 0;
+                const bab_3_4_sibValue = parseFloat($("#bab_3_4_sib").val()) || 0;
+                const bab_3_4_inforValue = parseFloat($("#bab_3_4_infor").val()) || 0;
+                const bukuValue = parseFloat($("#buku").val()) || 0;
+                const bab_5_kesimpulanValue = parseFloat($("#bab_5_kesimpulan").val()) || 0;
+                const programValue = parseFloat($("#program").val()) || 0;
+                var nama_dosen = $('#dosen_penilai').val();
+                var nama_mhs = $('#nama_mhs').val();
+
+                event.preventDefault()
+                $.ajax({
+                    url: "ajax/ajax_input_nilai.php",
+                    type: "POST",
+                    data:{
+                        tanda: "inputNilai",
+                        nama_dosen:nama_dosen,
+                        nama_mhs:nama_mhs,
+                        judul_dan_abstrakValue:judul_dan_abstrakValue,
+                        bab_1_2: bab_1_2,
+                        bab_3_4_sibValue:bab_3_4_sibValue,
+                        bab_3_4_inforValue:bab_3_4_inforValue,
+                        bukuValue:bukuValue,
+                        bab_5_kesimpulanValue:bab_5_kesimpulanValue,
+                        programValue:programValue
+                    },
+                    success:function(respond){
+                        var trim_respond = respond.trim();
+    
+                        if (trim_respond == "Sudah pernah input") {
+                            console.log(trim_respond);
+                            Swal.fire({
+                                title: "Gagal input!",
+                                text: "Anda sudah pernah menginput nilai untuk mahasiswa ini!",
+                                icon: "error"
+                            });
+                        } 
+                        else if (trim_respond == "Belum input") {
+                            Swal.fire({
+                                title: "Berhasil input!",
+                                text: "Nilai sudah ditambahkan!",
+                                icon: "success"
+                            });
+                        }
+                        else {
+                            alert("An unknown response was received: " + trim_respond);
+                        }
+                    },
+                    error:function(){
+                        alert("gagal");
+                    }
+                })
+            })
         });
 
     </script>

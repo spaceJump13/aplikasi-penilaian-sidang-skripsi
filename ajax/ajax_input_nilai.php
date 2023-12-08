@@ -77,4 +77,32 @@ elseif($tanda == 'hitungNilai'){
     exit;
 }
 
+elseif($tanda == 'inputNilai'){
+    $nama_mhs = $_POST['nama_mhs'];
+    $nama_dosen = $_POST['nama_dosen'];
+    $judul_dan_abstrakValue = floatval($_POST['judul_dan_abstrakValue']);
+    $bab_1_2 = floatval($_POST['bab_1_2']);
+    $bab_3_4_sibValue = floatval($_POST['bab_3_4_sibValue']);
+    $bab_3_4_inforValue = floatval($_POST['bab_3_4_inforValue']);
+    $bukuValue = floatval($_POST['bukuValue']);
+    $bab_5_kesimpulanValue = floatval($_POST['bab_5_kesimpulanValue']);
+    $programValue = floatval($_POST['programValue']);
+
+    $nilai_akhir = floatval(($judul_dan_abstrakValue * 0.05) + ($bab_1_2 * 0.1) + ($bab_3_4_sibValue * 0.25) + ($bab_3_4_inforValue * 0.25) + ($bukuValue * 0.1) + 
+    ($bab_5_kesimpulanValue * 0.25) + ($programValue * 0.25));
+
+    $already_input = "SELECT * FROM penilaian WHERE mahasiswa LIKE '%$nama_mhs%' AND dosen LIKE '%$nama_dosen%'";
+    $check = mysqli_query($conn, $already_input);
+
+    if (mysqli_num_rows($check) >= 1){
+        echo "Sudah pernah input";
+    }
+    else{
+        echo "Belum input";
+        $sql = "INSERT INTO `penilaian` (`id_penilaian`, `mahasiswa`, `judul_abstrak`, `bab_1_2`, `bab_3_4_sib`,`bab_3_4_infor`, `buku`, `kesimpulan`, `program`, `nilai_akhir`, `dosen`) VALUES 
+        (' ', '$nama_mhs', '$judul_dan_abstrakValue', '$bab_1_2', '$bab_3_4_sibValue', '$bab_3_4_inforValue', '$bukuValue', '$bab_5_kesimpulanValue', '$programValue', '$nilai_akhir', '$nama_dosen')";
+        $result = mysqli_query($conn, $sql);
+    }
+}
+
 ?>
