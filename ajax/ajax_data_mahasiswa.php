@@ -15,50 +15,6 @@ if ($tanda == "cariMahasiswa"){
 
     $sql .= " LIMIT 0, 10";
     $result = mysqli_query($conn, $sql);
-
-    // $sql = "SELECT * FROM data_mahasiswa";
-
-    // if (isset($_POST['keyword']) && $_POST['keyword'] == ""){
-    //     $sql .= " LIMIT 0, 10";
-    //     $result = mysqli_query($conn, $sql);
-    //     // var_dump($sql);
-    // }
-
-    // elseif (isset($_POST['keyword']) && $_POST['keyword'] != ''){
-    //     $keyword = $_POST['keyword']; 
-    //     $sql .= " WHERE mahasiswa LIKE '%$keyword%'";
-    //     // if search by name and periode
-    //     if (isset($_POST['periode']) && $_POST['periode'] !== "Semua"){
-    //         $periode = $_POST['periode'];
-    //         $sql .= " AND SUBSTRING(SUBSTRING_INDEX(SUBSTRING_INDEX(tanggal_ruang, ':', 1), ' ', -1), 1, 4) = '$periode'";
-    //         $sql .= "  LIMIT 0, 10";
-    //         $result = mysqli_query($conn, $sql);
-    //     }
-    //     // if search only by name
-    //     else{
-    //         $sql .= "  LIMIT 0, 10";
-    //         $result = mysqli_query($conn, $sql);
-    //     }
-    //     var_dump($sql);
-    // }
-    // elseif (isset($_POST['periode']) && $_POST['periode'] !== "Semua"){
-    //     $periode = $_POST['periode'];
-    //     $sql .= " WHERE SUBSTRING(SUBSTRING_INDEX(SUBSTRING_INDEX(tanggal_ruang, ':', 1), ' ', -1), 1, 4) = '$periode'";
-
-    //     // if search by periode and name
-    //     if (isset($_POST['keyword'])){
-    //         $keyword = $_POST['keyword']; 
-    //         $sql .= " AND mahasiswa LIKE '%$keyword%'";
-    //         $result = mysqli_query($conn, $sql);
-
-    //     }
-    //     // if search only by periode
-    //     else{
-    //         // var_dump($sql);
-    //         $result = mysqli_query($conn, $sql);
-    //     }
-    //     // var_dump($sql);
-    // }
     
     if (mysqli_num_rows($result) > 0){
         ?>
@@ -119,7 +75,6 @@ if ($tanda == "cariMahasiswa"){
         </table>
         
         <?php
-    }
-    
+    } 
 }
 ?>
