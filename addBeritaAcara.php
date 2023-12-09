@@ -307,7 +307,7 @@
                             <label for="ruangSidang"><h5>Ruang Sidang</h5></label>
                             <br>
                                 <select class="form-select" aria-label="Default select example" name="ruangSidang" id="ruangSidang">
-                                    <option selected>Select</option>
+                                    <option selected>Pilih Ruang</option>
                                     <option value="1">P308</option>
                                     <option value="2">P309</option>
                                     <option value="3">P307</option>
@@ -610,124 +610,123 @@
                     if(konsentrasi == "Konsentrasi Skripsi"){
                         $("#errorKonsentrasi").text('Konsentrasi harus diisi.');
                         $("#konsentrasi").addClass('is-invalid');
-    
-                        Swal.fire({
-                            title: "Masih ada field yang kosong!",
-                            text: "Silakan isi field yang kosong!",
-                            icon: "error"
-                        });
                     }
     
-                    if(ruangSidang == "Select"){
+                    if(ruangSidang == "Pilih Ruang"){
                         $("#errorRuangSidang").text('Ruang Sidang harus diisi.');
                         $("#ruangSidang").addClass('is-invalid');
-    
-                        Swal.fire({
-                            title: "Masih ada field yang kosong!",
-                            text: "Silakan isi field yang kosong!",
-                            icon: "error"
-                        });
                     }
 
                     if(namaMhs == "Pilih Mahasiswa"){
                         $("#errorNamaMhs").text('Mahasiswa harus dipilih.');
                         $("#nama_mhs").addClass('is-invalid');
-    
-                        Swal.fire({
-                            title: "Masih ada field yang kosong!",
-                            text: "Silakan isi field yang kosong!",
-                            icon: "error"
-                        });
                     }
 
                     if(waktuSidang == "Pilih Jam"){
                         $("#errorWaktu").text('Silakan pilih jam sidang.');
                         $("#waktuSidang").addClass('is-invalid');
-    
-                        Swal.fire({
+                    }
+                    Swal.fire({
                             title: "Masih ada field yang kosong!",
                             text: "Silakan isi field yang kosong!",
                             icon: "error"
-                        });
-                    }
+                    });
                 }
+
                 else {
-                    if (pembimbing2 == '-'){
-                        Swal.fire({
-                            title: "3",
-                            text: "3 penguji",
-                            icon: "error"
-                        });
-                    }
-                    else{
-                        Swal.fire({
-                            title: "4",
-                            text: "4 penguji",
-                            icon: "success"
-                        });
-                        // if ($('#kehadiranKetuaPenguji').is(':checked')) {
-                        //     status_ketua = "Ketua Penguji";
-                        //     //alert('Checkbox is checked');
-                        // }
-                        // if ($('#kehadiranDosenPenguji').is(':checked')) {
-                        //     status_penguji = "Anggota Penguji";
-                        // }
-                        // if ($('#kehadiranPembimbing1').is(':checked')) {
-                        //     status_pembimbing1 = "Pembimbing 1";
-                        // }
-                        // if ($('#kehadiranPembimbing2').is(':checked')) {
-                        //     status_pembimbing2 = "Pembimbing 2";
-                        // }
-                        
-                        // $.ajax({
-                        //     url: "ajax/ajax_add_berita_acara.php",
-                        //     method: "POST",
-                        //     data: {
-                        //         judulSkripsi: judulSkripsi,
-                        //         namaMhs: namaMhs,
-                        //         ketuaPenguji: ketuaPenguji,
-                        //         dosenPenguji: dosenPenguji,
-                        //         pembimbing1: pembimbing1,
-                        //         pembimbing2: pembimbing2,
-                        //         tanggalSidang: tanggalSidang,
-                        //         waktuSidang: waktuSidang,
-                        //         ruangSidang: ruangSidang,
-                        //         status_ketua: status_ketua,
-                        //         status_penguji: status_penguji,
-                        //         status_pembimbing1: status_pembimbing1,
-                        //         status_pembimbing2: status_pembimbing2,
-                        //         konsentrasi: konsentrasi,
-                        //         catatanSidang: catatanSidang,
-                        //         tanda: "Insert"
-                        //     },
-                        //     success: function(respond) {                           
-                        //         // console.log(respond);
-                        //         var trim_respond = respond.trim();
-        
-                        //         if (trim_respond == "Berhasil Add!") {
-                        //             console.log(trim_respond);
-                        //             Swal.fire({
-                        //                 title: "Berhasil Add!",
-                        //                 text: "Berita Acara sudah ditambahkan!",
-                        //                 icon: "success"
-                        //             });
-                        //         } 
-                        //         else if (trim_respond == "bentrok") {
-                        //             Swal.fire({
-                        //                 title: "Sudah terpakai!",
-                        //                 text: "Tanggal dan ruang sidang bertabrakan dengan jadwal lain, Silakan pilih jadwal lain!",
-                        //                 icon: "warning"
-                        //             });
-                        //         }
-                        //         else {
-                        //             alert("An unknown response was received: " + trim_respond);
-                        //         }
-                        //     },
-                        //     error: function(respond) {
-                        //         alert(respond);
-                        //     }
-                        // });
-                    }
+                    var jumlah_dosen_isi = 0;
+                    $.ajax({
+                        url: "ajax/ajax_cek_dosen_input.php",
+                        method: "POST",
+                        data: {                                
+                            namaMhs: namaMhs,
+                        },
+                        success: function(respond) {                                                      
+                            jumlah_dosen_isi = respond;
+                            console.log(jumlah_dosen_isi)
+
+                            if (pembimbing2 == '-' && jumlah_dosen_isi < 3){
+                                Swal.fire({
+                                    title: "Nilai belum lengkap!",
+                                    text: "Masih ada tim penguji yang belum menginputkan nilai!",
+                                    icon: "error"
+                                });
+                            }
+                            else if(pembimbing2 != "-" && jumlah_dosen_isi < 4){
+                                Swal.fire({
+                                    title: "Nilai belum lengkap!",
+                                    text: "Masih ada tim penguji yang belum menginputkan nilai!",
+                                    icon: "error"
+                                });
+                            }
+                            else{
+                                if ($('#kehadiranKetuaPenguji').is(':checked')) {
+                                    status_ketua = "Ketua Penguji";
+                                    //alert('Checkbox is checked');
+                                }
+                                if ($('#kehadiranDosenPenguji').is(':checked')) {
+                                    status_penguji = "Anggota Penguji";
+                                }
+                                if ($('#kehadiranPembimbing1').is(':checked')) {
+                                    status_pembimbing1 = "Pembimbing 1";
+                                }
+                                if ($('#kehadiranPembimbing2').is(':checked')) {
+                                    status_pembimbing2 = "Pembimbing 2";
+                                }
+                                
+                                $.ajax({
+                                    url: "ajax/ajax_add_berita_acara.php",
+                                    method: "POST",
+                                    data: {
+                                        judulSkripsi: judulSkripsi,
+                                        namaMhs: namaMhs,
+                                        ketuaPenguji: ketuaPenguji,
+                                        dosenPenguji: dosenPenguji,
+                                        pembimbing1: pembimbing1,
+                                        pembimbing2: pembimbing2,
+                                        tanggalSidang: tanggalSidang,
+                                        waktuSidang: waktuSidang,
+                                        ruangSidang: ruangSidang,
+                                        status_ketua: status_ketua,
+                                        status_penguji: status_penguji,
+                                        status_pembimbing1: status_pembimbing1,
+                                        status_pembimbing2: status_pembimbing2,
+                                        konsentrasi: konsentrasi,
+                                        catatanSidang: catatanSidang,
+                                        tanda: "Insert"
+                                    },
+                                    success: function(respond) {                           
+                                        var trim_respond = respond.trim();
+                
+                                        if (trim_respond == "Berhasil Add!") {
+                                            console.log(trim_respond);
+                                            Swal.fire({
+                                                title: "Berhasil Add!",
+                                                text: "Berita Acara sudah ditambahkan!",
+                                                icon: "success"
+                                            });
+                                        } 
+                                        else if (trim_respond == "bentrok") {
+                                            Swal.fire({
+                                                title: "Sudah terpakai!",
+                                                text: "Tanggal dan ruang sidang bertabrakan dengan jadwal lain, Silakan pilih jadwal lain!",
+                                                icon: "warning"
+                                            });
+                                        }
+                                        else {
+                                            alert("An unknown response was received: " + trim_respond);
+                                        }
+                                    },
+                                    error: function(respond) {
+                                        alert(respond);
+                                    }
+                                });
+                            }
+                        },
+                        error: function(respond){
+                            alert(respond);
+                        }
+                    })          
                 }
             });
         });

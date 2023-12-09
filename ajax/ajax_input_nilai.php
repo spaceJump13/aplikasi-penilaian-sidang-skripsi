@@ -94,10 +94,10 @@ elseif($tanda == 'inputNilai'){
     $already_input = "SELECT * FROM penilaian WHERE mahasiswa LIKE '%$nama_mhs%' AND dosen LIKE '%$nama_dosen%'";
     $check = mysqli_query($conn, $already_input);
 
-    if (mysqli_num_rows($check) >= 1){
+   if (mysqli_num_rows($check) >= 1){
         echo "Sudah pernah input";
-    }
-    else{
+   }
+   else{
         echo "Belum input";
         $sql = "INSERT INTO `penilaian` (`id_penilaian`, `mahasiswa`, `judul_abstrak`, `bab_1_2`, `bab_3_4_sib`,`bab_3_4_infor`, `buku`, `kesimpulan`, `program`, `nilai_akhir`, `dosen`) VALUES 
         (' ', '$nama_mhs', '$judul_dan_abstrakValue', '$bab_1_2', '$bab_3_4_sibValue', '$bab_3_4_inforValue', '$bukuValue', '$bab_5_kesimpulanValue', '$programValue', '$nilai_akhir', '$nama_dosen')";

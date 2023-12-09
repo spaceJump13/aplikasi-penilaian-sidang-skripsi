@@ -186,6 +186,7 @@ $result = $stmt->get_result();
                         <br>
                         <select class="selectpicker listMhs" data-width="350px" aria-label="Default select example" name="nama_mhs" id="nama_mhs" data-live-search="true">
                             <?php
+                                echo "<option>Pilih Mahasiswa</option>";
                                 $dosen_penilai = $nama_dosen;
                                 $sql = "SELECT * FROM data_mahasiswa WHERE team_penguji LIKE '%$dosen_penilai%'";
                                 $result = mysqli_query($conn, $sql);
@@ -195,9 +196,9 @@ $result = $stmt->get_result();
                                         echo '<option value="' . $row['mahasiswa'] . '">' . $row['mahasiswa'] . '</option>';
                                     }
                                 }
-                                else{
-                                    echo "<option>Pilih Mahasiswa</option>";
-                                }
+                                // else{
+                                //     echo "<option>Pilih Mahasiswa</option>";
+                                // }
                             ?>
                         </select>
                     </div>
@@ -205,7 +206,7 @@ $result = $stmt->get_result();
                     <div class="col-lg-4 mb-2">
                         <div id="result_status">
                             <label for=""><h5>Status</h5></label>
-                            <input type="text" name="status_dosen" id="status_dosen" value="-" style="background-color: white; text-align: left;" class="form-control" placeholder="Dosen Penilai" readonly>
+                            <input type="text" name="status_dosen" id="status_dosen" value="-" style="background-color: white; text-align: left;" class="form-control" placeholder="-" readonly>
                         </div>
                     </div>
                 </div>
