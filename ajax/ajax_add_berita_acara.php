@@ -80,6 +80,78 @@ elseif ($tanda == 'Mahasiswa'){
     }
 }
 
+elseif ($tanda == 'nilai dan status'){
+    $nama_mhs = $_POST['nama_mhs'];
+    $nilai_alphabet = '-';
+    $hasil_sidang = '-';
+    $msg = '';
+    $sql = "SELECT * FROM penilaian WHERE mahasiswa LIKE '%$nama_mhs%'";
+    $result = mysqli_query($conn,$sql);
+
+    if (mysqli_num_rows($result) > 0){
+        $total_nilai_akhir = 0;
+        $count = 0;
+
+        while($row = mysqli_fetch_assoc($result)){
+            $nilai_akhir = $row['nilai_akhir'];
+            $total_nilai_akhir += $nilai_akhir;
+            $count++;
+        }
+
+        $avg_nilai_akhir = floatval($total_nilai_akhir / $count);
+
+        switch ($avg_nilai_akhir) {
+            case ($avg_nilai_akhir >= 85.5):
+                $nilai_alphabet = "A";
+                $hasil_sidang = "Lulus";
+                break;
+        
+            case ($avg_nilai_akhir >= 75.5):
+                $nilai_alphabet = "B+";
+                $hasil_sidang = "Lulus";
+                break;
+        
+            case ($avg_nilai_akhir >= 68.5):
+                $nilai_alphabet = "B";
+                $hasil_sidang = "Lulus";
+                break;
+        
+            case ($avg_nilai_akhir >= 60.5):
+                $nilai_alphabet = "C+";
+                $hasil_sidang = "Lulus";
+                break;
+        
+            case ($avg_nilai_akhir >= 55.5):
+                $nilai_alphabet = "C";
+                $hasil_sidang = "Lulus";
+                break;
+        
+            case ($avg_nilai_akhir >= 40.5):
+                $nilai_alphabet = "D";
+                $hasil_sidang = "Tidak Lulus";
+                break;
+        
+            default:
+                $nilai_alphabet = "E";
+                $hasil_sidang = "Tidak Lulus";
+                break;
+        }
+    }
+    else{
+       $msg =  "Nilai belum di input";
+    }
+
+    $response = array(
+        'msg' => $msg,
+        'nilai_alphabet' => $nilai_alphabet,
+        'hasil_sidang' => $hasil_sidang
+    );
+
+    // Send the response as JSON
+    echo json_encode($response);
+    exit;
+}
+
 elseif ($tanda == 'Insert'){
     $judulSkripsi = trim($_POST['judulSkripsi']);
     $namaMhs = $_POST['namaMhs'];
@@ -94,6 +166,8 @@ elseif ($tanda == 'Insert'){
     $ruangSidang = $_POST['ruangSidang'];
     $konsentrasi = $_POST['konsentrasi'];
     $catatanSidang = $_POST['catatanSidang'];
+    $nilai_akhir = $_POST['nilai_akhir'];
+    $hasil_sidang = trim($_POST['hasil_sidang']);
 
     switch($ruangSidang){
         case 1:
@@ -146,8 +220,8 @@ elseif ($tanda == 'Insert'){
 
     if (mysqli_num_rows($result_kejadian) == 0) {
         // Tambahkan data jika tidak ada data yang sama
-        $sql = "INSERT INTO berita_acara (id, nama_nrp, judul_skripsi, konsentrasi, tanggal_sidang, ruang_sidang, ketua_penguji, anggota_penguji, pembimbing_1, pembimbing_2, catatan) 
-        VALUES (' ', '$namaMhs', '$judulSkripsi', '$konsentrasi', '$formattedTime', '$ruangSidang', '$ketuaPenguji', '$dosenPenguji', '$pembimbing1', '$pembimbing2', '$catatanSidang')";
+        $sql = "INSERT INTO berita_acara (id, nama_nrp, judul_skripsi, konsentrasi, tanggal_sidang, ruang_sidang, ketua_penguji, anggota_penguji, pembimbing_1, pembimbing_2, catatan, nilai_akhir, hasil_sidang) 
+        VALUES (' ', '$namaMhs', '$judulSkripsi', '$konsentrasi', '$formattedTime', '$ruangSidang', '$ketuaPenguji', '$dosenPenguji', '$pembimbing1', '$pembimbing2', '$catatanSidang', '$nilai_akhir', '$hasil_sidang')";
         $result = mysqli_query($conn, $sql);
 
         $status_ketua = $_POST['status_ketua'];

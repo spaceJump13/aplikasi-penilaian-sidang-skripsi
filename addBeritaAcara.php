@@ -393,10 +393,10 @@
     
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h5>Nilai Akhir: A</h5>
+                                    <h5>Nilai Akhir: <span id="nilai_alphabet">-</span> </h5>
                                 </div>
                                 <div class="col-lg-6">
-                                    <h5 style="margin-left: 5px;" >Hasil Sidang: Lulus</h5>
+                                    <h5 style="margin-left: 5px;" >Hasil Sidang: <span id="hasil_sidang">-</span> </h5>                                   
                                 </div>
                             </div>
                         </div>
@@ -504,7 +504,7 @@
                     success:function(respond){
                         var response = JSON.parse(respond)
                         var dosen_pembimbing_2 = response.dosen_pembimbing_2
-                        console.log(dosen_pembimbing_2)
+                        // console.log(dosen_pembimbing_2)
                         $("#pembimbing2").val(dosen_pembimbing_2);
                     },
                     error:function(){
@@ -528,6 +528,34 @@
                         var response = JSON.parse(respond)
                         var judul_skripsi = response.judul
                         $("#judul_skripsi").val(judul_skripsi);
+                    },
+                    error:function(){
+                        alert("gagal");
+                    }
+                })
+            })
+
+            // nilai dan status
+            $('#nama_mhs').on('change', function(){
+                var nama_mhs = $(this).val();
+                $.ajax({
+                    url: "ajax/ajax_add_berita_acara.php",
+                    type: "POST",
+                    data:{
+                        tanda: "nilai dan status",
+                        nama_mhs:nama_mhs               
+                    },
+                    success:function(respond){
+                        var response = JSON.parse(respond);
+                        var hasil_sidang = response.hasil_sidang;
+                        $("#hasil_sidang").val(hasil_sidang);
+                        var nilai_alphabet = response.nilai_alphabet;
+                        $("#nilai_alphabet").val(nilai_alphabet)
+                        var colorHasilSidang = hasil_sidang == "Tidak Lulus" ? 'red' : 'green';
+                        var colorNilaiAlphabet = nilai_alphabet == "E" || nilai_alphabet == "D" ? 'red' : 'green'; 
+                        console.log(nilai_alphabet);
+                        $("#hasil_sidang").html("<span style='color: " + colorHasilSidang + "'>" + hasil_sidang + "</span>");
+                        $("#nilai_alphabet").html("<span style='color: " + colorNilaiAlphabet + "'>" + nilai_alphabet + "</span>");
                     },
                     error:function(){
                         alert("gagal");
@@ -601,6 +629,10 @@
                 var status_penguji = "";
                 var status_pembimbing1 = "";
                 var status_pembimbing2 = "";
+                var nilai_akhir = $("#nilai_alphabet").val();
+                var hasil_sidang = $("#hasil_sidang").val();
+                // console.log(nilai_akhir)
+                // console.log(hasil_sidang)
                 $('.error-message').text('');
                 $('.form-control').removeClass('is-invalid');  
 
@@ -693,6 +725,8 @@
                                         status_pembimbing2: status_pembimbing2,
                                         konsentrasi: konsentrasi,
                                         catatanSidang: catatanSidang,
+                                        nilai_akhir: nilai_akhir,
+                                        hasil_sidang: hasil_sidang,
                                         tanda: "Insert"
                                     },
                                     success: function(respond) {                           
