@@ -155,7 +155,7 @@
                     <a class="text-decoration-none" aria-current="page" href="homeDosen.php">Home</a>
                 </li>
                 <li class="nav-link">
-                    <a class="text-decoration-none" href="historySidang.php">Riwayat Sidang</a>
+                    <a class="text-decoration-none" href="riwayatSidang.php">Riwayat Sidang</a>
                 </li>
                 <li class="nav-link">
                     <a class="text-decoration-none" href="input_penilaian.php">Input Nilai</a>

@@ -142,7 +142,7 @@
         <div class="container" style="margin-top: 3em">
             <div id="header1">
                 <p><h1>Welcome,</h1></p>
-                <p><h3><?php echo $nama_dosen;?></h3></p>
+                <p><h3><i><?php echo $nama_dosen;?></i></h3></p>
             </div>
 
             <div class="container">
@@ -164,7 +164,7 @@
                         </div>
 
                         <div class="col-md-4 grid-dashboard">
-                            <div id="file" onclick="window.location.href = 'historySidang.php';">
+                            <div id="file" onclick="window.location.href = 'riwayatSidang.php';">
                                 <p>RIWAYAT SIDANG</p>                                 
                                 <img src="asset/image/file.png">                             
                             </div>

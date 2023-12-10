@@ -105,6 +105,48 @@ $result = $stmt->get_result();
     border-color: #0B6977; 
     }
 
+    .btn.btn-outline-green {
+    color: #fff; 
+    background-color: #1B4242; 
+    border: 3px solid #1B4242; 
+    padding: 8px 16px; 
+    font-weight: 500;
+    border-radius: 5px; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+    }
+   
+    .btn.btn-outline-green:hover {
+    color: #1B4242; 
+    background-color: #fff; 
+    border-color: #1B4242; 
+    }
+
+    .btn.btn-outline-red {
+    color: #fff; 
+    background-color: #B31312; 
+    border: 3px solid #B31312; 
+    padding: 8px 16px; 
+    font-weight: 500;
+    border-radius: 5px; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+    }
+   
+    .btn.btn-outline-red:hover {
+    color: #B31312; 
+    background-color: #fff; 
+    border-color: #B31312; 
+    }
+
     .listMhs{
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
@@ -128,7 +170,7 @@ $result = $stmt->get_result();
                     <a class="text-decoration-none" href="addBeritaAcara.php">Add Berita Acara</a>
                 </li>
                 <li class="nav-link">
-                    <a class="text-decoration-none" href="historySidang.php">Riwayat Sidang</a>
+                    <a class="text-decoration-none" href="riwayatSidang.php">Riwayat Sidang</a>
                 </li>
             </ul>
         </div>
@@ -292,20 +334,17 @@ $result = $stmt->get_result();
                             <h4 id="sum_result"></h4>
                         </div>
                     </div>
-
-                    <!-- <div class="col-lg-4" style="margin-top: 32px; display: none;">
-                        <div id="result2" >
-                            <h4 id="sum_avg_result">Nilai Akhir (Averaged): </h4>
-                        </div>
-                    </div> -->
                 </div>
                 
                 <div class="row mt-4">
                     <div class="col-lg-1">
-                        <button type="button" class="btn btn-outline-ocean" name="hitung" id="hitung">Hitung</button>
+                        <button type="button" class="btn btn-outline-green" name="hitung" id="hitung">Hitung</button>
+                    </div>
+                    <div class="col-lg-1">
+                        <button type="submit" class="btn btn-outline-red">Reset</button>
                     </div>
                     <div class="col-lg-4">
-                        <button type="submit" class="btn btn-outline-ocean" name="input" id="input">Input</button>
+                        <button type="submit" class="btn btn-outline-ocean" name="input" id="input">Input Nilai</button>
                     </div>
                 </div>
             </form>
