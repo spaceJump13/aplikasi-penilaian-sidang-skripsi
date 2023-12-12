@@ -1,16 +1,22 @@
 <?php
     include '../config.php';
 
-    $keyword = $_POST['keyword'];
+    $sql = "SELECT * FROM berita_acara";
+    $keyword = isset($_POST['keyword']) && $_POST['keyword'] != '' ? $_POST['keyword'] : ''; 
+    $periode = isset($_POST['periode']) && $_POST['periode'] != '' ? $_POST['periode'] : "Semua";
 
-    $sql = "SELECT * FROM berita_acara WHERE nama_nrp LIKE '%$keyword%'";
+    $sql .= " WHERE nama_nrp LIKE '%$keyword%'";
+    if ($periode != "Semua")
+        $sql .= " AND tanggal_sidang LIKE '%$periode%'";
+
+    $sql .= " LIMIT 0, 10";
     $result = mysqli_query($conn, $sql);
 ?>
 
     <?php if ($result) : ?>
         <?php if (mysqli_num_rows($result) > 0): ?>
-            <table class="table table-striped">
-                <thead style="background-color:#0B6977; color: whitesmoke;">
+            <table class="table table-striped align-items-center">
+                <thead style="background-color:#0B6977; color: whitesmoke; text-align: center;">
                     <tr>
                         <th>ID</th>
                         <th>Mahasiswa</th>
@@ -25,9 +31,10 @@
                         <th>Catatan</th>
                         <th>Nilai Akhir</th>
                         <th>Hasil Sidang</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="text-align: center;">
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
                         <tr>
                             <td><?php echo $row['id'];?></td>
@@ -43,6 +50,7 @@
                             <td><?php echo $row['catatan'];?></td>
                             <td><?php echo $row['nilai_akhir'];?></td>
                             <td><?php echo $row['hasil_sidang'];?></td>
+                            <td><button class="btn btn-danger">Delete</button></td>
                         </tr>
                 <?php endwhile ?>
                 </tbody>

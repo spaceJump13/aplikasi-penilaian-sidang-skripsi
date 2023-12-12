@@ -11,7 +11,7 @@
         if ($periode != "Semua")
             $sql .= " AND tanggal_sidang LIKE '%$periode%'";
     
-        // $sql .= " LIMIT 0, 10";
+        $sql .= " LIMIT 0, 10";
         $result = mysqli_query($conn, $sql);
     
     
@@ -38,7 +38,7 @@
                         <td><?php echo $row['nomor_vakasi']; ?></td>
                         <td><?php echo $row['nip']; ?></td>
                         <td><?php echo $row['dosen']; ?></td>
-                        <td><?php echo $row['tanggal_sidang']; ?></td>
+                        <td><?php echo date('Y-m-d H:i', strtotime($row['tanggal_sidang'])); ?></td>
                         <td><?php echo $row['ruang_sidang']; ?></td>
                         <td><?php echo $row['nama_mhs']; ?></td>
                         <td><?php echo $row['anggota_penguji']; ?></td>

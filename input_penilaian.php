@@ -473,50 +473,59 @@ $result = $stmt->get_result();
                 var nama_mhs = $('#nama_mhs').val();
 
                 event.preventDefault()
-                $.ajax({
-                    url: "ajax/ajax_input_nilai.php",
-                    type: "POST",
-                    data:{
-                        tanda: "inputNilai",
-                        nama_dosen:nama_dosen,
-                        nama_mhs:nama_mhs,
-                        judul_dan_abstrakValue:judul_dan_abstrakValue,
-                        bab_1_2: bab_1_2,
-                        bab_3_4_sibValue:bab_3_4_sibValue,
-                        bab_3_4_inforValue:bab_3_4_inforValue,
-                        bukuValue:bukuValue,
-                        bab_5_kesimpulanValue:bab_5_kesimpulanValue,
-                        programValue:programValue
-                    },
-                    success:function(respond){
-                        var trim_respond = respond.trim();
-    
-                        if (trim_respond == "Sudah pernah input") {
-                            console.log(trim_respond);
-                            Swal.fire({
-                                title: "Gagal input!",
-                                text: "Anda sudah pernah menginput nilai untuk mahasiswa ini!",
-                                icon: "error"
-                            });
-                        } 
-                        else if (trim_respond == "Belum input") {
-                            Swal.fire({
-                                title: "Berhasil input!",
-                                text: "Nilai sudah ditambahkan!",
-                                icon: "success"
-                            });
+
+                if (nama_mhs == "Pilih Mahasiswa"){
+                    Swal.fire({
+                        title: "Mahasiswa Kosong!",
+                        text: "Silakan Pilih Mahasiswa terlebih dahulu!",
+                        icon: "error"
+                    });
+                }
+                else{
+                    $.ajax({
+                        url: "ajax/ajax_input_nilai.php",
+                        type: "POST",
+                        data:{
+                            tanda: "inputNilai",
+                            nama_dosen:nama_dosen,
+                            nama_mhs:nama_mhs,
+                            judul_dan_abstrakValue:judul_dan_abstrakValue,
+                            bab_1_2: bab_1_2,
+                            bab_3_4_sibValue:bab_3_4_sibValue,
+                            bab_3_4_inforValue:bab_3_4_inforValue,
+                            bukuValue:bukuValue,
+                            bab_5_kesimpulanValue:bab_5_kesimpulanValue,
+                            programValue:programValue
+                        },
+                        success:function(respond){
+                            var trim_respond = respond.trim();
+        
+                            if (trim_respond == "Sudah pernah input") {
+                                console.log(trim_respond);
+                                Swal.fire({
+                                    title: "Sudah Input!",
+                                    text: "Anda sudah pernah menginput nilai untuk mahasiswa ini!",
+                                    icon: "error"
+                                });
+                            } 
+                            else if (trim_respond == "Belum input") {
+                                Swal.fire({
+                                    title: "Berhasil input!",
+                                    text: "Nilai sudah ditambahkan!",
+                                    icon: "success"
+                                });
+                            }
+                            else {
+                                alert("An unknown response was received: " + trim_respond);
+                            }
+                        },
+                        error:function(){
+                            alert("gagal");
                         }
-                        else {
-                            alert("An unknown response was received: " + trim_respond);
-                        }
-                    },
-                    error:function(){
-                        alert("gagal");
-                    }
-                })
+                    })
+                }
             })
         });
-
     </script>
 </body>
 </html>

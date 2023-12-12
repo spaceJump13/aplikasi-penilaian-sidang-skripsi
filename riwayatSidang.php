@@ -7,18 +7,21 @@ if(!isset($_SESSION['login'])){
 }
 
 $nama_dosen = $_SESSION['username'];
-$sql = "SELECT * FROM vakasi WHERE dosen LIKE '%$nama_dosen%'";
+$sql = "SELECT * FROM data_dosen WHERE nama LIKE '%$nama_dosen%'";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if (mysqli_num_rows($result) > 0){
     $row = mysqli_fetch_assoc($result);
-    $nama_dosen2 = $row['dosen'];
+    $nama_dosen2 = $row['nama'];
+}
+else{
+    $nama_dosen2 = "Unknown ?";
 }
 
 $sql2 = "SELECT * FROM vakasi WHERE dosen LIKE '%$nama_dosen%'";
-$stmt2 = $conn->prepare($sql);
+$stmt2 = $conn->prepare($sql2);
 $stmt2->execute();
 $result2 = $stmt2->get_result();
 
@@ -188,7 +191,7 @@ $result2 = $stmt2->get_result();
                             <?php else: ?>
                                 <tbody style="text-align: center;">
                                     <tr>
-                                        <td colspan="4"><h3 style="text-align: center; color:#0B6977;">Tidak ada data.</h3></td>
+                                        <td colspan="4"><h3 style="text-align: center; color:red;">Tidak ada data.</h3></td>
                                     </tr>
                                 </tbody>
                             <?php endif ?>

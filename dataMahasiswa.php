@@ -209,6 +209,9 @@ if (isset($_POST["import"])) {
                 <li class="nav-link">
                     <a class="text-decoration-none" href="beritaAcara.php">Berita Acara</a>
                 </li>
+                <li class="nav-link">
+                    <a class="text-decoration-none" href="aturBobot.php">Atur Kriteria Penilaian</a>
+                </li>
             </ul>
         </div>
 

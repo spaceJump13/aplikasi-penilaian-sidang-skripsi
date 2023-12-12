@@ -72,8 +72,8 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="row sm-1" id="title_bobot" onclick="window.location.href = '#';">
-                            <p>ATUR BOBOT NILAI</p>
+                        <div class="row sm-1" id="title_bobot" onclick="window.location.href = 'aturBobot.php';">
+                            <p>ATUR KRITERIA NILAI</p>
                             <div class="row md-3" id="percent">
                                 <img style="padding-top: 10px;" src="asset/image/percent.png">
                         </div>

@@ -1,8 +1,8 @@
 <?php
 include 'config.php';
 
-$sql = "SELECT * FROM berita_acara";
-$result_berita_acara = mysqli_query($conn, $sql);
+$sql = "SELECT * FROM kriteria_penilaian";
+$result_kriteria = mysqli_query($conn, $sql);
 
 ?>
 
@@ -16,7 +16,7 @@ $result_berita_acara = mysqli_query($conn, $sql);
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="navbar.css">
-    <title>Berita Acara</title>
+    <title>Atur Bobot Nilai</title>
 </head>
 <style>
     .checkbox-lg .form-check-input{
@@ -73,6 +73,27 @@ $result_berita_acara = mysqli_query($conn, $sql);
         border-color: #0B6977; 
     }
 
+    .btn.btn-outline-sage {
+        color: #fff; 
+        background-color: #527853; 
+        border: 3px solid #527853; 
+        padding: 8px 16px; 
+        font-weight: 500;
+        border-radius: 5px; 
+        text-decoration: none; 
+        display: inline-block; 
+        font-size: 16px; 
+        text-align: center; 
+        cursor: pointer; 
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+    }
+   
+    .btn.btn-outline-sage:hover {
+        color: #527853; 
+        background-color: #fff; 
+        border-color: #527853; 
+    }
+
     .btn.btn-outline-red {
         color: #fff; 
         background-color: #B31312; 
@@ -114,7 +135,7 @@ $result_berita_acara = mysqli_query($conn, $sql);
                     <a class="text-decoration-none" href="dataMahasiswa.php">Data Mahasiswa</a>
                 </li>
                 <li class="nav-link">
-                    <a class="text-decoration-none" href="aturBobot.php">Atur Kriteria Penilaian</a>
+                    <a class="text-decoration-none" href="beritaAcara.php">Berita Acara</a>
                 </li>
             </ul>
         </div>
@@ -142,113 +163,64 @@ $result_berita_acara = mysqli_query($conn, $sql);
         <div class="container-lg">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 style="text-align: center; color: #0B6977" class="text-uppercase">berita acara</h1>
+                    <h1 style="text-align: center; color: #0B6977" class="text-uppercase">kriteria penilaian</h1>
                 </div>
             </div>
         </div>
 
-        <form action="" method="POST">
-            <div class="row mt-4">
-                <div class="col-lg-3">
-                    <div class="input-group mb-3" style="margin-top: 30px;">
-                        <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
-                    </div>
-                </div>
-    
-                <div class="col-lg-3">
-                    <button type="submit" class="btn btn-outline-ocean" style="margin-top: 30px;">Search</button>
-                </div>
-
-                <div class="col-lg-6">
-                    <div style="float: right;">
-                    <select class="form-select" name="periode" id="periode" class="Default select example" style="margin-top: 30px;">
-                        <option selected value="Semua">Semua</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                        <option value="2020">2020</option>
-                        <option value="2019">2019</option>
-                    </select>
-                    </div>
-                </div>
-            </div>
-        </form>
-
         <div class="row mt-4">
             <div class="col-lg-12">
-                <?php
-                    $rowsPerPage = 10;
-                    $totalPages = ceil(mysqli_num_rows($result_berita_acara) / $rowsPerPage);
-                    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-                    $offset = ($current_page - 1) * $rowsPerPage;
-                    $query = "SELECT * FROM berita_acara LIMIT $offset, $rowsPerPage";
-                    $result_berita_acara = mysqli_query($conn, $query);
-                ?>
                 <div id="searchResult">
                     <table class="mx-auto table table-striped">
                         <thead style="background-color:#0B6977; color: whitesmoke; text-align: center;">
                             <tr>
-                                <th>ID</th>
-                                <th>Mahasiswa</th>
-                                <th>Judul Skripsi</th>
-                                <th>Konsentrasi</th>
-                                <th>Tanggal Sidang</th>
-                                <th>Ruang Sidang</th>
-                                <th>Ketua Penguji</th>
-                                <th>Anggota Penguji</th>
-                                <th>Pembimbing 1</th>
-                                <th>Pembimbing 2</th>
-                                <th>Catatan</th>
-                                <th>Nilai Akhir</th>
-                                <th>Hasil Sidang</th>
-                                <th>Action</th>
+                                <th style="width: 70px;">CPL</th>
+                                <th>IK</th>
+                                <th>Deskripsi IK</th>
+                                <th>Bab</th>
+                                <th>Penilaian</th>
+                                <th>Bobot</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                     
                         <tbody style="text-align: center;">
-                            <?php if (mysqli_num_rows($result_berita_acara) > 0): ?>
-                                <?php while($row = mysqli_fetch_assoc($result_berita_acara)): ?>
+                            <?php if (mysqli_num_rows($result_kriteria) > 0): ?>
+                                <?php while($row = mysqli_fetch_assoc($result_kriteria)): ?>
                                 <tr>
-                                    <td><?php echo $row['id'];?></td>
-                                    <td><?php echo $row['nama_nrp'];?></td>
-                                    <td><?php echo $row['judul_skripsi'];?></td>
-                                    <td><?php echo $row['konsentrasi'];?></td>
-                                    <td><?php echo date('Y-m-d H:i', strtotime($row['tanggal_sidang'])); ?></td>
-                                    <td><?php echo $row['ruang_sidang'];?></td>
-                                    <td><?php echo $row['ketua_penguji'];?></td>
-                                    <td><?php echo $row['anggota_penguji'];?></td>
-                                    <td><?php echo $row['pembimbing_1'];?></td>
-                                    <td><?php echo $row['pembimbing_2'];?></td>
-                                    <td><?php echo $row['catatan'];?></td>
-                                    <td><?php echo $row['nilai_akhir'];?></td>
-                                    <td><?php echo $row['hasil_sidang'];?></td>
+                                    <td><?php echo $row['cpl'];?></td>
+                                    <td><?php echo $row['ik'];?></td>
+                                    <td><?php echo $row['deskripsi_ik'];?></td>
+                                    <td><?php echo $row['bab'];?></td>
+                                    <td><?php echo $row['penilaian'];?></td>
+                                    <td><?php echo $row['bobot'];?></td>
+                                    <td><button class="btn btn-outline-sage">Edit</button></td>
                                     <td>
-                                        <button class="btn btn-outline-red delete-btn" data-id="<?php echo $row['id']; ?>" >Delete</button>
+                                        <button class="btn btn-outline-red delete-btn" data-id="<?php echo $row['id_kriteria']; ?>" >Delete</button>
                                     </td>
                                 </tr>
                                 <?php endwhile ?>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="13"><h4 style="color: #0B6977;">Tidak ada data.</h4></td>
+                                    <td colspan="9"><h4 style="color: #0B6977;">Tidak ada data.</h4></td>
                                 </tr>
                             <?php endif ?>
                         </tbody>
                     </table>
                 </div>
-                <ul class="pagination justify-content-center">
-                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                        <li class="page-item <?php echo ($current_page == $i ? 'active' : ''); ?>">
-                            <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                        </li>
-                    <?php endfor; ?>
-                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-2">
+            <div class="col-lg-12 d-flex justify-content-end">
+                <a href="addKriteriaPage.php" class="text-decoration-none"><button class="btn btn-outline-ocean">Add Kriteria</button></a>
             </div>
         </div>
     </div>
 </body>
 <script>
     $(document).ready(function(){
-
         $('.delete-btn').on('click', function(){
             var recordId = $(this).data("id");
             console.log(recordId)
@@ -263,48 +235,7 @@ $result_berita_acara = mysqli_query($conn, $sql);
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Redirect to delete script or make an AJAX call to delete the record
-                    window.location.href = "deleteBeritaAcara.php?id=" + recordId;
-                }
-            });
-        })
-        
-        $('#keyword').on('keyup', function(){
-            var keyword = $('#keyword').val();
-            var periode = $('#periode').val();
-            console.log(keyword);
-            $.ajax({
-                url: "ajax/ajax_berita_acara.php",
-                type: "POST",
-                data: {
-                    keyword: keyword,
-                    periode: periode
-                },
-                success: function(respond) {
-                    // console.log(respond);
-                    $("#searchResult").html(respond);
-                },
-                error: function() {
-                    alert("gagal");
-                }
-            });
-        })
-
-        $('#periode').on('change', function(){
-            var periode = $('#periode').val();
-            var keyword = $('#keyword').val();
-            console.log(periode);
-            $.ajax({
-                url: "ajax/ajax_berita_acara.php",
-                type: "POST",
-                data: {
-                    periode: periode,
-                    keyword: keyword,
-                },
-                success: function(respond) {
-                    $("#searchResult").html(respond);
-                },
-                error: function() {
-                    alert("gagal");
+                    window.location.href = "deleteKriteria.php?id=" + recordId;
                 }
             });
         })

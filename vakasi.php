@@ -2,7 +2,7 @@
 include 'config.php';
 
 $sql = "SELECT * FROM vakasi";
-$result = mysqli_query($conn, $sql);
+$result_vakasi = mysqli_query($conn, $sql);
 
 ?>
 
@@ -70,6 +70,9 @@ $result = mysqli_query($conn, $sql);
                 <li class="nav-link">
                     <a class="text-decoration-none" href="dataMahasiswa.php">Data Mahasiswa</a>
                 </li>
+                <li class="nav-link">
+                    <a class="text-decoration-none" href="aturBobot.php">Atur Kriteria Penilaian</a>
+                </li>
             </ul>
         </div>
 
@@ -134,6 +137,14 @@ $result = mysqli_query($conn, $sql);
         
         <div class="row">
             <div class="col-lg-12 mt-4">
+                <?php
+                    $rowsPerPage = 10;
+                    $totalPages = ceil(mysqli_num_rows($result_vakasi) / $rowsPerPage);
+                    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                    $offset = ($current_page - 1) * $rowsPerPage;
+                    $query = "SELECT * FROM vakasi LIMIT $offset, $rowsPerPage";
+                    $result_vakasi = mysqli_query($conn, $query);
+                ?>
                 <div id="searchResult">
                     <table class="mx-auto table table-striped">
                         <thead style="background-color:#0B6977; color: whitesmoke; text-align: center;">
@@ -147,8 +158,8 @@ $result = mysqli_query($conn, $sql);
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <?php if (mysqli_num_rows($result) > 0): ?>
-                            <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                        <?php if (mysqli_num_rows($result_vakasi) > 0): ?>
+                            <?php while ($row = mysqli_fetch_assoc($result_vakasi)): ?>
                             <tbody style="text-align: center;">
                                 <tr>
                                     <td><?php echo $row['nomor_vakasi']; ?>
@@ -170,6 +181,13 @@ $result = mysqli_query($conn, $sql);
                         <?php endif ?>
                     </table>
                 </div>
+                <ul class="pagination justify-content-center">
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <li class="page-item <?php echo ($current_page == $i ? 'active' : ''); ?>">
+                            <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                        </li>
+                    <?php endfor; ?>
+                </ul>
             </div>
         </div>
     </div>
