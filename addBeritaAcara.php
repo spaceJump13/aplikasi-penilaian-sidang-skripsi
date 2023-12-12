@@ -738,6 +738,10 @@
                                                 title: "Berhasil Add!",
                                                 text: "Berita Acara sudah ditambahkan!",
                                                 icon: "success"
+                                            }).then((result) => {
+                                                if (result.isConfirmed){
+                                                    location.reload()
+                                                }
                                             });
                                         } 
                                         else if (trim_respond == "bentrok") {

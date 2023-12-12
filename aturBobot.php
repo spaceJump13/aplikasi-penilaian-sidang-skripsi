@@ -11,8 +11,8 @@ $result_kriteria = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="navbar.css">
@@ -195,7 +195,19 @@ $result_kriteria = mysqli_query($conn, $sql);
                                     <td><?php echo $row['bab'];?></td>
                                     <td><?php echo $row['penilaian'];?></td>
                                     <td><?php echo $row['bobot'];?></td>
-                                    <td><button class="btn btn-outline-sage">Edit</button></td>
+                                    <td>
+                                    <button class="btn btn-outline-sage edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" 
+                                        data-id="<?php echo $row['id_kriteria']; ?>" 
+                                        data-cpl="<?php echo $row['cpl']; ?>" 
+                                        data-ik="<?php echo $row['ik']; ?>" 
+                                        data-desc_ik="<?php echo $row['deskripsi_ik']; ?>" 
+                                        data-bab="<?php echo $row['bab']; ?>" 
+                                        data-bobot="<?php echo $row['bobot']; ?>" 
+                                        data-penilaian="<?php echo $row['penilaian']; ?>">
+                                        Edit
+                                    </button>
+
+                                    </td>
                                     <td>
                                         <button class="btn btn-outline-red delete-btn" data-id="<?php echo $row['id_kriteria']; ?>" >Delete</button>
                                     </td>
@@ -208,6 +220,61 @@ $result_kriteria = mysqli_query($conn, $sql);
                             <?php endif ?>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="max-width: 40%;">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Kriteria Penilaian</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST">
+
+                        <label for="modal-cpl"><h5>CPL</h5></label>
+                        <input type="text" name="modal-cpl" id="modal-cpl" class="form-control" placeholder="CPL">
+                        
+                        <div style="display: none;">
+                            <label for="modal-id"><h5>ID</h5></label>
+                            <input type="text" name="modal-id" id="modal-id" class="form-control" placeholder="id">
+                        </div>
+                        
+                        <div class="mt-3">
+                            <label for="modal-ik"><h5>IK</h5></label>
+                            <input type="number" step="0.1" name="modal-ik" id="modal-ik" class="form-control" placeholder="0,1">
+                        </div>
+                        
+                        <div class="mt-3">
+                            <label for="modal-desc_ik"><h5>Deskripsi IK</h5></label>
+                            <textarea class="form-control" name="modal-desc_ik" id="modal-desc_ik" rows="3" placeholder="Deskripsi"></textarea>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <label for="modal-cpl"><h5>Bab</h5></label>
+                            <input type="text" name="modal-bab" id="modal-bab" class="form-control" placeholder="Bab">
+                        </div>
+                        
+                        <div class="mt-3">
+                            <label for="modal-bobot"><h5>Bobot</h5></label>
+                            <input type="number" step="0.01" name="modal-bobot" id="modal-bobot" class="form-control" placeholder="0,01">
+                        </div>
+                        
+                        <div class="mt-3 mb-3">
+                            <label for="modal-penilaian"><h5>Penilaian</h5></label>
+                            <textarea class="form-control" name="penilaian" id="modal-penilaian" rows="3" placeholder="Penilaian"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-red" data-bs-dismiss="modal">Close</button>
+                    <!-- <a href="editKriteria.php?id="data-id" class="btn btn-outline-sage" id="saveEditButton">Save Edit</a> -->
+                    <!-- <a href="ajax_editKriteria.php?id=" data-id="" id="saveEditButton" class="btn btn-outline-sage">Save Edit</a> -->
+                    <button class="btn btn-outline-sage" id="saveEditButton">Save Edit</button>
+                </div>
                 </div>
             </div>
         </div>
@@ -239,6 +306,84 @@ $result_kriteria = mysqli_query($conn, $sql);
                 }
             });
         })
+
+        $('.edit-btn').on('click', function() {
+            var modal = $('#editModal');
+            var id = $(this).data('id');
+            var cpl = $(this).data('cpl');
+            var ik = $(this).data('ik');
+            var desc_ik = $(this).data('desc_ik');
+            var bab = $(this).data('bab');
+            var bobot = $(this).data('bobot');
+            var penilaian = $(this).data('penilaian');
+
+            // Update modal content
+            modal.find('#modal-id').val(id);
+            modal.find('#modal-cpl').val(cpl);
+            modal.find('#modal-ik').val(ik);
+            modal.find('#modal-desc_ik').val(desc_ik);
+            modal.find('#modal-bab').val(bab);
+            modal.find('#modal-bobot').val(bobot);
+            modal.find('#modal-penilaian').val(penilaian);
+
+            console.log(cpl)
+            console.log(id)
+
+            // var saveEditButton = $('#saveEditButton');
+            // saveEditButton.attr('href', 'editKriteria.php?id=' + id);
+        });
+
+        $('#saveEditButton').on('click', function() {
+            var modal_id = $('#modal-id').val();
+            var updated_cpl = $('#modal-cpl').val();
+            var updated_ik = $('#modal-ik').val();
+            var updated_desc_ik = $('#modal-desc_ik').val();
+            var updated_bab = $('#modal-bab').val();
+            var updated_bobot = $('#modal-bobot').val();
+            var updated_penilaian = $('#modal-penilaian').val();
+            console.log(modal_id);
+
+            $.ajax({
+                url: "ajax/ajax_editKriteria.php",
+                method: "POST",
+                data: {
+                    id_kriteria: modal_id,
+                    updated_cpl: updated_cpl,
+                    updated_ik: updated_ik,
+                    updated_desc_ik: updated_desc_ik,
+                    updated_bab: updated_bab,
+                    updated_bobot: updated_bobot,
+                    updated_penilaian: updated_penilaian
+                },
+                success: function(respond) {
+                    var trim_respond = respond.trim();
+
+                    if(trim_respond == "berhasil"){
+                        Swal.fire({
+                            title: "Berhasil",
+                            text: "Perubahan telah disimpan!",
+                            icon: "success"
+                        }).then((result) => {
+                            // Check if the user clicked "OK"
+                            if (result.isConfirmed) {
+                                // Refresh the page
+                                location.reload();
+                            }
+                        });
+                    }
+                    else{
+                        Swal.fire({
+                            title: "Gagal",
+                            text: "Terjadi kesalahan!",
+                            icon: "error"
+                        });
+                    }
+                },
+                error: function() {
+                    alert("gagal");
+                }
+            })
+        });
     })
 </script>
 </html>

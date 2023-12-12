@@ -513,6 +513,10 @@ $result = $stmt->get_result();
                                     title: "Berhasil input!",
                                     text: "Nilai sudah ditambahkan!",
                                     icon: "success"
+                                }).then((result) => {
+                                    if (result.isConfirmed){
+                                        location.reload()
+                                    }
                                 });
                             }
                             else {
