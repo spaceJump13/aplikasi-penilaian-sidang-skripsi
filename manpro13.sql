@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Nov 2023 pada 11.54
+-- Waktu pembuatan: 13 Des 2023 pada 11.26
 -- Versi server: 10.4.25-MariaDB
 -- Versi PHP: 8.1.10
 
@@ -39,7 +39,7 @@ CREATE TABLE `berita_acara` (
   `pembimbing_1` varchar(200) DEFAULT NULL,
   `pembimbing_2` varchar(200) DEFAULT NULL,
   `catatan` varchar(200) DEFAULT NULL,
-  `nilai_akhir` int(10) DEFAULT NULL,
+  `nilai_akhir` varchar(10) DEFAULT NULL,
   `hasil_sidang` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -48,7 +48,8 @@ CREATE TABLE `berita_acara` (
 --
 
 INSERT INTO `berita_acara` (`id`, `nama_nrp`, `judul_skripsi`, `konsentrasi`, `tanggal_sidang`, `ruang_sidang`, `ketua_penguji`, `anggota_penguji`, `pembimbing_1`, `pembimbing_2`, `catatan`, `nilai_akhir`, `hasil_sidang`) VALUES
-(1, 'C14190008 RYAN JONATHAN SUGIHARTO', 'Project Management Mobile Application untuk meningkatkan Efisiensi dan Monitoring pegawai di PT. Indoserako Sejahtera', 'Mobile Application Development', '2023-11-22 16:00:00.000000', 'P308', 'SILVIA ROSTIANINGSIH, S.Kom., M.MT.', 'Dr. ANDREAS HANDOJO, S.T., M.MT.', 'JUSTINUS ANDJARWIRAWAN, S.T.,M.Eng.', 'ALVIN NATHANIEL TJONDROWIGUNO, S.Kom., M.T.', '', NULL, NULL);
+(5, 'C14190126 ALVIN WISANA', 'Sistem Informasi pada Laundry X', 'Enterprise Information System', '2023-12-12 11:30:00.000000', 'P309', 'SILVIA ROSTIANINGSIH, S.Kom., M.MT.', 'HANS JUWIANTHO, S.Kom., M.Kom.', 'ALEXANDER SETIAWAN, S.Kom., M.T.', '-', 'Sudah bagus', 'B+', 'Lulus'),
+(8, 'C14190050 JIMLEE CHRISTANTO WIDJAYA', 'Metode ARIMA, SARIMA, dan ARIMAX Untuk Memprediksi Temporal Hourly-Based Solar Photovoltaics Output di Jawa-Bali', 'AI', '2023-12-11 14:00:00.000000', 'P309', 'Dr. ANDREAS HANDOJO, S.T., M.MT.', 'HENRY NOVIANUS PALIT, S.Kom., M.Kom., Ph.D.', 'Dr. GREGORIUS SATIA BUDHI, S.T., M.T.', 'YUSAK TANOTO, S.T., M.Eng., Ph.D.', 'Sudah Bagus', 'B+', 'Lulus');
 
 -- --------------------------------------------------------
 
@@ -57,7 +58,7 @@ INSERT INTO `berita_acara` (`id`, `nama_nrp`, `judul_skripsi`, `konsentrasi`, `t
 --
 
 CREATE TABLE `data_dosen` (
-  `nip` int(10) NOT NULL,
+  `nip` varchar(10) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `jabatan` varchar(100) NOT NULL,
   `jurusan` varchar(100) NOT NULL
@@ -68,36 +69,36 @@ CREATE TABLE `data_dosen` (
 --
 
 INSERT INTO `data_dosen` (`nip`, `nama`, `jabatan`, `jurusan`) VALUES
-(1, 'ADI WIBOWO, S.T., M.T., Ph.D.', 'Kepala Prodi', 'Informatika'),
-(2, 'SILVIA ROSTIANINGSIH, S.Kom., M.MT.', 'Sekretaris Prodi', 'Informatika'),
-(3, 'YULIA, S.T., M.Kom.', 'Wakil Prodi', 'SIB'),
-(4, 'LILY PUSPA DEWI, S.T., M.Kom.', 'Dosen Pembimbing Kegiatan', 'SIB'),
-(5, 'Dr. ANDREAS HANDOJO, S.T., M.MT.', 'Pengajar', 'Informatika'),
-(6, 'STEPHANUS A. ANANDA, S.T., M.Sc. Ph.D.', 'Kepala Lab', 'Informatika'),
-(7, 'Ir. KARTIKA GUNADI, M.T.', 'Pengajar', 'Informatika'),
-(8, 'AGUSTINUS NOERTJAHYANA, S.Kom., M.MT.', 'Pengajar', 'Informatika'),
-(9, 'JUSTINUS ANDJARWIRAWAN, S.T.,M.Eng.', 'Pengajar', 'Informatika'),
-(10, 'Ir. DJONI HARYADI SETIABUDI, M.Eng.', 'Pengajar', 'Informatika'),
-(11, 'LEO WILLYANTO SANTOSO, S.Kom., M.IT.', 'Pengajar', 'SIB'),
-(12, 'HENRY NOVIANUS PALIT, S.Kom., M.Kom., Ph.D.', 'Pengajar', 'DSA'),
-(13, 'ALEXANDER SETIAWAN, S.Kom., M.T.', 'Pengajar', 'SIB'),
-(14, 'HANS JUWIANTHO, S.Kom., M.Kom.', 'Pengajar', 'Infor'),
-(15, 'SINGGIH MARDIANTO SOEPHOMO, S.Kom.', 'Pengajar', 'Infor'),
-(16, 'RUDY ADIPRANATA, S.T, M.Eng.', 'Pengajar', 'Infor'),
-(17, 'ANDHIKA EVANTIA IRAWAN, S.Kom.', 'Pengajar', 'Infor'),
-(18, 'Dr. GREGORIUS SATIA BUDHI, S.T., M.T.', 'Pengajar', 'Infor'),
-(19, 'YUSAK TANOTO, S.T., M.Eng., Ph.D.', 'Pengajar', 'Infor'),
-(20, 'ALVIN NATHANIEL TJONDROWIGUNO, S.Kom., M.T.', 'Pengajar', 'Infor'),
-(21, 'Dr.Ing. INDAR SUGIARTO, S.T., M.Sc.', 'Pengajar', 'Infor'),
-(22, 'ANDRE GUNAWAN, S.Kom.', 'Pengajar', 'Infor'),
-(23, 'Ir. RESMANA LIM, M.Eng.', 'Pengajar', 'Infor'),
-(24, 'IVAN WIDIYANTO, S.Kom., M.MT.', 'Pengajar', 'Infor'),
-(25, 'TANTI OCTAVIA, S.T., M.Eng.', 'Pengajar', 'SIB'),
-(26, 'Ir. ENDANG SETYATI, M.T., DR.', 'Pengajar', 'Infor'),
-(27, 'Prof. Dr.(H.C.) Ir. ROLLY INTAN, M.A.Sc., Dr.Eng.', 'Pengajar', 'Infor'),
-(28, 'KRISNA WAHYUDI, S.Kom., M.T.', 'Pengajar', 'Infor'),
-(29, 'LILIANA, S.T., M.Eng., Ph.D.', 'Pengajar', 'Infor'),
-(30, 'I GEDE AGUS WIDYADANA, S.T., M.Eng., Ph.D.', 'Pengajar', 'Infor');
+('001', 'ADI WIBOWO, S.T., M.T., Ph.D.', 'Kepala Prodi', 'Informatika'),
+('002', 'SILVIA ROSTIANINGSIH, S.Kom., M.MT.', 'Sekretaris Prodi', 'Informatika'),
+('003', 'YULIA, S.T., M.Kom.', 'Wakil Prodi', 'SIB'),
+('004', 'LILY PUSPA DEWI, S.T., M.Kom.', 'Dosen Pembimbing Kegiatan', 'SIB'),
+('005', 'Dr. ANDREAS HANDOJO, S.T., M.MT.', 'Pengajar', 'Informatika'),
+('006', 'STEPHANUS A. ANANDA, S.T., M.Sc. Ph.D.', 'Kepala Lab', 'Informatika'),
+('007', 'Ir. KARTIKA GUNADI, M.T.', 'Pengajar', 'Informatika'),
+('008', 'AGUSTINUS NOERTJAHYANA, S.Kom., M.MT.', 'Pengajar', 'Informatika'),
+('009', 'JUSTINUS ANDJARWIRAWAN, S.T.,M.Eng.', 'Pengajar', 'Informatika'),
+('010', 'Ir. DJONI HARYADI SETIABUDI, M.Eng.', 'Pengajar', 'Informatika'),
+('011', 'LEO WILLYANTO SANTOSO, S.Kom., M.IT.', 'Pengajar', 'SIB'),
+('012', 'HENRY NOVIANUS PALIT, S.Kom., M.Kom., Ph.D.', 'Pengajar', 'DSA'),
+('013', 'ALEXANDER SETIAWAN, S.Kom., M.T.', 'Pengajar', 'SIB'),
+('014', 'HANS JUWIANTHO, S.Kom., M.Kom.', 'Pengajar', 'Infor'),
+('015', 'SINGGIH MARDIANTO SOEPHOMO, S.Kom.', 'Pengajar', 'Infor'),
+('016', 'RUDY ADIPRANATA, S.T, M.Eng.', 'Pengajar', 'Infor'),
+('017', 'ANDHIKA EVANTIA IRAWAN, S.Kom.', 'Pengajar', 'Infor'),
+('018', 'Dr. GREGORIUS SATIA BUDHI, S.T., M.T.', 'Pengajar', 'Infor'),
+('019', 'YUSAK TANOTO, S.T., M.Eng., Ph.D.', 'Pengajar', 'Infor'),
+('020', 'ALVIN NATHANIEL TJONDROWIGUNO, S.Kom., M.T.', 'Pengajar', 'Infor'),
+('021', 'Dr.Ing. INDAR SUGIARTO, S.T., M.Sc.', 'Pengajar', 'Infor'),
+('022', 'ANDRE GUNAWAN, S.Kom.', 'Pengajar', 'Infor'),
+('023', 'Ir. RESMANA LIM, M.Eng.', 'Pengajar', 'Infor'),
+('024', 'IVAN WIDIYANTO, S.Kom., M.MT.', 'Pengajar', 'Infor'),
+('025', 'TANTI OCTAVIA, S.T., M.Eng.', 'Pengajar', 'SIB'),
+('026', 'Ir. ENDANG SETYATI, M.T., DR.', 'Pengajar', 'Infor'),
+('027', 'Prof. Dr.(H.C.) Ir. ROLLY INTAN, M.A.Sc., Dr.Eng.', 'Pengajar', 'Infor'),
+('028', 'KRISNA WAHYUDI, S.Kom., M.T.', 'Pengajar', 'Infor'),
+('029', 'LILIANA, S.T., M.Eng., Ph.D.', 'Pengajar', 'Infor'),
+('030', 'I GEDE AGUS WIDYADANA, S.T., M.Eng., Ph.D.', 'Pengajar', 'Infor');
 
 -- --------------------------------------------------------
 
@@ -271,11 +272,11 @@ CREATE TABLE `kriteria_penilaian` (
 INSERT INTO `kriteria_penilaian` (`id_kriteria`, `cpl`, `ik`, `deskripsi_ik`, `bab`, `penilaian`, `bobot`) VALUES
 (1, 'CP 9', 9.3, 'Menganalisis data secara logis, kritis, sistematis, dan inovatif', 'JUDUL dan ABSTRAK dan BAB 1-2', 'Memenuhi 3 kriteria metode, tujuan, obyek, dapat menyebutkan yang mana masing2. abstrak berisi  rangkuman problem, solusi dan kesimpulan', 0.05),
 (2, 'CP 9', 9.3, 'Menganalisis data secara logis, kritis, sistematis, dan inovatif', 'BAB 1-2', 'Latar belakang berisi detail problem, review singkat solusi dari peneliti sebelumnya, apa yang dikerjakan di skripsi ini; perumusan masalah berisi hipotesis; ruang lingkup selain apa yang dikerjakan, ', 0.1),
-(3, 'CP 4', 4.4, 'Mengkonstruksi algoritma dan/atau program yang efektif untuk menyelesaikan masalah', 'BAB 3 dan BAB 4', 'Infor : studi kelayakan, pengamatan awal, analisa masalah, kerangka pemikiran. penjabaran solusi yang diusulkan dan penjelasan mengapa solusi tersebut dianggap dapat menyelesaikan masalah. Bagaimana m', 0.25),
-(4, 'CP 7', 7.4, 'Membangun sistem informasi atau aplikasi bisnis untuk mendukung tercapainya tujuan organisasi', 'BAB 3 dan BAB 4', 'SIB : studi kelayakan, pengamatan awal, analisa masalah, kerangka pemikiran. Rancangan solusi dalam bentuk desain. Kesesuaian desain dengan kebutuhan proses bisnis yang nyata.', 0.25),
-(5, 'CP 9', 9.3, 'Menganalisis data secara logis, kritis, sistematis, dan inovatif', 'BUKU', 'penulisan buku laporan yang runut dan lengkap. Tata bahasa baku dengan gaya bahasa laporan ilmiah. Sejauh mana daftar pustaka sudah dicek bahwa semua item benar2 dikutip di bab2 sebelumnya, bukan seke', 0.1),
-(6, 'CP 8', 8.3, 'Menganalisis data secara logis, kritis, sistematis, dan inovatif', 'BAB 5 dan KESIMPULAN', '- merancang pengujian (bab 5). apakah langkah-langkah pengujian sistem serta hasil pengujian telah dijabarkan secara jelas lengkap (bilamana perlu dilengkapi dengan grafik, tabel, pembuktian. apakah l', 0.25),
-(7, 'CP 5', 5.3, 'Menentukan metodologi pengembangan perangkat lunak yang sesuai konteks keadaan dan kebutuhan', 'PROGRAM', 'efisiensi program, kesesuaian program dengan rumus/ protocol/ alur bisnis? Apakah rancangan program sudah sesuai teori? Flowchart jelas dan detil? Efisiensi desain DFD/ ERD/ UML', 0.25);
+(9, 'CP 4', 4.4, 'Mengkonstruksi algoritma dan/atau program yang efektif untuk menyelesaikan masalah', 'BAB 3 dan BAB 4 (Infor)', 'Infor : studi kelayakan, pengamatan awal, analisa masalah, kerangka pemikiran. penjabaran solusi yang diusulkan dan penjelasan mengapa solusi tersebut dianggap dapat menyelesaikan masalah. Bagaimana m', 0.25),
+(11, 'CP 7', 7.4, 'Membangun sistem informasi atau aplikasi bisnis untuk mendukung tercapainya tujuan organisasi', 'BAB 3 dan BAB 4 (SIB)', 'SIB : studi kelayakan, pengamatan awal, analisa masalah, kerangka pemikiran. Rancangan solusi dalam bentuk desain. Kesesuaian desain dengan kebutuhan proses bisnis yang nyata.', 0.25),
+(12, 'CP 9', 9.3, 'Menganalisis data secara logis, kritis, sistematis, dan inovatif', 'BUKU', 'penulisan buku laporan yang runut dan lengkap. Tata bahasa baku dengan gaya bahasa laporan ilmiah. Sejauh mana daftar pustaka sudah dicek bahwa semua item benar2 dikutip di bab2 sebelumnya, bukan seke', 0.1),
+(13, 'CP 8', 8.3, 'Menganalisis data secara logis, kritis, sistematis, dan inovatif', 'BAB 5 dan KESIMPULAN', '- merancang pengujian (bab 5). apakah langkah-langkah pengujian sistem serta hasil pengujian telah dijabarkan secara jelas lengkap (bilamana perlu dilengkapi dengan grafik, tabel, pembuktian. apakah l', 0.25),
+(14, 'CP 5', 5.3, 'Menentukan metodologi pengembangan perangkat lunak yang sesuai konteks keadaan dan kebutuhan', 'PROGRAM', 'efisiensi program, kesesuaian program dengan rumus/ protocol/ alur bisnis? Apakah rancangan program sudah sesuai teori? Flowchart jelas dan detil? Efisiensi desain DFD/ ERD/ UML', 0.25);
 
 -- --------------------------------------------------------
 
@@ -286,17 +287,34 @@ INSERT INTO `kriteria_penilaian` (`id_kriteria`, `cpl`, `ik`, `deskripsi_ik`, `b
 CREATE TABLE `penilaian` (
   `id_penilaian` int(11) NOT NULL,
   `mahasiswa` varchar(100) NOT NULL,
-  `cp_9_judul_abstrak` float NOT NULL,
-  `cp_9_bab_1_2` float NOT NULL,
-  `cp_4_bab_3_4_infor` float NOT NULL,
-  `cp_7_bab_3_4_sib` float NOT NULL,
-  `cp_9_buku` float NOT NULL,
-  `cp_8_bab_5_kesimpulan` float NOT NULL,
-  `cp_5_program` float NOT NULL,
+  `judul_abstrak` float NOT NULL,
+  `bab_1_2` float NOT NULL,
+  `bab_3_4_sib` float NOT NULL,
+  `bab_3_4_infor` float NOT NULL,
+  `buku` float NOT NULL,
+  `kesimpulan` float NOT NULL,
+  `program` float NOT NULL,
   `nilai_akhir` float NOT NULL,
-  `avg_nilai_akhir` float NOT NULL,
   `dosen` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `penilaian`
+--
+
+INSERT INTO `penilaian` (`id_penilaian`, `mahasiswa`, `judul_abstrak`, `bab_1_2`, `bab_3_4_sib`, `bab_3_4_infor`, `buku`, `kesimpulan`, `program`, `nilai_akhir`, `dosen`) VALUES
+(1, 'C14190126 ALVIN WISANA', 90, 78, 79, 0, 89, 77, 88, 82.2, 'SILVIA ROSTIANINGSIH, S.Kom., M.MT.'),
+(3, 'C14190123 RICO RONALDI', 89, 67, 0, 58, 88, 75, 90, 75.7, 'SILVIA ROSTIANINGSIH, S.Kom., M.MT.'),
+(4, 'C14190126 ALVIN WISANA', 88, 67, 78, 0, 97, 78, 96, 83.8, 'SILVIA ROSTIANINGSIH, S.Kom., M.MT.'),
+(5, 'C14190126 ALVIN WISANA', 88, 87, 67, 0, 57, 91, 81, 78.55, 'SILVIA ROSTIANINGSIH, S.Kom., M.MT.'),
+(6, 'C14190050 JIMLEE CHRISTANTO WIDJAYA', 97, 80, 0, 80, 88, 67, 78, 77.9, 'Dr. ANDREAS HANDOJO, S.T., M.MT.'),
+(7, 'C14190050 JIMLEE CHRISTANTO WIDJAYA', 97, 88, 0, 97, 88, 67, 78, 82.95, 'Dr. ANDREAS HANDOJO, S.T., M.MT.'),
+(8, 'C14190050 JIMLEE CHRISTANTO WIDJAYA', 97, 88, 0, 97, 67, 67, 78, 80.85, 'Dr. ANDREAS HANDOJO, S.T., M.MT.'),
+(9, 'C14190050 JIMLEE CHRISTANTO WIDJAYA', 87, 73, 0, 89, 78, 77, 90, 83.45, 'Dr. ANDREAS HANDOJO, S.T., M.MT.'),
+(10, 'C14190056 ALYCIA JANE SIDARTA', 80, 80, 0, 80, 80, 80, 80, 80, 'Dr. ANDREAS HANDOJO, S.T., M.MT.'),
+(11, 'C14190056 ALYCIA JANE SIDARTA', 80, 80, 0, 80, 80, 80, 80, 80, 'Dr. ANDREAS HANDOJO, S.T., M.MT.'),
+(12, 'C14190056 ALYCIA JANE SIDARTA', 80, 80, 0, 80, 80, 80, 80, 80, 'Dr. ANDREAS HANDOJO, S.T., M.MT.'),
+(14, 'C14190015 LINDA TAMARA CHANDRA', 88, 80, 0, 90, 77, 67, 65, 75.6, 'Dr. ANDREAS HANDOJO, S.T., M.MT.');
 
 -- --------------------------------------------------------
 
@@ -317,7 +335,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`username`, `type`, `password`) VALUES
 ('evelin', 'admin', '$2y$10$yZzGan18wC16VBZEcMThl.i4v/L4yOftTj4IIsxrRfhwMTCbXtELS'),
 ('okky', 'dosen', '$2y$10$yZzGan18wC16VBZEcMThl.i4v/L4yOftTj4IIsxrRfhwMTCbXtELS'),
-('billy', 'ketua', '$2y$10$yZzGan18wC16VBZEcMThl.i4v/L4yOftTj4IIsxrRfhwMTCbXtELS');
+('silvia', 'dosen', '$2y$10$XtC.WkLZrkD5pWNAEemFR.W/iSWOy8B0qSW.qOHiwY.MCxbBR0fAG'),
+('andreas', 'dosen', '$2y$10$aFsC7wqQ3NE9NBypiCBMuuG/34gu.av9e0K6a9AVJsuco8v5SI.E.'),
+('hans', 'dosen', '$2y$10$3cu7QTMFNwzSmTG1ADkxFu8gRfZPTUYnKOkrXq9IeFqGqv0kJzDmu');
 
 -- --------------------------------------------------------
 
@@ -327,9 +347,10 @@ INSERT INTO `user` (`username`, `type`, `password`) VALUES
 
 CREATE TABLE `vakasi` (
   `nomor_vakasi` int(10) NOT NULL,
-  `nip` int(10) NOT NULL,
+  `nip` varchar(10) NOT NULL,
   `dosen` varchar(100) NOT NULL,
   `tanggal_sidang` datetime(6) NOT NULL,
+  `ruang_sidang` varchar(100) NOT NULL,
   `nama_mhs` varchar(100) NOT NULL,
   `anggota_penguji` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -338,16 +359,14 @@ CREATE TABLE `vakasi` (
 -- Dumping data untuk tabel `vakasi`
 --
 
-INSERT INTO `vakasi` (`nomor_vakasi`, `nip`, `dosen`, `tanggal_sidang`, `nama_mhs`, `anggota_penguji`) VALUES
-(1, 2, 'SILVIA ROSTIANINGSIH, S.Kom., M.MT.', '2023-11-02 08:30:00.000000', 'C14190054 FELICIA LAKSANA PUTRI', 'Ketua Penguji'),
-(2, 1, 'ADI WIBOWO, S.T., M.T., Ph.D.', '2023-11-02 08:30:00.000000', 'C14190054 FELICIA LAKSANA PUTRI', 'Anggota Penguji'),
-(3, 5, 'Dr. ANDREAS HANDOJO, S.T., M.MT.', '2023-11-02 08:30:00.000000', 'C14190054 FELICIA LAKSANA PUTRI', 'Pembimbing 1'),
-(5, 1, 'ADI WIBOWO, S.T., M.T., Ph.D.', '2023-11-02 07:30:00.000000', 'C14180127 TEDDY GHATSUNAGA', 'Ketua Penguji'),
-(6, 6, 'STEPHANUS A. ANANDA, S.T., M.Sc. Ph.D.', '2023-11-02 07:30:00.000000', 'C14180127 TEDDY GHATSUNAGA', 'Anggota Penguji'),
-(8, 4, 'LILY PUSPA DEWI, S.T., M.Kom.', '2023-11-02 07:30:00.000000', 'C14180127 TEDDY GHATSUNAGA', 'Pembimbing 2'),
-(9, 2, 'SILVIA ROSTIANINGSIH, S.Kom., M.MT.', '2023-11-02 07:00:00.000000', 'C14180197 FERDINANT PANGESTU', 'Ketua Penguji'),
-(11, 7, 'Ir. KARTIKA GUNADI, M.T.', '2023-12-07 17:00:00.000000', 'C14180028 BINTANG ARTOMORO WINARTO', 'Pembimbing 1'),
-(12, 29, 'LILIANA, S.T., M.Eng., Ph.D.', '2023-12-07 17:00:00.000000', 'C14180028 BINTANG ARTOMORO WINARTO', 'Pembimbing 2');
+INSERT INTO `vakasi` (`nomor_vakasi`, `nip`, `dosen`, `tanggal_sidang`, `ruang_sidang`, `nama_mhs`, `anggota_penguji`) VALUES
+(7, '002', 'SILVIA ROSTIANINGSIH, S.Kom., M.MT.', '2023-12-12 11:30:00.000000', 'P309', 'C14190126 ALVIN WISANA', 'Ketua Penguji'),
+(8, '014', 'HANS JUWIANTHO, S.Kom., M.Kom.', '2023-12-12 11:30:00.000000', 'P309', 'C14190126 ALVIN WISANA', 'Anggota Penguji'),
+(9, '013', 'ALEXANDER SETIAWAN, S.Kom., M.T.', '2023-12-12 11:30:00.000000', 'P309', 'C14190126 ALVIN WISANA', 'Pembimbing 1'),
+(14, '005', 'Dr. ANDREAS HANDOJO, S.T., M.MT.', '2023-12-11 14:00:00.000000', 'P309', 'C14190050 JIMLEE CHRISTANTO WIDJAYA', 'Ketua Penguji'),
+(15, '012', 'HENRY NOVIANUS PALIT, S.Kom., M.Kom., Ph.D.', '2023-12-11 14:00:00.000000', 'P309', 'C14190050 JIMLEE CHRISTANTO WIDJAYA', 'Anggota Penguji'),
+(16, '018', 'Dr. GREGORIUS SATIA BUDHI, S.T., M.T.', '2023-12-11 14:00:00.000000', 'P309', 'C14190050 JIMLEE CHRISTANTO WIDJAYA', 'Pembimbing 1'),
+(17, '019', 'YUSAK TANOTO, S.T., M.Eng., Ph.D.', '2023-12-11 14:00:00.000000', 'P309', 'C14190050 JIMLEE CHRISTANTO WIDJAYA', 'Pembimbing 2');
 
 --
 -- Indexes for dumped tables
@@ -357,7 +376,8 @@ INSERT INTO `vakasi` (`nomor_vakasi`, `nip`, `dosen`, `tanggal_sidang`, `nama_mh
 -- Indeks untuk tabel `berita_acara`
 --
 ALTER TABLE `berita_acara`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_1` (`tanggal_sidang`);
 
 --
 -- Indeks untuk tabel `data_dosen`
@@ -387,7 +407,8 @@ ALTER TABLE `penilaian`
 -- Indeks untuk tabel `vakasi`
 --
 ALTER TABLE `vakasi`
-  ADD PRIMARY KEY (`nomor_vakasi`);
+  ADD PRIMARY KEY (`nomor_vakasi`),
+  ADD KEY `fk_1` (`tanggal_sidang`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -397,7 +418,7 @@ ALTER TABLE `vakasi`
 -- AUTO_INCREMENT untuk tabel `berita_acara`
 --
 ALTER TABLE `berita_acara`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_mahasiswa`
@@ -409,19 +430,29 @@ ALTER TABLE `data_mahasiswa`
 -- AUTO_INCREMENT untuk tabel `kriteria_penilaian`
 --
 ALTER TABLE `kriteria_penilaian`
-  MODIFY `id_kriteria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_kriteria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT untuk tabel `penilaian`
 --
 ALTER TABLE `penilaian`
-  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_penilaian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `vakasi`
 --
 ALTER TABLE `vakasi`
-  MODIFY `nomor_vakasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `nomor_vakasi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `vakasi`
+--
+ALTER TABLE `vakasi`
+  ADD CONSTRAINT `fk_1` FOREIGN KEY (`tanggal_sidang`) REFERENCES `berita_acara` (`tanggal_sidang`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
