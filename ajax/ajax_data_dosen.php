@@ -1,10 +1,8 @@
 <?php
     include '../config.php';
-    $keyword = $_GET["keyword"];
-    $fetch = "SELECT * FROM data_dosen WHERE nama LIKE '%$keyword%' OR nip LIKE '%$keyword%' OR jabatan LIKE '%$keyword%' or jurusan LIKE '%$keyword%'";
-    $stmt = mysqli_prepare($conn, $fetch);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : ' ';
+    $sql = "SELECT * FROM data_dosen WHERE nip LIKE '%$keyword%' OR nama LIKE '%$keyword%' LIMIT 0,10";
+    $result = mysqli_query($conn, $sql)
 ?>
 <!-- kode dibawah ini merupakan div yang id="wadah" di data_dosen.php -->
 <?php if (mysqli_num_rows($result) > 0): ?>

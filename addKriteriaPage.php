@@ -416,6 +416,12 @@ $result_kriteria = mysqli_query($conn, $fetch_kriteria);
                                 icon: "success",
                                 title: "Kriteria Ditambah!",
                                 text: "Berhasil menambahkan kriteria penilaian!",
+                            }).then((result) => {
+                                // Check if the user clicked "OK"
+                                if (result.isConfirmed) {
+                                    // Refresh the page
+                                    location.reload();
+                                }
                             });
                         }
                         else{

@@ -152,7 +152,7 @@ if (isset($_POST["import"])) {
         padding-left: 5rem;
         padding-right: 5rem;
         padding-top: 2rem;
-        padding-bottom: 200px;
+        padding-bottom: 300px;
         }
         .btn {
         display: inline-block;
@@ -253,7 +253,7 @@ if (isset($_POST["import"])) {
                     </div>
         
                     <div class="col-lg-3">
-                        <button type="submit" class="btn btn-outline-ocean" id="refresh" style="margin-top: 30px;">Refresh</button>
+                        <button type="submit" class="btn btn-outline-ocean" id="refresh" style="margin-top: 30px;">Search</button>
                     </div>
     
                     <div class="col-lg-6">

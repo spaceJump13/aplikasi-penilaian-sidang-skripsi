@@ -36,6 +36,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mynav">
+                    <li class="nav-link">
+                        <a class="text-decoration-none" aria-current="page" href="dataDosen.php">Data Dosen</a>
+                    </li>
+                </ul>
+            </div>
+
             <div class="collapse navbar-collapse justify-content-end" style="margin-right: 50px;">
                 <ul class="navbar-nav mynav" style="margin-right: 10px;">
                     <li class="nav-item dropdown">
@@ -63,7 +71,8 @@
             
             <div class="container-lg" id="content">
                 <div class="row">
-                    <div class="col-md-4" >
+
+                    <div class="col-md-4">
                         <div class="row-sm-4" id="vakasi" onclick="window.location.href = 'vakasi.php'">   
                             <p>VAKASI</p>
                         </div>
@@ -71,24 +80,27 @@
                             <p>DATA MAHASISWA</p>
                         </div>
                     </div>
+                    
                     <div class="col-md-3">
                         <div class="row sm-1" id="title_bobot" onclick="window.location.href = 'aturBobot.php';">
                             <p>ATUR KRITERIA NILAI</p>
                             <div class="row md-3" id="percent">
-                                <img style="padding-top: 10px;" src="asset/image/percent.png">
-                        </div>
-                        </div>
-                       
+                                <img  src="asset/image/percent.png">
+                            </div>
+                        </div>   
                     </div>
+
                     <div class="col-md-3">
                         <div class="row sm-1" id="title_berita" onclick="window.location.href = 'beritaAcara.php'">
                             <p>BERITA ACARA</p> 
-                            <div class="row md-3" id="news"><img style="padding-top: 10px;" src="asset/image/news.png">
+                            <div class="row md-3" id="news">
+                                <img src="asset/image/news.png">
                             </div>
                         </div>
                     </div>
                 </div> 
             </div>
+
         </div>
     </body>
 </html>

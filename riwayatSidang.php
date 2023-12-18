@@ -199,6 +199,11 @@ $result2 = $stmt2->get_result();
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="homeDosen.php"><button class="btn btn-outline-ocean mt-3">Back</button></a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
