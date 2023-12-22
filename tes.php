@@ -1,17 +1,17 @@
 <?php
     include 'config.php';
     
-    if(!isset($_SESSION['login'])){
-        header("Location: login.php");
-        exit;
-    }
+    // if(!isset($_SESSION['login'])){
+    //     header("Location: login.php");
+    //     exit;
+    // }
 
-    if(isset($_SESSION['login'])){
-        if ($_SESSION['usertype'] === 'dosen'){
-            header("Location: homeDosen.php");
-            exit();
-        }
-    }
+    // if(isset($_SESSION['login'])){
+    //     if ($_SESSION['usertype'] === 'dosen'){
+    //         header("Location: homeDosen.php");
+    //         exit();
+    //     }
+    // }
 
     $username = $_SESSION['username'];
 ?>
@@ -29,12 +29,10 @@
         <title>Home Admin</title>
     </head>
     <style>
-        .container-lg {
-            width: 3000px;
-            box-sizing: border-box;
-            overflow: hidden; /* prevent content overflow */
+        #image{
+            width: 200px;
+            height: 200px;
         }
-
     </style>
     <body style="background-color:#0B6977">
 
@@ -43,6 +41,14 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mynav">
+                    <li class="nav-link">
+                        <a class="text-decoration-none" aria-current="page" href="dataDosen.php">Data Dosen</a>
+                    </li>
+                </ul>
+            </div>
 
             <div class="collapse navbar-collapse justify-content-end" style="margin-right: 50px;">
                 <ul class="navbar-nav mynav" style="margin-right: 10px;">
@@ -65,38 +71,38 @@
         </nav>
 
         <div style="position: fixed; top: 50%; left: 50%;  transform: translate(-50%, -50%);">
-            <div class="head" style="margin-bottom: 20px;">
-                <h1>WELCOME, <?php echo $username;?>!</h1>
-            </div>
-            
-            <div class="container-lg">
-                <div class="row" style="margin: 2px;">
-                    <div class="col-lg-3 bg-warning" style="margin-right: 10px;">
-                       <div class="row">
+            <div class="container-lg" style="margin: auto;">
+                <div class="row">
+                    <h1>WELCOME, <?php echo $username;?>!</h1>
+                </div>
+                <div id="content">
+                    <div class="vakasi-data-mahasiswa">
+                        <div id="vakasi">
                             <p>Vakasi</p>
-                       </div>
+                        </div>
 
-                       <div class="row">
+                        <div id="data-mahasiswa">
                             <p>Data Mahasiswa</p>
-                       </div>
+                        </div>
                     </div>
 
-                    <div class="col-lg-3 bg-warning" style="margin-right: 10px;">
-                        <h5>Atur Bobot Nilai</h5>
-                        <img  src="asset/image/percent.png" id="percent">
+                    <div class="atur-kriteria">
+                        <p>ATUR KRITERIA NILAI</p>
+                        <img src="Asset\image\percent.png" id="image" alt="">
                     </div>
 
-                    <div class="col-lg-3 bg-warning" style="margin-right: 10px;">
-                        <h5>Atur Bobot Nilai</h5>
-                        <img  src="asset/image/percent.png" id="percent">
+                    <div class="berita-acara">
+                        <p>BERITA ACARA</p>
+                        <img src="Asset\image\news.png" id="image" alt="">
                     </div>
 
-                    <div class="col-lg-3 bg-warning" style="margin-right: 10px;">
-                        <h5>Atur Bobot Nilai</h5>
-                        <img  src="asset/image/percent.png" id="percent">
+                    <div class="data-dosen">
+                        <p>DATA DOSEN</p>
+                        <img src="Asset\image\teacher.png" id="image" alt="">
                     </div>
                 </div>
             </div>
         </div>
+
     </body>
 </html>
