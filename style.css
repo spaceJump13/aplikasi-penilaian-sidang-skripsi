@@ -1,5 +1,3 @@
-
-/*HOME ADMIN*/
 h1{
     color: #FFF;
     text-align: center;
@@ -9,7 +7,6 @@ h1{
     line-height: normal;
 }
 
-/*kotak putih unk ALL HOME*/
 #content{
     display: flex;
     flex-direction: row;
@@ -18,10 +15,11 @@ h1{
     padding: 20px;
     /* justify-content: center;
     align-items: center; */
-    width: 1300px;
+    width: 1150px;
     height: fit-content;
     box-sizing: border-box;
-    border: 5px solid black;
+    margin-top: 30px;
+    /* border: 5px solid black; */
 }
 
 #content div{
@@ -31,7 +29,6 @@ h1{
     background-color: #FFD600B2;
     padding: 10px;
     border-radius: 15px;
-    /* border: 5px solid blue; */
     line-height: normal;
     text-shadow: 2px 2px grey;
     font-size: 30px;
@@ -49,8 +46,7 @@ h1{
     background-color: white;
 }
 
-.vakasi-data-mahasiswa #vakasi
- {
+.vakasi-data-mahasiswa #vakasi{
     width: 100%;
     height: 100%;
     margin-top: 0px;
@@ -60,14 +56,22 @@ h1{
     flex: 1;
 }
 
-.vakasi-data-mahasiswa #data-mahasiswa
- {
+.vakasi-data-mahasiswa #data-mahasiswa{
     width: 100%;
     height: 100%;
     margin-bottom: 0px;
     justify-content: center;
     align-items: center;
     display: flex;
+}
+
+#content div:not(.vakasi-data-mahasiswa):hover{
+    background-color:white;
+    color: #FFD600;
+    border: 1px solid #ddd;
+    text-shadow: 2px 2px black ;
+    border-color: #FFD600;
+    border-width: 3px;
 }
 
 

@@ -28,6 +28,12 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <title>Home Admin</title>
     </head>
+    <style>
+        #image{
+            width: 150px;
+            height: 150px;
+        }
+    </style>
     <body style="background-color:#0B6977">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 10px;">
@@ -35,14 +41,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mynav">
-                    <li class="nav-link">
-                        <a class="text-decoration-none" aria-current="page" href="dataDosen.php">Data Dosen</a>
-                    </li>
-                </ul>
-            </div>
 
             <div class="collapse navbar-collapse justify-content-end" style="margin-right: 50px;">
                 <ul class="navbar-nav mynav" style="margin-right: 10px;">
@@ -65,42 +63,37 @@
         </nav>
 
         <div style="position: fixed; top: 50%; left: 50%;  transform: translate(-50%, -50%);">
-            <div class="head" style="margin-bottom: 20px;">
-                <h1>WELCOME, <?php echo $username;?>!</h1>
-            </div>
-            
-            <div class="container-lg" id="content">
+            <div class="container-lg" style="margin: auto;">
                 <div class="row">
+                    <h1>WELCOME, <?php echo $username;?>!</h1>
+                </div>
+                <div id="content">
+                    <div class="vakasi-data-mahasiswa">
+                        <div id="vakasi" onclick="window.location.href = 'vakasi.php';">
+                            <p>Vakasi</p>
+                        </div>
 
-                    <div class="col-md-4">
-                        <div class="row-sm-4" id="vakasi" onclick="window.location.href = 'vakasi.php'">   
-                            <p>VAKASI</p>
+                        <div id="data-mahasiswa" onclick="window.location.href = 'dataMahasiswa.php';">
+                            <p>Data Mahasiswa</p>
                         </div>
-                        <div class="row-sm-4" id="datamhs" onclick="location.href='dataMahasiswa.php'">
-                            <p>DATA MAHASISWA</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-3">
-                        <div class="row sm-1" id="title_bobot" onclick="window.location.href = 'aturBobot.php';">
-                            <p>ATUR KRITERIA NILAI</p>
-                            <div class="row md-3" id="percent">
-                                <img  src="asset/image/percent.png">
-                            </div>
-                        </div>   
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="row sm-1" id="title_berita" onclick="window.location.href = 'beritaAcara.php'">
-                            <p>BERITA ACARA</p> 
-                            <div class="row md-3" id="news">
-                                <img src="asset/image/news.png">
-                            </div>
-                        </div>
+                    <div class="atur-kriteria" onclick="window.location.href = 'aturBobot.php';">
+                        <p>ATUR KRITERIA NILAI</p>
+                        <img src="Asset\image\percent.png" id="image" alt="">
                     </div>
-                </div> 
+
+                    <div class="berita-acara md-4" onclick="window.location.href = 'beritaAcara.php';">
+                        <p>BERITA ACARA</p>
+                        <img src="Asset\image\news.png" id="image" alt="">
+                    </div>
+
+                    <div class="data-dosen" onclick="window.location.href = 'dataDosen.php';">
+                        <p>DATA DOSEN</p>
+                        <img src="Asset\image\teacher.png" id="image" alt="">
+                    </div>
+                </div>
             </div>
-
         </div>
     </body>
 </html>
