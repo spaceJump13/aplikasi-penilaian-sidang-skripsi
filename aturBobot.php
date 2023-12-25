@@ -137,6 +137,9 @@ $result_kriteria = mysqli_query($conn, $sql);
                 <li class="nav-link">
                     <a class="text-decoration-none" href="beritaAcara.php">Berita Acara</a>
                 </li>
+                <li class="nav-link">
+                    <a class="text-decoration-none" href="dataDosen.php">Data Dosen</a>
+                </li>
             </ul>
         </div>
 

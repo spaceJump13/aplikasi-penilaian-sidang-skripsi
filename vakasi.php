@@ -73,6 +73,9 @@ $result_vakasi = mysqli_query($conn, $sql);
                 <li class="nav-link">
                     <a class="text-decoration-none" href="aturBobot.php">Atur Kriteria Penilaian</a>
                 </li>
+                <li class="nav-link">
+                    <a class="text-decoration-none" href="dataDosen.php">Data Dosen</a>
+                </li>
             </ul>
         </div>
 
